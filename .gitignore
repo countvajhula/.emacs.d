@@ -1,0 +1,20 @@
+.cask
+auto-save
+elpa
+auto-save-list
+eshell
+network-security.data
+smex-items
+backups
+projectile-bookmarks.eld
+snippets
+bookmarks
+projectile.cache
+el-get
+recentf
+url
+
+# vim noise
+*~
+*.sw?
+
