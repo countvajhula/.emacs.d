@@ -78,7 +78,7 @@
 (require 'my-char-mode)
 (require 'my-word-mode)
 (require 'my-line-mode)
-(require 'my-symex-mode)
+(require 'symex-mode)
 (require 'my-view-mode)
 (require 'my-window-mode)
 (require 'my-file-mode)

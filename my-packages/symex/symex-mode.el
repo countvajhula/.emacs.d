@@ -1,4 +1,42 @@
-;;; -*- lexical-binding: t -*-
+;;; symex-mode.el --- An evil way to edit Lisp symbolic expressions as trees -*- lexical-binding: t -*-
+
+;; Author: Siddhartha Kasivajhula <sid@countvajhula.com>
+;; URL: https://github.com/countvajhula/symex-mode
+;; Version: 0.1
+;; Keywords: lisp, evil
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+;;
+;; Symex mode (pronounced sym-ex, as in symbolic expression) is a vim-
+;; inspired way of editing Lisp code as trees.  Entering symex mode
+;; allows you to reason about your code in terms of its structure,
+;; similar to other tools like paredit and lispy.  But while in those
+;; packages the tree representation is implicit, symex mode models
+;; the tree structure explicitly so that tree navigations and operations
+;; can be described using an expressive DSL, and invoked in a vim-
+;; style modal interface implemented with a Hydra.
+;;
+;; At the moment, symex mode uses paredit, lispy, and evil-cleverparens
+;; to provide much of its low level functionality.
+;; In the future, this layer of primitives may be replaced with a layer
+;; that explicitly uses the abstract syntax tree, for greater precision.
+;;
+
+;;; Code:
+
 ;;; TODO: consider using S for dragging and C for movement (and then across all modes)
 ;;; TODO: move back/forward through tree "at same level" without going up or down (i.e. switch branches, ideally preserving position index within branch)
 ;;; TODO: traverse tree with side effect (traversal-method, side-effect-fn), to use for "indent forward" on paste
@@ -149,4 +187,5 @@
 (global-set-key (kbd "s-y") 'hydra-symex/body)  ; since y looks like inverted lambda
 (global-set-key (kbd "s-;") 'hydra-symex/body)  ; since y is hard to reach
 
-(provide 'my-symex-mode)
+(provide 'symex-mode)
+;;; symex-mode.el ends here
