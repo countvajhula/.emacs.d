@@ -382,6 +382,7 @@ Version 2017-11-01"
     ("f" my-current-dir "dir")
     ("g" magit-status "Magit (git)")
     ("l" my-lisp-repl "Lisp REPL")
+    ("m" my-switch-to-messages-buffer "Go to Messages buffer")
     ("s" eshell "Shell")
     ("t" sr-speedbar-toggle "Nav Sidebar")
     ("u" undo-tree-visualize "Undo tree"))
