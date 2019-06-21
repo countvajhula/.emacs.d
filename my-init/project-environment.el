@@ -70,6 +70,7 @@ _d_: dir             _g_: update gtags
   ;; visually indent lower hierarchy levels
   (setq org-startup-indented t)
   (setq org-agenda-files '("~/log/org/"))
+  (setq org-default-notes-file "~/log/org/organizer.org")
   (setq org-todo-keywords '((sequence "[ ](t)"    ; todo
                                       "[\\](w)"   ; working / in-progress
                                       "[o](o)"    ; blocked / waiting
@@ -78,7 +79,6 @@ _d_: dir             _g_: update gtags
   (setq org-tag-alist '(("@SF" . ?s)
                         ("@Oakland" . ?o)
                         ("raMP" . ?r)))
-
 
   ;; From: https://www.reddit.com/r/emacs/comments/7wsnoi/using_countdown_timers_for_alerts/
   (defun show-msg-after-timer ()
@@ -93,25 +93,30 @@ _d_: dir             _g_: update gtags
   (defhydra hydra-org (:columns 3)
     "Org-mode Menu"
     ("l" org-store-link "store link")
-    ("a" org-agenda "agenda")
+    ("a" hydra-org-agenda/body "agenda" :exit t)
+    ("s" hydra-org-scheduling/body "scheduling" :exit t)
     ("c" org-capture "capture")
     ("t" org-todo "todo")
     ("o" show-msg-after-timer "timer")
-    ("d" org-time-stamp "+ date")
-    ("D" (lambda ()
-           (interactive)
-           (org-time-stamp '(4))) "+ date/time")
     ("g" org-set-tags "set tags")
     ("i" org-ibuffer "view all open org buffers")
     ("b" org-switchb "org switch buffer"))
 
-  ;; nest this hydra inside the previous one under `a`
-  (defhydra hydra-org-agenda ()
+  (defhydra hydra-org-agenda (:exit t)
     "Agenda"
     ("a" org-agenda "agenda")
     ("+" org-agenda-file-to-front "add file to agenda")
     ("-" org-remove-file "remove file from agenda")
     ("b" org-switchb "org switch buffer"))
+
+  (defhydra hydra-org-scheduling (:exit t)
+    "Scheduling"
+    ("t" org-time-stamp "+ date")
+    ("T" (lambda ()
+           (interactive)
+           (org-time-stamp '(4))) "+ date/time")
+    ("d" org-deadline "+ deadline")
+    ("s" org-schedule "schedule"))
 
   ;; access the org-mode menu via a "body" keybinding
   (global-set-key (kbd "s-o") 'hydra-org/body))
