@@ -90,13 +90,18 @@ _d_: dir             _g_: update gtags
       (run-at-time time-duration nil #'message-box msg-to-show)))
 
   ;; interface with org-mode via a hydra menu
-  (defhydra hydra-org ()
+  (defhydra hydra-org (:columns 3)
     "Org-mode Menu"
     ("l" org-store-link "store link")
     ("a" org-agenda "agenda")
     ("c" org-capture "capture")
     ("t" org-todo "todo")
     ("o" show-msg-after-timer "timer")
+    ("d" org-time-stamp "+ date")
+    ("D" (lambda ()
+           (interactive)
+           (org-time-stamp '(4))) "+ date/time")
+    ("g" org-set-tags "set tags")
     ("i" org-ibuffer "view all open org buffers")
     ("b" org-switchb "org switch buffer"))
 
