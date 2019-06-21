@@ -35,3 +35,4 @@
 
 ;; load any customizations done via EMACS UI
 (load custom-file 'noerror)
+(put 'narrow-to-region 'disabled nil)
