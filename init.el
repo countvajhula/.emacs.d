@@ -31,7 +31,9 @@
 (load "physical-environment")
 
 (use-package evil-epistemic-mode
-  :after evil)
+  :after evil
+  :config
+  (setq epistemic-mode t))
 
 ;; load any customizations done via EMACS UI
 (load custom-file 'noerror)

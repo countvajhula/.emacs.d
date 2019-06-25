@@ -16,7 +16,7 @@
  '(custom-enabled-themes (quote (moe-dark)))
  '(custom-safe-themes
    (quote
-    ("26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "1a2a0286b90917fb70e4b578dc2a4fee3e768123e2ea6e0890f7a3e30505e119" "125744c0b04c7addbe25d238a4053740fad2ad5e18211662f637dbacb3802331" "06c178b80bedb9d4b6109e3b3989745ba21f1231f8b58fa4137c447854a7b020" "be5b03913a1aaa3709d731e1fcfd4f162db6ca512df9196c8d4693538fa50b86" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("13d20048c12826c7ea636fbe513d6f24c0d43709a761052adbca052708798ce3" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "1a2a0286b90917fb70e4b578dc2a4fee3e768123e2ea6e0890f7a3e30505e119" "125744c0b04c7addbe25d238a4053740fad2ad5e18211662f637dbacb3802331" "06c178b80bedb9d4b6109e3b3989745ba21f1231f8b58fa4137c447854a7b020" "be5b03913a1aaa3709d731e1fcfd4f162db6ca512df9196c8d4693538fa50b86" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(default-input-method "TeX")
  '(diary-entry-marker (quote font-lock-variable-name-face))
  '(emms-mode-line-icon-image-cache
@@ -82,7 +82,7 @@ static char *gnus-pointer[] = {
     ("#032f62" "#6a737d" "#d73a49" "#6a737d" "#005cc5" "#6f42c1" "#d73a49" "#6a737d")))
  '(package-selected-packages
    (quote
-    (flycheck dash-functional beacon evil-cleverparens chess lispy racket-mode paredit geiser ht adaptive-wrap remember-last-theme haskell-mode highlight buttercup edebug-x evil-surround projectile auctex evil-indent-plus ace-window evil-goggles fireplace general org telephone-line smart-mode-line ibuffer-vc ibuffer-sidebar ivy-rich popwin evil-collection ace-jump-buffer avy ivy-hydra caps-lock smex counsel yasnippet-snippets yasnippet evil-mc multiple-cursors minimap evil-matchit evil-tabs tabbar evil-magit php-mode ivy sicp company-jedi company sr-speedbar magit dictionary sublimity evil elpy)))
+    (flycheck-package package-lint flycheck dash-functional beacon evil-cleverparens chess lispy racket-mode paredit geiser ht adaptive-wrap remember-last-theme haskell-mode highlight buttercup edebug-x evil-surround projectile auctex evil-indent-plus ace-window evil-goggles fireplace general org telephone-line smart-mode-line ibuffer-vc ibuffer-sidebar ivy-rich popwin evil-collection ace-jump-buffer avy ivy-hydra caps-lock smex counsel yasnippet-snippets yasnippet evil-mc multiple-cursors minimap evil-matchit evil-tabs tabbar evil-magit php-mode ivy sicp company-jedi company sr-speedbar magit dictionary sublimity evil elpy)))
  '(pdf-view-midnight-colors (quote ("#FDF4C1" . "#282828")))
  '(pos-tip-background-color "#1A3734")
  '(pos-tip-foreground-color "#FFFFC8")

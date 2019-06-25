@@ -30,6 +30,11 @@
 (use-package my-racket
   :after general)
 
+(use-package symex-mode
+  :config
+  (global-set-key (kbd "s-y") 'hydra-symex/body)  ; since y looks like inverted lambda
+  (global-set-key (kbd "s-;") 'hydra-symex/body)) ; since y is hard to reach
+
 (use-package php-mode
   :defer t)
 
