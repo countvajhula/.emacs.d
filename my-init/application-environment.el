@@ -32,8 +32,8 @@
 
 (use-package symex-mode
   :config
-  (global-set-key (kbd "s-y") 'hydra-symex/body)  ; since y looks like inverted lambda
-  (global-set-key (kbd "s-;") 'hydra-symex/body)) ; since y is hard to reach
+  (global-set-key (kbd "s-y") 'symex-mode)  ; since y looks like inverted lambda
+  (global-set-key (kbd "s-;") 'symex-mode)) ; since y is hard to reach
 
 (use-package php-mode
   :defer t)
