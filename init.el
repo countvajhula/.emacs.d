@@ -33,7 +33,9 @@
 (use-package evil-epistemic-mode
   :after evil
   :config
-  (setq epistemic-mode t))
+  (setq epistemic-mode t)
+  (global-set-key (kbd "s-m") 'hydra-mode/body)
+  (global-set-key (kbd "s-<escape>") 'hydra-mode/body)) ;; TODO: s-esc and s-ret should operate based on meta-towers
 
 ;; load any customizations done via EMACS UI
 (load custom-file 'noerror)
