@@ -32,8 +32,12 @@
 
 (use-package symex-mode
   :config
-  (global-set-key (kbd "s-y") 'symex-mode)  ; since y looks like inverted lambda
-  (global-set-key (kbd "s-;") 'symex-mode)) ; since y is hard to reach
+  (global-set-key (kbd "s-y") 'evil-symex-state)  ; since y looks like inverted lambda
+  (global-set-key (kbd "s-;") 'evil-symex-state)  ; since y is hard to reach
+  (dolist (mode-name symex-lisp-modes)
+    (let ((mode-hook (intern (concat (symbol-name mode-name)
+                                     "-hook"))))
+      (add-hook mode-hook 'symex-mode))))
 
 (use-package php-mode
   :defer t)
