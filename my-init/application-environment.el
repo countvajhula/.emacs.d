@@ -30,6 +30,16 @@
 (use-package my-racket
   :after general)
 
+(use-package cider
+  :defer t)
+
+(use-package slime
+  :defer t
+  :config
+  (load (expand-file-name "~/.quicklisp/slime-helper.el"))
+  (setq inferior-lisp-program "sbcl")
+  (setq slime-auto-start 'always))
+
 (use-package symex
   :config
   (global-set-key (kbd "s-y") 'symex-mode-interface)  ; since y looks like inverted lambda
