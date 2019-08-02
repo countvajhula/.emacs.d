@@ -107,3 +107,10 @@ From: https://stackoverflow.com/a/13313091"
   (= (save-excursion (back-to-indentation)
                          (point))
      (point)))
+
+(defun my-camel-case-to-snake-case ()
+  "Change the word at point from camelCase to snake_case."
+  (interactive)
+  (let ((result (s-snake-case (thing-at-point 'word))))
+    (apply #'evil-delete (evil-inner-word))
+    (insert result)))
