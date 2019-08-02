@@ -31,11 +31,17 @@
 (load "physical-environment")
 
 (use-package evil-epistemic-mode
-  :after evil
+  :after (evil symex)  ;; TODO: should be independent of symex and arguably evil too
   :config
   (setq epistemic-mode t)
   (global-set-key (kbd "s-m") 'hydra-mode/body)
-  (global-set-key (kbd "s-<escape>") 'hydra-mode/body)) ;; TODO: s-esc and s-ret should operate based on meta-towers
+  (global-set-key (kbd "s-<escape>") 'hydra-mode/body) ;; TODO: s-esc and s-ret should operate based on meta-towers
+  (dolist (mode-name symex-lisp-modes)
+    (let ((mode-hook (intern (concat (symbol-name mode-name)
+                                     "-hook"))))
+      (add-hook mode-hook (lambda ()
+                            (setq eem--current-tower-index 2)
+                            (setq eem--current-level 2))))))
 
 ;; load any customizations done via EMACS UI
 (load custom-file 'noerror)
