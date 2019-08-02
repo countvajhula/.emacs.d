@@ -47,7 +47,8 @@
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
                                      "-hook"))))
-      (add-hook mode-hook 'symex-mode))))
+      (add-hook mode-hook 'symex-mode)))
+  (symex-hide-menu))
 
 (use-package php-mode
   :defer t)
