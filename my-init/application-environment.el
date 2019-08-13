@@ -311,6 +311,10 @@
 ;; virtual caps lock since actual one is remapped to Esc
 (use-package caps-lock)
 
+;; so you don't lose the cursor
+(use-package beacon
+  :config
+  (beacon-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; CUSTOM FUNCTIONS ;;
