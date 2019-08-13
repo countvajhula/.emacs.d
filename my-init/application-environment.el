@@ -40,6 +40,11 @@
   (setq inferior-lisp-program "sbcl")
   (setq slime-auto-start 'always))
 
+(use-package arc
+  :defer t
+  :config
+  (setq arc-source-path "~/work/lisp/arc/arc3.2"))
+
 (use-package symex
   :config
   (global-set-key (kbd "s-y") 'symex-mode-interface)  ; since y looks like inverted lambda
