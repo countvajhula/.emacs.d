@@ -14,7 +14,11 @@
   (add-hook 'python-mode-hook
 			(lambda ()
 			  (setq tab-width 4)
-			  (setq python-indent-offset 4))))
+			  (setq python-indent-offset 4)))
+  ;; use flycheck instead of flymake
+  (when (require 'flycheck nil t)
+    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+    (add-hook 'elpy-mode-hook 'flycheck-mode)))
 
 (defhydra hydra-python (:timeout my-leader-timeout
                         :columns 2
