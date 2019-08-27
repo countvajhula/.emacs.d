@@ -9,12 +9,6 @@
   ;; use jedi for completion with elpy instead of rope
   (setq elpy-rpc-backend "jedi")
   (setq python-check-command "~/.local/bin/pyflakes")
-  (add-hook 'python-mode-hook
-			(lambda () (show-paren-mode 1)))
-  (add-hook 'python-mode-hook
-			(lambda ()
-			  (setq tab-width 4)
-			  (setq python-indent-offset 4)))
   ;; use flycheck instead of flymake
   (when (require 'flycheck nil t)
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
