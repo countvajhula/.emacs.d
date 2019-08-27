@@ -43,7 +43,9 @@
 (use-package arc
   :defer t
   :config
-  (setq arc-source-path "~/work/lisp/arc/arc3.2"))
+  (setq arc-source-path "~/work/lisp/arc/arc3.2")
+  ;; until arc is supported directly in symex mode
+  (add-hook 'arc-mode-hook 'symex-mode))
 
 (use-package symex
   :config
