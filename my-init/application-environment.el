@@ -19,7 +19,16 @@
 (use-package dictionary)
 
 (use-package my-python
-  :after general)
+  :after general
+  :config
+  (add-hook 'python-mode-hook
+            (lambda () (show-paren-mode 1)))
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (setq tab-width 4)
+              (setq python-indent-offset 4)))
+  (add-hook 'python-mode-hook
+            (lambda () (setq fill-column 79))))
 
 (use-package my-elisp
   :after general)
