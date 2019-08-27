@@ -41,7 +41,11 @@
                                      "-hook"))))
       (add-hook mode-hook (lambda ()
                             (setq eem--current-tower-index 2)
-                            (setq eem--current-level 2))))))
+                            (setq eem--current-level 2)))))
+  ;; until arc is supported in symex mode
+  (add-hook 'arc-mode-hook (lambda ()
+                             (setq eem--current-tower-index 2)
+                             (setq eem--current-level 2))))
 
 ;; load any customizations done via EMACS UI
 (load custom-file 'noerror)
