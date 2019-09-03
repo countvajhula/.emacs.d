@@ -465,6 +465,12 @@ Version 2017-11-01"
   'my-buffer-info)
 
 (define-key
+  ;; info on the current region
+  (current-global-map)
+  (kbd "C-c g")
+  'count-words-region)
+
+(define-key
   ;; navigation sidebar
   (current-global-map)
   (kbd "C-c t")
