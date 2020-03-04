@@ -92,14 +92,6 @@
 (use-package minimap
   :disabled t)
 
-(use-package company
-  :config
-  ;; enable company mode autocompletion in all buffers
-  (setq company-idle-delay 0.2)
-  (global-company-mode 1))
-
-(use-package company-jedi)
-
 (use-package ivy
   ;; company is for in-buffer auto-completion,
   ;; ivy is for application-level on-demand completion

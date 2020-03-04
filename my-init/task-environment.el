@@ -137,6 +137,22 @@
   ;; retain a convenient, non-hydra, escape hatch
   (global-set-key (kbd "s-D") 'evil-mc-undo-all-cursors))
 
+(use-package company
+  :config
+  ;; enable company mode autocompletion in all buffers
+  (setq company-idle-delay 0.2)
+  ;; company-capf seems to block succeeding backends even if it doesn't have a match?
+  ;; this could mean that oddmuse and dabbrev are never going to be hit
+  ;; use company-diag at point to debug
+  (setq company-backends
+        '(uucompany-bbdb company-eclim company-semantic company-clang company-xcode
+                         company-cmake company-files
+                         (company-capf company-dabbrev-code company-gtags company-etags company-keywords)
+                         company-oddmuse company-dabbrev))
+  (global-company-mode 1))
+
+(use-package company-jedi)
+
 (use-package yasnippet
   :config
   (yas-global-mode 1))
