@@ -72,34 +72,8 @@
 (use-package haskell-mode
   :defer t)
 
-(use-package tex
-  :defer t
-  :ensure auctex
-  :config
-  ;; make latexmk available via C-c C-c
-  ;; (latexmk is a popular perl script to minimize number of
-  ;; passes of compilation)
-  (add-hook 'LaTeX-mode-hook (lambda ()
-                               (push
-                                '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
-                                  :help "Run latexmk on file")
-                                TeX-command-list)))
-  (add-hook 'TeX-mode-hook '(lambda ()
-                              (setq TeX-command-default "latexmk")))
-  ;; use Skim as pdf viewer
-  (setq TeX-view-program-list
-        '(("Preview.app" "open -a Preview.app %o")
-          ("Skim" "open -a Skim.app %o")
-          ("displayline" "displayline -g -b %n %o %b")
-          ("open" "open %o"))
-        TeX-view-program-selection
-        '((output-dvi "open")
-          (output-pdf "Skim")
-          (output-html "open")))
-  ;; Turn on RefTeX in AUCTeX
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-  ;; Activate nice interface between RefTeX and AUCTeX
-  (setq reftex-plug-into-AUCTeX t))
+(use-package my-latex
+  :after general)
 
 ;; ido mode
 (use-package ido
