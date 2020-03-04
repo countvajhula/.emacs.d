@@ -6,6 +6,9 @@
 	(remove 'elpy-module-highlight-indentation
 		elpy-modules))
   (setq elpy-rpc-python-command "python3")
+  ;; use ipython instead of regular shell
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "-i --simple-prompt")
   ;; use jedi for completion with elpy instead of rope
   (setq elpy-rpc-backend "jedi")
   (setq python-check-command "~/.local/bin/pyflakes")
