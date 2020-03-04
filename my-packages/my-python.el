@@ -15,7 +15,23 @@
   ;; use flycheck instead of flymake
   (when (require 'flycheck nil t)
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    (add-hook 'elpy-mode-hook 'flycheck-mode)))
+    (add-hook 'elpy-mode-hook 'flycheck-mode))
+  ;; (so far unsuccessful) attempt to get autocompletion in python shell
+  (add-hook 'inferior-python-mode-hook
+            (lambda ()
+              (set (make-local-variable 'company-backends)
+                   ;; putting elpy backend at the head to priortize
+                   ;; python-specific completions. Company will stop at the first
+                   ;; backend that provides a non-nil response. Some backends like dabbrev
+                   ;; will always return non-nil so best to put them at the end, see:
+                   ;; https://www.reddit.com/r/emacs/comments/844hnt/configuring_companymode/
+                   ;; Also, a list of backends instead of a single backend groups results
+                   ;; from all of those backends for the given prefix, i.e. it is a composite
+                   ;; backend grouped with a logical "OR"
+                   ;; Note that using just dabbrev here works in the shell :shrug:
+                   ;; (cons '(company-dabbrev-code company-elpy-backend company-yasnippet) company-backends)
+                   '((company-capf company-dabbrev-code company-yasnippet elpy-company-backend company-keywords)
+                     company-dabbrev)))))
 
 (defhydra hydra-python (:timeout my-leader-timeout
                         :columns 2
