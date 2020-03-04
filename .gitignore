@@ -13,6 +13,8 @@ projectile.cache
 el-get
 recentf
 url
+elpy
+transient
 
 # projects tracked elsewhere
 symex
