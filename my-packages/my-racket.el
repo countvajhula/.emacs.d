@@ -152,7 +152,7 @@ Accounts for different point location in evil vs emacs mode."
                         (kbd "C-]")
                         'racket-visit-definition)
             (define-key evil-normal-state-map
-                        (kbd "C-}")
+                        (kbd "C-{") ; can't rebind C-[ (treated as escape)
                         'racket-unvisit)))
 
 (provide 'my-racket)
