@@ -153,6 +153,14 @@
   :config
   (global-evil-tabs-mode t))
 
+(use-package centaur-tabs
+  :demand
+  :config
+  (centaur-tabs-mode t)
+  :bind
+  ("s-{" . centaur-tabs-backward)
+  ("s-}" . centaur-tabs-forward))
+
 (use-package evil-matchit
   :config
   (global-evil-matchit-mode 1))
