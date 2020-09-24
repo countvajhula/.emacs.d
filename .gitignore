@@ -15,6 +15,7 @@ recentf
 url
 elpy
 transient
+.python-environments
 
 # projects tracked elsewhere
 symex
