@@ -18,6 +18,8 @@
 
 (use-package dictionary)
 
+(use-package etymology-of-word)
+
 (use-package my-python
   :after general
   :config
