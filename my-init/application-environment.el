@@ -159,6 +159,7 @@
   :demand
   :config
   (centaur-tabs-mode t)
+  (setq centaur-tabs-cycle-scope 'tabs)
   :bind
   ("s-{" . centaur-tabs-backward)
   ("s-}" . centaur-tabs-forward))
