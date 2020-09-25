@@ -156,13 +156,21 @@
   (global-evil-tabs-mode t))
 
 (use-package centaur-tabs
+  :after evil-epistemic-mode
   :demand
   :config
   (centaur-tabs-mode t)
   (setq centaur-tabs-cycle-scope 'tabs)
   :bind
-  ("s-{" . centaur-tabs-backward)
-  ("s-}" . centaur-tabs-forward))
+  ;; note that these are hardcoded to the s-t binding for tab mode
+  ;; could be better to define a global epistemic modes entry bindings
+  ;; lookup table that is used everywhere
+  ("s-{" . (lambda ()
+             (interactive)
+             (execute-kbd-macro (kbd "s-t h"))))
+  ("s-}" . (lambda ()
+             (interactive)
+             (execute-kbd-macro (kbd "s-t l")))))
 
 (use-package evil-matchit
   :config
