@@ -1,5 +1,16 @@
 ;; navigation sidebar
-(use-package sr-speedbar)
+(use-package sr-speedbar
+  :disabled t)
+
+(use-package dired-sidebar
+  :commands (dired-sidebar-toggle-sidebar)
+  :init
+  (add-hook 'dired-sidebar-mode-hook
+            (lambda ()
+              (unless (file-remote-p default-directory)
+                (auto-revert-mode))))
+  :config
+  (setq dired-sidebar-theme 'icons))
 
 ;; handy project-related functions like grep search, find file, etc.
 (use-package projectile

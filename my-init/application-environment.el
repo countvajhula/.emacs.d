@@ -155,12 +155,24 @@
   :config
   (global-evil-tabs-mode t))
 
+;; NOTE: initially, you need to run M-x all-the-icons-install-fonts
+;; in order for the fonts to appear
+(use-package all-the-icons)
+
 (use-package centaur-tabs
   :after evil-epistemic-mode
   :demand
   :config
+  (setq centaur-tabs-style "bar"
+	  ;; centaur-tabs-height 32
+	  centaur-tabs-set-icons t
+	  centaur-tabs-set-modified-marker t
+	  centaur-tabs-show-navigation-buttons t
+	  centaur-tabs-set-bar 'under
+	  x-underline-at-descent-line t)
   (centaur-tabs-mode t)
   (setq centaur-tabs-cycle-scope 'tabs)
+  (centaur-tabs-group-by-projectile-project)
   :bind
   ;; note that these are hardcoded to the s-t binding for tab mode
   ;; could be better to define a global epistemic modes entry bindings
@@ -419,7 +431,7 @@ Version 2017-11-01"
     ("l" my-lisp-repl "Lisp REPL")
     ("m" my-switch-to-messages-buffer "Go to Messages buffer")
     ("s" eshell "Shell")
-    ("t" sr-speedbar-toggle "Nav Sidebar")
+    ("t" dired-sidebar-toggle-sidebar "Nav Sidebar")
     ("u" undo-tree-visualize "Undo tree"))
 
   ;; define global vim-style "leader" key
@@ -469,7 +481,7 @@ Version 2017-11-01"
   ;; navigation sidebar
   (current-global-map)
   (kbd "C-c t")
-  'sr-speedbar-toggle)
+  'dired-sidebar-toggle-sidebar)
 
 (define-key
   ;; open a new empty buffer
