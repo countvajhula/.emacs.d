@@ -121,9 +121,15 @@
   :config
   (ivy-rich-mode t))
 
+(use-package ivy-prescient
+  :config
+  (ivy-prescient-mode t))
+
 ;; looks like smex (smart command history in M-x) is used by counsel just
 ;; by being installed, and doesn't need to be explicitly invoked here
 (use-package smex
+  ;; disabled since using ivy-prescient
+  :disabled t
   :config
   (smex-initialize))
 
