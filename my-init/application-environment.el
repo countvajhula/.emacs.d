@@ -144,6 +144,8 @@
               (kbd "C-x M-g")
               'magit-dispatch-popup))
 
+(use-package git-timemachine)
+
 (use-package tabbar
   :disabled t
   :config
