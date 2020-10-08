@@ -1,15 +1,18 @@
 (progn
+  ;; conveniently enter math and greek symbols
+
   ;; leverage built-in input methods support in emacs to enter greek letters
   ;; by using the prefix ",."
   ;; adapted from https://emacs.stackexchange.com/a/53810
-  (set-input-method 'greek)
+  (set-input-method "greek")
   (setq greek-map (quail-map))
-  ;; set default input method to TeX so that it can be activated
-  ;; with C-\, e.g. to enter math or other symbols in general
-  (set-input-method 'TeX)
   ;; add a translation rule to the TeX input method to delegate to
   ;; the greek input method
-  (quail-defrule ",." greek-map))
+  (set-input-method "TeX")
+  (quail-defrule ",." greek-map)
+  ;; set default input method to TeX so that it can be activated
+  ;; with C-\, e.g. to enter math or other symbols in general
+  (setq default-input-method "TeX"))
 
 ;; Vim interface
 (use-package evil
