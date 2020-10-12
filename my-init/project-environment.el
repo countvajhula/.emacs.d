@@ -2,6 +2,10 @@
 (use-package sr-speedbar
   :disabled t)
 
+(use-package all-the-icons-dired
+  :config
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
 (use-package dired-sidebar
   :commands (dired-sidebar-toggle-sidebar)
   :init
@@ -10,13 +14,16 @@
               (unless (file-remote-p default-directory)
                 (auto-revert-mode))))
   :config
-  (setq dired-sidebar-theme 'icons))
+  (setq dired-sidebar-theme 'icons)
+  (setq dired-sidebar-subtree-line-prefix "__")
+  (setq dired-sidebar-use-custom-font t))
 
 ;; handy project-related functions like grep search, find file, etc.
 (use-package projectile
   :config
   (projectile-mode +1)
   (setq projectile-completion-system 'ivy)
+  ;; (setq projectile-indexing-method 'native) ; native/alien/hybrid
   ;; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   ;; for sublime emulation:
