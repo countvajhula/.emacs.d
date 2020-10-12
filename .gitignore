@@ -16,6 +16,7 @@ url
 elpy
 transient
 .python-environments
+var
 
 # projects tracked elsewhere
 symex
