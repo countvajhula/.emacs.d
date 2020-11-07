@@ -318,12 +318,17 @@
 
   (defface telephone-line-evil-text
     '((t (:background "cyan" :inherit telephone-line-evil)))
-    "Face used in evil color-coded segments when in Activity state."
+    "Face used in evil color-coded segments when in Text state."
     :group 'telephone-line-evil)
 
   (defface telephone-line-evil-tab
     '((t (:background "black" :inherit telephone-line-evil)))
-    "Face used in evil color-coded segments when in Activity state."
+    "Face used in evil color-coded segments when in Tab state."
+    :group 'telephone-line-evil)
+
+  (defface telephone-line-evil-history
+    '((t (:background "powder blue" :inherit telephone-line-evil)))
+    "Face used in evil color-coded segments when in History state."
     :group 'telephone-line-evil)
 
   (defface telephone-line-evil-mode
