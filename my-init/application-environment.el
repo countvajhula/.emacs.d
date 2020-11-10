@@ -336,6 +336,11 @@
     "Face used in evil color-coded segments when in Mode state."
     :group 'telephone-line-evil)
 
+  (defface telephone-line-evil-tower
+    '((t (:background "blue" :inherit telephone-line-evil)))
+    "Face used in evil color-coded segments when in Tower state."
+    :group 'telephone-line-evil)
+
   (telephone-line-mode t))
 
 ;; cozy time
