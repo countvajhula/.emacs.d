@@ -33,9 +33,47 @@
 (use-package evil-epistemic-mode
   :after (evil symex)  ;; TODO: should be independent of symex and arguably evil too
   :config
+  ;; define towers
+  (setq eem-complete-tower
+        (ht ('name "complete")
+            ('levels (list "insert"
+                           "char"
+                           "word"
+                           "line"
+                           "activity"
+                           "normal"
+                           "view"
+                           "window"
+                           "file"
+                           "buffer"
+                           "system"
+                           "application"))))
+  (setq eem-vim-tower
+        (ht ('name "vim")
+            ('levels (list "insert"
+                           "normal"))))
+  (setq eem-emacs-tower
+        (ht ('name "emacs")
+            ('levels (list "emacs"))))
+  (setq eem-lisp-tower
+        (ht ('name "lisp")
+            ('levels (list "insert"
+                           "symex"
+                           "normal"))))
+  (setq eem-towers
+        (list eem-vim-tower
+              eem-complete-tower
+              eem-lisp-tower
+              eem-emacs-tower))
+
+  ;; evil interop keybindings
+  (define-key evil-normal-state-map [escape] 'eem-enter-higher-level)
+  (define-key evil-normal-state-map [return] 'eem-enter-lower-level)
+  (define-key evil-insert-state-map [escape] 'eem-enter-higher-level)
+
   (setq epistemic-mode t)
-  (global-set-key (kbd "s-m") 'hydra-mode/body)
-  (global-set-key (kbd "s-<escape>") 'hydra-mode/body) ;; TODO: s-esc and s-ret should operate based on meta-towers
+  (global-set-key (kbd "s-m") 'hydra-tower/body)
+  (global-set-key (kbd "s-<escape>") 'hydra-tower/body) ;; TODO: s-esc and s-ret should operate based on meta-towers
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
                                      "-hook"))))
