@@ -60,8 +60,6 @@
 
 (use-package symex
   :config
-  (global-set-key (kbd "s-y") 'symex-mode-interface)  ; since y looks like inverted lambda
-  (global-set-key (kbd "s-;") 'symex-mode-interface)  ; since y is hard to reach
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
                                      "-hook"))))
