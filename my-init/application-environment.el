@@ -16,6 +16,9 @@
 ;; intuitive "state machine" menus
 (use-package hydra)
 
+;; zoom entire frame including status bar (works by modifying font faces)
+(use-package zoom-frm)
+
 (use-package dictionary)
 
 (use-package etymology-of-word)
