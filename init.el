@@ -35,31 +35,35 @@
   :config
   ;; define towers
   (setq eem-complete-tower
-        (ht ('name "complete")
-            ('levels (list "insert"
-                           "char"
-                           "word"
-                           "line"
-                           "activity"
-                           "normal"
-                           "view"
-                           "window"
-                           "file"
-                           "buffer"
-                           "system"
-                           "application"))))
+        (make-editing-tower :name "complete"
+                            :default "normal"
+                            :levels (list "insert"
+                                          "char"
+                                          "word"
+                                          "line"
+                                          "activity"
+                                          "normal"
+						                  "view"
+						                  "window"
+						                  "file"
+						                  "buffer"
+						                  "system"
+						                  "application")))
   (setq eem-vim-tower
-        (ht ('name "vim")
-            ('levels (list "insert"
-                           "normal"))))
+        (make-editing-tower :name "vim"
+                            :default "normal"
+                            :levels (list "insert"
+						                  "normal")))
   (setq eem-emacs-tower
-        (ht ('name "emacs")
-            ('levels (list "emacs"))))
+        (make-editing-tower :name "emacs"
+                            :default "emacs"
+                            :levels (list "emacs")))
   (setq eem-lisp-tower
-        (ht ('name "lisp")
-            ('levels (list "insert"
-                           "symex"
-                           "normal"))))
+        (make-editing-tower :name "lisp"
+                            :default "symex"
+                            :levels (list "insert"
+						                  "symex"
+						                  "normal")))
   (setq eem-towers
         (list eem-vim-tower
               eem-complete-tower
@@ -72,68 +76,68 @@
   (define-key evil-insert-state-map [escape] 'eem-enter-higher-level)
 
   (setq epistemic-mode t)
+
   (global-set-key (kbd "s-m") 'hydra-tower/body)
   (global-set-key (kbd "s-<escape>") 'hydra-tower/body) ;; TODO: s-esc and s-ret should operate based on meta-towers
   ;; index entry to various modes
   (global-set-key (kbd "s-y")        ; symex mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "symex"))) ; since y looks like inverted lambda
+                    (eem-enter-mode "symex"))) ; since y looks like inverted lambda
   (global-set-key (kbd "s-;") (kbd "s-y")) ; since y is hard to reach
   ;; TODO: probably add the symex config under symex once hooks are added
-  (global-set-key (kbd "s-w")
-                  (lambda ()         ; window mode
+  (global-set-key (kbd "s-w")        ; window mode
+                  (lambda ()
                     (interactive)
-                    (eem-jump-to-level "window")))
+                    (eem-enter-mode "window")))
   (global-set-key (kbd "s-v")        ; view mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "view")))
+                    (eem-enter-mode "view")))
   (global-set-key (kbd "s-x")        ; char mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "char")))
+                    (eem-enter-mode "char")))
   (global-set-key (kbd "s-a")        ; activity mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "activity")))
+                    (eem-enter-mode "activity")))
   (global-set-key (kbd "s-z")        ; text mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "text")))
+                    (eem-enter-mode "text")))
   (global-set-key (kbd "s-g")        ; history mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "history")))
+                    (eem-enter-mode "history")))
   (global-set-key (kbd "s-i")        ; system mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "system")))
+                    (eem-enter-mode "system")))
   (global-set-key (kbd "s-b")        ; buffer mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "buffer")))
+                    (eem-enter-mode "buffer")))
   (global-set-key (kbd "s-f")        ; file mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "file")))
+                    (eem-enter-mode "file")))
   (global-set-key (kbd "s-t")        ; tab mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "tab")))
+                    (eem-enter-mode "tab")))
   (global-set-key (kbd "s-l")        ; line mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "line")))
+                    (eem-enter-mode "line")))
   (global-set-key (kbd "s-e")        ; application mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "application")))
+                    (eem-enter-mode "application")))
   (global-set-key (kbd "s-r")        ; word mode
                   (lambda ()
                     (interactive)
-                    (eem-jump-to-level "word")))
-
+                    (eem-enter-mode "word")))
 
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
