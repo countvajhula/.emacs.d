@@ -77,6 +77,7 @@
 
   (setq epistemic-mode t)
 
+  (global-set-key (kbd "s-n") 'evil-normal-state)
   (global-set-key (kbd "s-m") 'hydra-tower/body)
   (global-set-key (kbd "s-<escape>") 'hydra-tower/body) ;; TODO: s-esc and s-ret should operate based on meta-towers
   ;; index entry to various modes

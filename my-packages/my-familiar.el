@@ -43,10 +43,10 @@
 ;;   (kbd "s-v")
 ;;   'evil-paste-after)
 
-(define-key
-  ;; new frame
-  (current-global-map)
-  (kbd "s-n")
-  'make-frame)
+;; (define-key
+;;   ;; new frame
+;;   (current-global-map)
+;;   (kbd "s-n")
+;;   'make-frame)
 
 (provide 'my-familiar)
