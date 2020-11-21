@@ -35,35 +35,35 @@
   :config
   ;; define towers
   (setq eem-complete-tower
-        (make-editing-tower :name "complete"
-                            :default "normal"
-                            :levels (list "insert"
-                                          "char"
-                                          "word"
-                                          "line"
-                                          "activity"
-                                          "normal"
-						                  "view"
-						                  "window"
-						                  "file"
-						                  "buffer"
-						                  "system"
-						                  "application")))
+        (make-editing-ensemble :name "complete"
+                               :default "normal"
+                               :members (list "insert"
+                                              "char"
+                                              "word"
+                                              "line"
+                                              "activity"
+                                              "normal"
+                                              "view"
+                                              "window"
+                                              "file"
+                                              "buffer"
+                                              "system"
+                                              "application")))
   (setq eem-vim-tower
-        (make-editing-tower :name "vim"
-                            :default "normal"
-                            :levels (list "insert"
-						                  "normal")))
+        (make-editing-ensemble :name "vim"
+                               :default "normal"
+                               :members (list "insert"
+                                              "normal")))
   (setq eem-emacs-tower
-        (make-editing-tower :name "emacs"
-                            :default "emacs"
-                            :levels (list "emacs")))
+        (make-editing-ensemble :name "emacs"
+                               :default "emacs"
+                               :members (list "emacs")))
   (setq eem-lisp-tower
-        (make-editing-tower :name "lisp"
-                            :default "symex"
-                            :levels (list "insert"
-						                  "symex"
-						                  "normal")))
+        (make-editing-ensemble :name "lisp"
+                               :default "symex"
+                               :members (list "insert"
+                                              "symex"
+                                              "normal")))
   (setq eem-towers
         (list eem-vim-tower
               eem-complete-tower
