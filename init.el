@@ -78,12 +78,7 @@
   (setq epistemic-mode t)
 
   (global-set-key (kbd "s-n") 'evil-normal-state)
-  (global-set-key (kbd "s-m") (lambda ()
-                                (interactive)
-                                ;; enter a tower default before escaping
-                                (eem-enter-mode (eem-tower-default-mode
-                                                 (eem--current-tower)))
-                                (hydra-tower/body)))
+  (global-set-key (kbd "s-m") 'hydra-tower/body)
   (global-set-key (kbd "s-<escape>") 'hydra-tower/body) ;; TODO: s-esc and s-ret should operate based on meta-towers
   ;; index entry to various modes
   (global-set-key (kbd "s-y")        ; symex mode
