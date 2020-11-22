@@ -41,6 +41,11 @@
 
   (defun my-autoindent (&rest args)
     "Auto-indent line"
+    ;; this is necessary because advice provides arguments
+    ;; which are not accepted by the underlying function;
+    ;; would be better to do it functionally with a generic
+    ;; wrapper that invokes the underlying function while
+    ;; ignoring passed-in args ("thunk*")
     (indent-according-to-mode))
 
   ;; preserve indentation when joining lines
