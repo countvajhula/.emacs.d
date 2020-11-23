@@ -37,38 +37,44 @@
   (setq eem-complete-tower
         (make-editing-ensemble :name "complete"
                                :default "normal"
-                               :members (list "insert"
-                                              "char"
-                                              "word"
-                                              "line"
-                                              "activity"
-                                              "normal"
-                                              "view"
-                                              "window"
-                                              "file"
-                                              "buffer"
-                                              "system"
-                                              "application")))
+                               :members (list chimera-insert-mode
+                                              chimera-char-mode
+                                              chimera-word-mode
+                                              chimera-line-mode
+                                              chimera-activity-mode
+                                              chimera-normal-mode
+                                              chimera-view-mode
+                                              chimera-window-mode
+                                              chimera-file-mode
+                                              chimera-buffer-mode
+                                              chimera-system-mode
+                                              chimera-application-mode)))
+
   (setq eem-vim-tower
         (make-editing-ensemble :name "vim"
                                :default "normal"
-                               :members (list "insert"
-                                              "normal")))
+                               :members (list chimera-insert-mode
+                                              chimera-normal-mode)))
   (setq eem-emacs-tower
         (make-editing-ensemble :name "emacs"
                                :default "emacs"
-                               :members (list "emacs")))
+                               :members (list chimera-emacs-mode)))
   (setq eem-lisp-tower
         (make-editing-ensemble :name "lisp"
                                :default "symex"
-                               :members (list "insert"
-                                              "symex"
-                                              "normal")))
+                               :members (list chimera-insert-mode
+                                              chimera-symex-mode
+                                              chimera-normal-mode)))
+
+  ;; generic interfaces to key off of "name"
   (setq eem-towers
-        (list eem-vim-tower
-              eem-complete-tower
-              eem-lisp-tower
-              eem-emacs-tower))
+        (make-editing-ensemble
+         :name "general"
+         :default "vim"
+         :members (list eem-vim-tower
+                        eem-complete-tower
+                        eem-lisp-tower
+                        eem-emacs-tower)))
 
   ;; evil interop keybindings
   (define-key evil-normal-state-map [escape] 'eem-enter-higher-level)
