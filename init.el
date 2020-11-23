@@ -66,8 +66,7 @@
                                               chimera-symex-mode
                                               chimera-normal-mode)))
 
-  ;; generic interfaces to key off of "name"
-  (setq eem-towers
+  (setq eem-general-complex
         (make-editing-ensemble
          :name "general"
          :default "vim"
