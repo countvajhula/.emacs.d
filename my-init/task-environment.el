@@ -161,6 +161,10 @@
   (global-set-key (kbd "s-D") 'evil-mc-undo-all-cursors))
 
 (use-package company
+  :init
+  (setq company-require-match nil)            ; Don't require match, so you can still move your cursor as expected.
+  (setq company-tooltip-align-annotations t)  ; Align annotation to the right side.
+  (setq company-dabbrev-downcase nil)         ; No downcase when completion.
   :config
   ;; enable company mode autocompletion in all buffers
   (setq company-idle-delay 0.2)
@@ -172,7 +176,15 @@
                          company-cmake company-files
                          (company-capf company-dabbrev-code company-gtags company-etags company-keywords)
                          company-oddmuse company-dabbrev))
-  (global-company-mode 1))
+  ;; Enable downcase only when completing the completion.
+  ;; This and the :init config from https://github.com/jcs-elpa/company-fuzzy
+  (defun jcs--company-complete-selection--advice-around (fn)
+    "Advice execute around `company-complete-selection' command."
+    (let ((company-dabbrev-downcase t))
+      (call-interactively fn)))
+  (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
+  (global-company-mode 1)
+  (global-company-fuzzy-mode 1))
 
 (use-package company-jedi)
 
