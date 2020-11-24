@@ -403,6 +403,7 @@
 
 (cl-defun my-new-empty-buffer (&optional
                                buffer-name
+                               major-mode-to-use
                                &key
                                switch-p)
   "Create a new empty buffer.
@@ -418,10 +419,10 @@ URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
 Version 2017-11-01"
   (interactive)
   (let* ((buffer-name (or buffer-name "untitled"))
-         (original-major-mode major-mode)
+         (major-mode-to-use (or major-mode-to-use major-mode))
          ($buf (generate-new-buffer buffer-name)))
     (with-current-buffer $buf
-      (funcall original-major-mode)
+      (funcall major-mode-to-use)
       (setq buffer-offer-save t))
     (when switch-p
       (switch-to-buffer $buf))
