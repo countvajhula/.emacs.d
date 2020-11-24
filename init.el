@@ -33,49 +33,6 @@
 (use-package evil-epistemic-mode
   :after (evil symex)  ;; TODO: should be independent of symex and arguably evil too
   :config
-  ;; define towers
-  (setq eem-complete-tower
-        (make-editing-ensemble :name "complete"
-                               :default "normal"
-                               :members (list chimera-insert-mode
-                                              chimera-char-mode
-                                              chimera-word-mode
-                                              chimera-line-mode
-                                              chimera-activity-mode
-                                              chimera-normal-mode
-                                              chimera-view-mode
-                                              chimera-window-mode
-                                              chimera-file-mode
-                                              chimera-buffer-mode
-                                              chimera-system-mode
-                                              chimera-application-mode)))
-
-  (setq eem-vim-tower
-        (make-editing-ensemble :name "vim"
-                               :default "normal"
-                               :members (list chimera-insert-mode
-                                              chimera-normal-mode)))
-  (setq eem-emacs-tower
-        (make-editing-ensemble :name "emacs"
-                               :default "emacs"
-                               :members (list chimera-emacs-mode)))
-  (setq eem-lisp-tower
-        (make-editing-ensemble :name "lisp"
-                               :default "symex"
-                               :members (list chimera-insert-mode
-                                              chimera-symex-mode
-                                              chimera-normal-mode)))
-
-  (setq eem-general-complex
-        (make-editing-ensemble
-         :name "general"
-         :default "vim"
-         :members (list eem-vim-tower
-                        eem-complete-tower
-                        eem-lisp-tower
-                        eem-emacs-tower)))
-
-
   (setq epistemic-mode t)
 
   ;; custom config
@@ -149,6 +106,13 @@
                     (interactive)
                     (eem-enter-mode "word")))
 
+  ;; change these to use a state struct instead of globals
+  ;; that state struct must specify
+  ;;  (1) the complex, as an object (this should take care of default tower
+  ;;      so there's no need to set the tower index initially)
+  ;;  (2) the tower index
+  ;;  (3) the level index
+  ;; and eventually make these "coordinates" generic
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
                                      "-hook"))))
