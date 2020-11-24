@@ -45,7 +45,7 @@
                   (lambda ()
                     (interactive)
                     (eem-enter-selected-level)
-                    (my-exit-tower-mode)))
+                    (my-exit-mode-mode)))
   ;; index entry to various modes
   (global-set-key (kbd "s-y")        ; symex mode
                   (lambda ()
