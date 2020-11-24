@@ -87,6 +87,9 @@
 
   (setq epistemic-mode t)
 
+  ;; custom config
+  (setq epistemic-show-menus nil)
+
   (global-set-key (kbd "s-n") 'evil-normal-state)
   ;(global-set-key (kbd "s-m") 'hydra-tower/body)
   (global-set-key (kbd "s-<escape>") 'my-enter-mode-mode) ;; TODO: s-esc and s-ret should operate based on a structure, shouldn't be hardcoded
