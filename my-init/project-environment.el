@@ -6,6 +6,9 @@
   :config
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
+(use-package vscode-icon
+  :disabled t)
+
 (use-package dired-sidebar
   :commands (dired-sidebar-toggle-sidebar)
   :init
