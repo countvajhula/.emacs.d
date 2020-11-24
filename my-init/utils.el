@@ -35,25 +35,26 @@ open in current window."
 
 Recenter if new jump location is not visible from any part of the
 initial screen (when centered) -- same behavior as Vim."
-  (with-demoted-errors "Error: %S"
-      (save-excursion
-        (evil-window-top)
-        (setq initial-screen-top-line (line-number-at-pos))
-        (evil-window-bottom)
-        (setq initial-screen-bottom-line (line-number-at-pos)))
-      (let ((res (apply orig-fn args)))
-        (let* ((current-line-position (line-number-at-pos))
-               (distance-from-screen-top (abs (- current-line-position
-                                                 initial-screen-top-line)))
-               (distance-from-screen-bottom (abs (- current-line-position
-                                                    initial-screen-bottom-line)))
-               (min-distance (min distance-from-screen-top
-                                  distance-from-screen-bottom)))
-          (when (> min-distance
-                   (/ (window-text-height)
-                      2))
-            (recenter))
-          res))))
+  (condition-case err
+      (progn (save-excursion
+               (evil-window-top)
+               (setq initial-screen-top-line (line-number-at-pos))
+               (evil-window-bottom)
+               (setq initial-screen-bottom-line (line-number-at-pos)))
+             (let ((res (apply orig-fn args)))
+               (let* ((current-line-position (line-number-at-pos))
+                      (distance-from-screen-top (abs (- current-line-position
+                                                        initial-screen-top-line)))
+                      (distance-from-screen-bottom (abs (- current-line-position
+                                                           initial-screen-bottom-line)))
+                      (min-distance (min distance-from-screen-top
+                                         distance-from-screen-bottom)))
+                 (when (> min-distance
+                          (/ (window-text-height)
+                             2))
+                   (recenter))
+                 res)))
+    (error (message "Buried error: %S" err))))
 
 (defun current-line-empty-p ()
   "From: https://emacs.stackexchange.com/questions/16792/easiest-way-to-check-if-current-line-is-empty-ignoring-whitespace "
