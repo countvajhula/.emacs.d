@@ -106,19 +106,6 @@
                     (interactive)
                     (eem-enter-mode "word")))
 
-  ;; change these to use a state struct instead of globals
-  ;; that state struct must specify
-  ;;  (1) the complex, as an object (this should take care of default tower
-  ;;      so there's no need to set the tower index initially)
-  ;;  (2) the tower index
-  ;;  (3) the level index
-  ;; and eventually make these "coordinates" generic
-  (dolist (mode-name symex-lisp-modes)
-    (let ((mode-hook (intern (concat (symbol-name mode-name)
-                                     "-hook"))))
-      (add-hook mode-hook (lambda ()
-                            (setq eem--current-tower-index 2)
-                            (setq eem--current-level 2)))))
   ;; until arc is supported in symex mode
   (add-hook 'arc-mode-hook (lambda ()
                              (setq eem--current-tower-index 2)
