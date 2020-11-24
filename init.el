@@ -78,6 +78,10 @@
   ;; evil interop keybindings
   (define-key evil-normal-state-map [escape] 'eem-enter-higher-level)
   (define-key evil-normal-state-map [return] 'eem-enter-lower-level)
+  (define-key evil-visual-state-map [escape] 'eem-enter-higher-level)
+  (define-key evil-visual-state-map [return] 'eem-enter-lower-level)
+  (define-key evil-replace-state-map [escape] 'eem-enter-higher-level)
+  (define-key evil-replace-state-map [return] 'eem-enter-lower-level)
   (define-key evil-insert-state-map [escape] 'eem-enter-higher-level)
   ;; TODO: this keybinding should be dependent on whether there are any
   ;; other modes in the tower. If not, then this shouldn't be bound
