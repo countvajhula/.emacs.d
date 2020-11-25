@@ -5,14 +5,16 @@
 (defun my-lisp-repl ()
   "Enter elisp REPL, context-aware.
 
-If there is only one window, open REPL in a new window. Otherwise
-open in current window."
+If there is only one window, open REPL in a new window.  Otherwise
+open in most recently used other window."
   (interactive)
-  (when (= (length (window-list))
-           1)
-    (progn (evil-window-vsplit)
-           (evil-window-right 1)))
-  (ielm))
+  (if (= (length (window-list))
+         1)
+      (progn (evil-window-vsplit)
+             (evil-window-right 1)
+             (ielm))
+    (evil-window-mru)
+    (ielm)))
 
 (defun my-switch-to-scratch-buffer ()
   "Switch to scratch buffer."
@@ -23,6 +25,8 @@ open in current window."
   "Switch to messages buffer while retaining focus in original window."
   (interactive)
   (switch-to-buffer-other-window "*Messages*")
+  (goto-char (point-max))
+  (recenter)
   (evil-window-mru))
 
 (defun my-current-dir ()
