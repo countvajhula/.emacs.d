@@ -23,6 +23,9 @@
 
 (use-package etymology-of-word)
 
+;; mark columns visually
+(use-package column-marker)
+
 (use-package my-python
   :after general
   :config
