@@ -178,13 +178,14 @@
                          company-oddmuse company-dabbrev))
   ;; Enable downcase only when completing the completion.
   ;; This and the :init config from https://github.com/jcs-elpa/company-fuzzy
-  (defun jcs--company-complete-selection--advice-around (fn)
-    "Advice execute around `company-complete-selection' command."
-    (let ((company-dabbrev-downcase t))
-      (call-interactively fn)))
-  (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
+  ;; (defun jcs--company-complete-selection--advice-around (fn)
+  ;;   "Advice execute around `company-complete-selection' command."
+  ;;   (let ((company-dabbrev-downcase t))
+  ;;     (call-interactively fn)))
+  ;; (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
   (global-company-mode 1)
-  (global-company-fuzzy-mode 1))
+  ;; (global-company-fuzzy-mode 1)
+  )
 
 (use-package company-jedi)
 
