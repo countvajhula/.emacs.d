@@ -536,7 +536,7 @@ Version 2017-11-01"
 (define-key
   ;; emulate caps lock -- alternative to an actual CAPS LOCK key
   (current-global-map)
-  (kbd "C-<escape>")
+  (kbd "H-<escape>")
   'caps-lock-mode)
 
 (define-key
