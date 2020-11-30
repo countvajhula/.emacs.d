@@ -39,9 +39,18 @@
   (setq epistemic-show-menus nil)
 
   (global-set-key (kbd "s-n") 'evil-normal-state)
+  (global-set-key (kbd "s-m s-m") 'eem-flashback-to-last-tower)
   (global-set-key (kbd "C-<escape>") 'my-enter-tower-mode)
   (global-set-key (kbd "M-<escape>") 'my-enter-mode-mode) ;; TODO: s-esc and s-ret should operate based on a structure, shouldn't be hardcoded
+  (global-set-key (kbd "s-<escape>") 'my-enter-mode-mode)
   (global-set-key (kbd "M-<return>")
+                  (lambda ()
+                    (interactive)
+                    (eem-enter-selected-level)
+                    (let ((ground (eem--get-ground-buffer)))
+                      (my-exit-mode-mode)
+                      (switch-to-buffer ground))))
+  (global-set-key (kbd "s-<return>")
                   (lambda ()
                     (interactive)
                     (eem-enter-selected-level)
