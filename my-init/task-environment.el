@@ -22,6 +22,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t) ;; most usecases for Emacs C-u are best handled in normal mode
   (global-set-key (kbd "M-u") 'universal-argument) ;; close enough, if needed
+  (setq evil-symbol-word-search t)
   :config
   (evil-mode 1)
   ;; use Emacs keybindings when in insert mode }:)
@@ -32,6 +33,8 @@
   (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
   ;; use "symbols" instead of simple words in point searches
   (defalias #'forward-evil-word #'forward-evil-symbol)
+  ;; TODO: ideally, w should use words, W should use symbols
+  ;; and # and * should use symbols
 
   ;; recenter page after goto line (like Vim; this is otherwise overridden
   ;; due to "scroll-conservatively" settings)
