@@ -108,7 +108,25 @@
   ;; 	'((swiper . ivy--regex-plus)
   ;; 	  (t . ivy--regex-fuzzy)))
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-wrap t))
+  (setq ivy-wrap t)
+
+  ;; don't wait for extra confirmation on matches
+  (define-key
+    ivy-minibuffer-map
+    (kbd "TAB")
+    'ivy-alt-done))
+
+(use-package selectrum
+  :disabled t
+  :after ivy counsel ; just in case it needs to set/unset any config
+  :config
+  (selectrum-mode 1))
+
+(use-package selectrum-prescient
+  :disabled t
+  :after prescient
+  :config
+  (selectrum-prescient-mode 1))
 
 (use-package counsel
   :bind ("M-x" . counsel-M-x)
@@ -125,12 +143,15 @@
   :config
   (ivy-rich-mode t))
 
-(use-package ivy-prescient
-  :after counsel
+(use-package prescient
   :config
-  (ivy-prescient-mode t)
   (prescient-persist-mode t)
-  (setq prescient-history-length 144))
+  (setq prescient-history-length 256))
+
+(use-package ivy-prescient
+  :after (counsel prescient ivy)
+  :config
+  (ivy-prescient-mode t))
 
 ;; looks like smex (smart command history in M-x) is used by counsel just
 ;; by being installed, and doesn't need to be explicitly invoked here
