@@ -215,10 +215,10 @@
   ;; lookup table that is used everywhere
   ("s-{" . (lambda ()
              (interactive)
-             (execute-kbd-macro (kbd "s-t h"))))
+             (execute-kbd-macro (kbd "s-t h <escape>"))))
   ("s-}" . (lambda ()
              (interactive)
-             (execute-kbd-macro (kbd "s-t l")))))
+             (execute-kbd-macro (kbd "s-t l <escape>")))))
 
 (use-package evil-matchit
   :config
