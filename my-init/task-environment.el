@@ -117,8 +117,6 @@
   ;; other faces such as `diff-added` will be used for other actions
   (evil-goggles-use-diff-faces))
 
-(use-package evil-magit)
-
 (use-package multiple-cursors
   ;; the original multiple-cursors mode, looks great but isn't
   ;; compatible with evil mode. evil-mc looks pretty similar
