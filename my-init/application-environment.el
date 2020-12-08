@@ -206,6 +206,7 @@
 	  centaur-tabs-show-navigation-buttons t
 	  centaur-tabs-set-bar 'under
 	  x-underline-at-descent-line t)
+  (centaur-tabs-change-fonts "monaco" 130)
   (centaur-tabs-mode t)
   (setq centaur-tabs-cycle-scope 'tabs)
   (centaur-tabs-group-by-projectile-project)

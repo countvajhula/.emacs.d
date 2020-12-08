@@ -18,6 +18,7 @@
 (use-package evil
   :init
   ;; these settings are required by evil-collection
+  (setq evil-undo-system 'undo-tree)
   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t) ;; most usecases for Emacs C-u are best handled in normal mode
