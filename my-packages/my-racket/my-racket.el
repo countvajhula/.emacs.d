@@ -1,7 +1,14 @@
 (use-package racket-mode
   :config
   ;; explicitly indicate .rkt files are to be opened in racket-mode
-  (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode)))
+  ;; Somewhere (I don't know where), .rkt is already being added to
+  ;; auto-mode-alist, and this causes `add-to-list` to do nothing
+  ;; here, with the result that .rkt files are opened in scheme-mode
+  ;; rather than racket-mode, since scheme-mode is also present in
+  ;; auto-mode-alist for .rkt (who knows where this is added...),
+  ;; in an earlier position in the list.
+  ;; So, forcing addition at the head here by using `push` instead
+  (push '("\\.rkt\\'" . racket-mode) auto-mode-alist))
 
 (defvar racket-modes (list 'racket-mode
                            'racket-repl-mode))
