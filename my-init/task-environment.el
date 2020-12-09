@@ -192,6 +192,38 @@
 
 (use-package company-jedi)
 
+(use-package scroll-on-jump
+  :disabled t
+  :straight
+  (scroll-on-jump
+   :type git
+   :host gitlab
+   :repo "ideasman42/emacs-scroll-on-jump")
+
+  :config
+  (setq scroll-on-jump-duration 0.6)
+  (with-eval-after-load 'evil
+    (scroll-on-jump-advice-add evil-undo)
+    (scroll-on-jump-advice-add evil-redo)
+    (scroll-on-jump-advice-add evil-jump-item)
+    (scroll-on-jump-advice-add evil-jump-forward)
+    (scroll-on-jump-advice-add evil-jump-backward)
+    (scroll-on-jump-advice-add evil-scroll-down)
+    (scroll-on-jump-advice-add evil-scroll-up)
+    (scroll-on-jump-advice-add my-jump-down)
+    (scroll-on-jump-advice-add my-jump-up)
+    (scroll-on-jump-advice-add symex-go-backward)
+    (scroll-on-jump-advice-add symex-go-forward)
+                                        ;(scroll-on-jump-advice-add evil-scroll-page-down)
+                                        ;(scroll-on-jump-advice-add evil-scroll-page-up)
+    (scroll-on-jump-advice-add evil-ex-search-next)
+    (scroll-on-jump-advice-add evil-ex-search-previous)
+    (scroll-on-jump-advice-add evil-forward-paragraph)
+    (scroll-on-jump-advice-add evil-backward-paragraph))
+  (with-eval-after-load 'goto-chg
+    (scroll-on-jump-advice-add goto-last-change)
+    (scroll-on-jump-advice-add goto-last-change-reverse)))
+
 (use-package yasnippet
   :config
   (yas-global-mode 1))
