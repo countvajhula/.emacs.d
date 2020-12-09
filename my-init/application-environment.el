@@ -21,13 +21,19 @@
 
 (use-package dictionary)
 
-(use-package etymology-of-word)
+(use-package etymology-of-word
+  :straight
+  (etymology-of-word :local-repo "~/.emacs.d/my-packages/etymology-of-word" :type nil))
 
 ;; mark columns visually
-(use-package column-marker)
+(use-package column-marker
+  :straight
+  (column-marker :local-repo "~/.emacs.d/my-packages/column-marker" :type nil))
 
 (use-package my-python
   :after general
+  :straight
+  (my-python :local-repo "~/.emacs.d/my-packages/my-python" :type nil)
   :config
   (add-hook 'python-mode-hook
             (lambda () (show-paren-mode 1)))
@@ -39,13 +45,22 @@
             (lambda () (setq fill-column 79))))
 
 (use-package my-elisp
-  :after general)
+  :after general
+
+  :straight
+  (my-elisp :local-repo "~/.emacs.d/my-packages/my-elisp" :type nil))
 
 (use-package my-scheme
-  :after general)
+  :after general
+
+  :straight
+  (my-scheme :local-repo "~/.emacs.d/my-packages/my-scheme" :type nil))
 
 (use-package my-racket
-  :after general)
+  :after general
+
+  :straight
+  (my-racket :local-repo "~/.emacs.d/my-packages/my-racket" :type nil))
 
 (use-package cider
   :defer t)
@@ -59,12 +74,16 @@
 
 (use-package arc
   :defer t
+  :straight
+  (arc :local-repo "~/.emacs.d/my-packages/arc" :type nil)
   :config
   (setq arc-source-path "~/work/lisp/arc/arc3.2")
   ;; until arc is supported directly in symex mode
   (add-hook 'arc-mode-hook 'symex-mode))
 
 (use-package symex
+  :straight
+  (symex :local-repo "~/.emacs.d/my-packages/symex" :type nil)
   :config
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
@@ -79,7 +98,10 @@
   :defer t)
 
 (use-package my-latex
-  :after general)
+  :after general
+
+  :straight
+  (my-latex :local-repo "~/.emacs.d/my-packages/my-latex" :type nil))
 
 ;; ido mode
 (use-package ido
@@ -198,18 +220,20 @@
 (use-package centaur-tabs
   :after evil-epistemic-mode
   :demand
+  :custom
+  (centaur-tabs-style "bar")
+  ;; (centaur-tabs-height 32)
+  (centaur-tabs-set-icons t)
+  (centaur-tabs-set-modified-marker t)
+  (centaur-tabs-show-navigation-buttons t)
+  (centaur-tabs-set-bar 'under)
+  (centaur-tabs-cycle-scope 'tabs)
   :config
-  (setq centaur-tabs-style "bar"
-	  ;; centaur-tabs-height 32
-	  centaur-tabs-set-icons t
-	  centaur-tabs-set-modified-marker t
-	  centaur-tabs-show-navigation-buttons t
-	  centaur-tabs-set-bar 'under
-	  x-underline-at-descent-line t)
+  (setq x-underline-at-descent-line t)
   (centaur-tabs-change-fonts "monaco" 130)
   (centaur-tabs-mode t)
-  (setq centaur-tabs-cycle-scope 'tabs)
   (centaur-tabs-group-by-projectile-project)
+  (centaur-tabs-headline-match) ; so that the unused portion of the "headline" matches the used portion
   :bind
   ;; note that these are hardcoded to the s-t binding for tab mode
   ;; could be better to define a global epistemic modes entry bindings
@@ -489,11 +513,20 @@ Version 2017-11-01"
    "SPC" 'hydra-leader/body))
 
 (use-package my-familiar
-  :after evil)
+  :after evil
 
-(use-package my-general-behavior)
+  :straight
+  (my-familiar :local-repo "~/.emacs.d/my-packages/my-familiar" :type nil))
 
-(use-package my-look-and-feel)
+(use-package my-general-behavior
+
+  :straight
+  (my-general-behavior :local-repo "~/.emacs.d/my-packages/my-general-behavior" :type nil))
+
+(use-package my-look-and-feel
+
+  :straight
+  (my-look-and-feel :local-repo "~/.emacs.d/my-packages/my-look-and-feel" :type nil))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;

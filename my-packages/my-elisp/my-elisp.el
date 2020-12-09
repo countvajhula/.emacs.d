@@ -1,3 +1,5 @@
+(require 'my-elisp-debugger)
+
 (defvar elisp-modes (list 'lisp-interaction-mode
                           'emacs-lisp-mode
                           'inferior-emacs-lisp-mode))
@@ -59,7 +61,5 @@
   (let ((mode-hook (intern (concat (symbol-name mode-name)
                                    "-hook"))))
     (add-hook mode-hook 'register-elisp-leader)))
-
-(use-package my-elisp-debugger)
 
 (provide 'my-elisp)

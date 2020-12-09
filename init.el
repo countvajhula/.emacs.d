@@ -32,6 +32,8 @@
 
 (use-package evil-epistemic-mode
   :after (evil symex)  ;; TODO: should be independent of symex and arguably evil too
+  :straight
+  (evil-epistemic-mode :local-repo "~/.emacs.d/my-packages/epistemic-mode" :type nil)
   :config
   (setq epistemic-mode t)
 

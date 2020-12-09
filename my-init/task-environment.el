@@ -16,15 +16,15 @@
 
 ;; Vim interface
 (use-package evil
-  :init
+  :custom
   ;; these settings are required by evil-collection
-  (setq evil-undo-system 'undo-tree)
-  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t) ;; most usecases for Emacs C-u are best handled in normal mode
-  (global-set-key (kbd "M-u") 'universal-argument) ;; close enough, if needed
+  (evil-undo-system 'undo-tree)
+  (evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (evil-want-keybinding nil)
+  (evil-want-C-u-scroll t) ;; most usecases for Emacs C-u are best handled in normal mode
   ;; use "symbols" instead of simple words in point searches
-  (setq evil-symbol-word-search t)
+  (evil-symbol-word-search t)
+
   :config
   (evil-mode 1)
   ;; use Emacs keybindings when in insert mode }:)
@@ -36,6 +36,7 @@
   ;; so that W uses symbols
   ;; (while w uses words, and # and * use symbols)
   (defalias #'forward-evil-WORD #'forward-evil-symbol)
+  (global-set-key (kbd "M-u") 'universal-argument) ;; close enough, if needed
 
   ;; recenter page after goto line (like Vim; this is otherwise overridden
   ;; due to "scroll-conservatively" settings)
@@ -208,21 +209,23 @@
 (use-package avy
   ;; although avy-goto-word-1 is probably faster,
   ;; avy-goto-char-timer is more intuitive
-  :bind ("M-s" . avy-goto-char-timer)
-  :ensure t)
+  :bind ("M-s" . avy-goto-char-timer))
 
 (use-package ace-jump-buffer
   :disabled t
   :bind ("C-x b" . ace-jump-buffer))
 
 (use-package tab-indentation
-  :load-path "~/.emacs.d/my-packages/")
+  :straight
+  (tab-indentation :local-repo "~/.emacs.d/my-packages/tab-indentation" :type nil))
 
 (use-package highlight
   :disabled t)
 
 (use-package my-navigation
-  :after evil)
+  :after evil
+  :straight
+  (my-navigation :local-repo "~/.emacs.d/my-packages/my-navigation" :type nil))
 
 ;; highlight matching paren
 (show-paren-mode 1)

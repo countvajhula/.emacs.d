@@ -84,7 +84,8 @@ _d_: dir             _g_: update gtags
               'projectile-grep))
 
 (use-package org-ibuffer
-  :load-path "~/.emacs.d/my-packages/")
+  :straight
+  (org-ibuffer :local-repo "~/.emacs.d/my-packages/org-ibuffer" :type nil))
 
 (use-package org
   :after org-ibuffer

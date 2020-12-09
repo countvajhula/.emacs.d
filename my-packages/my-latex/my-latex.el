@@ -1,7 +1,7 @@
 ;; Latex stuff
 (use-package tex
   :defer t
-  :ensure auctex
+  :straight auctex
   :config
   ;; make latexmk available via C-c C-c
   ;; (latexmk is a popular perl script to minimize number of
