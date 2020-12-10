@@ -37,7 +37,7 @@
   (rigpa
    :type git
    :host github
-   :repo "countvajhula/rigpa.el")
+   :repo "countvajhula/rigpa")
 
   :config
   (setq rigpa-mode t)
