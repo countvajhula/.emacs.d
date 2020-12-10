@@ -30,15 +30,15 @@
 (load "network-environment")
 (load "physical-environment")
 
-(use-package evil-epistemic-mode
+(use-package rigpa
   :after (evil symex)  ;; TODO: should be independent of symex and arguably evil too
   :straight
-  (evil-epistemic-mode :local-repo "~/.emacs.d/my-packages/epistemic-mode" :type nil)
+  (rigpa :local-repo "~/.emacs.d/my-packages/rigpa" :type nil)
   :config
-  (setq epistemic-mode t)
+  (setq rigpa-mode t)
 
   ;; custom config
-  (setq epistemic-show-menus nil)
+  (setq rigpa-show-menus nil)
 
   (global-set-key (kbd "s-n") 'evil-normal-state)
   (global-set-key (kbd "s-m s-m") 'eem-flashback-to-last-tower)

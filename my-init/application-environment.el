@@ -218,7 +218,7 @@
 (use-package all-the-icons)
 
 (use-package centaur-tabs
-  :after evil-epistemic-mode
+  :after rigpa
   :demand
   :custom
   (centaur-tabs-style "bar")
@@ -236,7 +236,7 @@
   (centaur-tabs-headline-match) ; so that the unused portion of the "headline" matches the used portion
   :bind
   ;; note that these are hardcoded to the s-t binding for tab mode
-  ;; could be better to define a global epistemic modes entry bindings
+  ;; could be better to define a global rigpa modes entry bindings
   ;; lookup table that is used everywhere
   ("s-{" . (lambda ()
              (interactive)
@@ -308,9 +308,9 @@
   (setq sml/theme 'dark))
 
 (use-package telephone-line
-  :after evil-epistemic-mode
+  :after rigpa
   :config
-  ;; define faces for epistemic modes
+  ;; define faces for rigpa modes
   ;; (list-colors-display)
   (defface telephone-line-evil-char
     '((t (:background "forest green" :inherit telephone-line-evil)))
