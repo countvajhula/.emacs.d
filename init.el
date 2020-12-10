@@ -35,9 +35,8 @@
 
   :straight
   (rigpa
-   :type git
-   :host github
-   :repo "countvajhula/rigpa")
+   :local-repo "~/.emacs.d/my-packages/rigpa"
+   :type nil)
 
   :config
   (setq rigpa-mode t)

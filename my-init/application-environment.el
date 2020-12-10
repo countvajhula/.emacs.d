@@ -83,6 +83,10 @@
   (setq arc-source-path "~/work/lisp/arc/arc3.2"))
 
 (use-package symex
+  :straight
+  (symex
+   :local-repo "~/.emacs.d/my-packages/symex"
+   :type nil)
   :config
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
