@@ -32,8 +32,13 @@
 
 (use-package rigpa
   :after (evil symex)  ;; TODO: should be independent of symex and arguably evil too
+
   :straight
-  (rigpa :local-repo "~/.emacs.d/my-packages/rigpa" :type nil)
+  (rigpa
+   :type git
+   :host github
+   :repo "countvajhula/rigpa.el")
+
   :config
   (setq rigpa-mode t)
 

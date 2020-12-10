@@ -75,15 +75,16 @@
 (use-package arc
   :defer t
   :straight
-  (arc :local-repo "~/.emacs.d/my-packages/arc" :type nil)
+  (arc
+   :type git
+   :host github
+   :repo "countvajhula/arc.el")
   :config
   (setq arc-source-path "~/work/lisp/arc/arc3.2")
   ;; until arc is supported directly in symex mode
   (add-hook 'arc-mode-hook 'symex-mode))
 
 (use-package symex
-  :straight
-  (symex :local-repo "~/.emacs.d/my-packages/symex" :type nil)
   :config
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
