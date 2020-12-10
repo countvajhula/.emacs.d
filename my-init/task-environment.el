@@ -24,6 +24,7 @@
   (evil-want-C-u-scroll t) ;; most usecases for Emacs C-u are best handled in normal mode
   ;; use "symbols" instead of simple words in point searches
   (evil-symbol-word-search t)
+  (evil-move-cursor-back nil)
 
   :config
   (evil-mode 1)
