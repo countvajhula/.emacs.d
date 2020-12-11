@@ -80,9 +80,7 @@
    :host github
    :repo "countvajhula/arc.el")
   :config
-  (setq arc-source-path "~/work/lisp/arc/arc3.2")
-  ;; until arc is supported directly in symex mode
-  (add-hook 'arc-mode-hook 'symex-mode))
+  (setq arc-source-path "~/work/lisp/arc/arc3.2"))
 
 (use-package symex
   :config

@@ -127,12 +127,7 @@
   (global-set-key (kbd "s-r")        ; word mode
                   (lambda ()
                     (interactive)
-                    (rigpa-enter-mode "word")))
-
-  ;; until arc is supported in symex mode
-  (add-hook 'arc-mode-hook (lambda ()
-                             (setq rigpa--current-tower-index 2)
-                             (setq rigpa--current-level 2))))
+                    (rigpa-enter-mode "word"))))
 
 ;; load any customizations done via EMACS UI
 (load custom-file 'noerror)
