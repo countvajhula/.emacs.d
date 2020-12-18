@@ -34,8 +34,9 @@
 
   :straight
   (rigpa
-   :local-repo "~/.emacs.d/my-packages/rigpa"
-   :type git)
+   :type git
+   :host github
+   :repo "countvajhula/rigpa")
 
   :config
   (rigpa-initialize)

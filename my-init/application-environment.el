@@ -173,10 +173,6 @@
 (use-package tree-sitter-langs)
 
 (use-package symex
-  :straight
-  (symex
-   :local-repo "~/.emacs.d/my-packages/symex"
-   :type git)
   :custom
   (symex-modal-backend 'evil)
   (symex-quote-prefix-list (list "'" "#'" "`" "#`" "#"))
