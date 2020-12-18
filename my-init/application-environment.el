@@ -113,10 +113,6 @@
   (setq arc-source-path "~/work/lisp/arc/arc3.2"))
 
 (use-package symex
-  :straight
-  (symex
-   :local-repo "~/.emacs.d/my-packages/symex"
-   :type git)
   :custom
   (symex-modal-backend 'evil)
   :config
