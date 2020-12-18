@@ -36,7 +36,7 @@
   :straight
   (rigpa
    :local-repo "~/.emacs.d/my-packages/rigpa"
-   :type nil)
+   :type git)
 
   :config
   (setq rigpa-mode t)

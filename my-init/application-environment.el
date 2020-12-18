@@ -86,7 +86,7 @@
   :straight
   (symex
    :local-repo "~/.emacs.d/my-packages/symex"
-   :type nil)
+   :type git)
   :config
   (dolist (mode-name symex-lisp-modes)
     (let ((mode-hook (intern (concat (symbol-name mode-name)
