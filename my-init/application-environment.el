@@ -139,6 +139,7 @@
   :defer t)
 
 (use-package slime
+  :disabled t
   :defer t
   :config
   (load (expand-file-name "~/.quicklisp/slime-helper.el"))
