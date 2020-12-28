@@ -45,6 +45,7 @@
   (setq rigpa-show-menus nil)
 
   (global-set-key (kbd "s-n") 'evil-normal-state)
+  (global-unset-key (kbd "s-m"))
   (global-set-key (kbd "s-m s-m") 'rigpa-flashback-to-last-tower)
   (global-set-key (kbd "C-<escape>") 'rigpa-enter-tower-mode)
   (global-set-key (kbd "M-<escape>") 'rigpa-enter-mode-mode) ;; TODO: s-esc and s-ret should operate based on a structure, shouldn't be hardcoded

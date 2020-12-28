@@ -24,6 +24,7 @@
 
 ;; handy project-related functions like grep search, find file, etc.
 (use-package projectile
+  :after hydra
   :config
   (projectile-mode +1)
   (setq projectile-completion-system 'ivy)
@@ -88,7 +89,7 @@ _d_: dir             _g_: update gtags
   (org-ibuffer :local-repo "~/.emacs.d/my-packages/org-ibuffer" :type nil))
 
 (use-package org
-  :after org-ibuffer
+  :after (org-ibuffer hydra)
   :config
   ;; visually indent lower hierarchy levels
   (setq org-startup-indented t)

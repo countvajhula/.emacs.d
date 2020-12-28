@@ -139,6 +139,7 @@
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (use-package evil-mc
+  :after hydra
   :config
   ;; by default evil-mc creates its own keymap that overrides some
   ;; useful evil mode bindings (like C-p!). Disable all default
