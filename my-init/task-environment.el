@@ -264,10 +264,7 @@
 (use-package highlight
   :disabled t)
 
-(use-package my-navigation
-  :after evil
-  :straight
-  (my-navigation :local-repo "~/.emacs.d/my-packages/my-navigation" :type nil))
+(require 'my-navigation)
 
 ;; highlight matching paren
 (show-paren-mode 1)

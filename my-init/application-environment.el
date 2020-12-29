@@ -30,37 +30,13 @@
   :straight
   (column-marker :local-repo "~/.emacs.d/my-packages/column-marker" :type nil))
 
-(use-package my-python
-  :after general
-  :straight
-  (my-python :local-repo "~/.emacs.d/my-packages/my-python" :type nil)
-  :config
-  (add-hook 'python-mode-hook
-            (lambda () (show-paren-mode 1)))
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (setq tab-width 4)
-              (setq python-indent-offset 4)))
-  (add-hook 'python-mode-hook
-            (lambda () (setq fill-column 79))))
+(require 'my-python)
 
-(use-package my-elisp
-  :after general
+(require 'my-elisp)
 
-  :straight
-  (my-elisp :local-repo "~/.emacs.d/my-packages/my-elisp" :type nil))
+(require 'my-scheme)
 
-(use-package my-scheme
-  :after general
-
-  :straight
-  (my-scheme :local-repo "~/.emacs.d/my-packages/my-scheme" :type nil))
-
-(use-package my-racket
-  :after general
-
-  :straight
-  (my-racket :local-repo "~/.emacs.d/my-packages/my-racket" :type nil))
+(require 'my-racket)
 
 (use-package cider
   :defer t)
@@ -100,11 +76,7 @@
 (use-package haskell-mode
   :defer t)
 
-(use-package my-latex
-  :after general
-
-  :straight
-  (my-latex :local-repo "~/.emacs.d/my-packages/my-latex" :type nil))
+(require 'my-latex)
 
 ;; ido mode
 (use-package ido
@@ -515,21 +487,11 @@ Version 2017-11-01"
    :keymaps 'override
    "SPC" 'hydra-leader/body))
 
-(use-package my-familiar
-  :after evil
+(require 'my-familiar)
 
-  :straight
-  (my-familiar :local-repo "~/.emacs.d/my-packages/my-familiar" :type nil))
+(require 'my-general-behavior)
 
-(use-package my-general-behavior
-
-  :straight
-  (my-general-behavior :local-repo "~/.emacs.d/my-packages/my-general-behavior" :type nil))
-
-(use-package my-look-and-feel
-
-  :straight
-  (my-look-and-feel :local-repo "~/.emacs.d/my-packages/my-look-and-feel" :type nil))
+(require 'my-look-and-feel)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
