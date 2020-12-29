@@ -22,6 +22,8 @@
   (setq dired-sidebar-subtree-line-prefix "__")
   (setq dired-sidebar-use-custom-font t))
 
+(use-package ripgrep)
+
 ;; handy project-related functions like grep search, find file, etc.
 (use-package projectile
   :after hydra
