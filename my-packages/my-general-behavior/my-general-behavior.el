@@ -14,6 +14,10 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(concat user-emacs-directory "auto-save/") t)))
 
+;; when visiting files, always follow symbolic links to their source,
+;; without asking (but with a message in the echo area)
+(setq vc-follow-symlinks t)
+
 ;; "Civilized people want to version their backups and organize it so
 ;; that backups are not laced out through their harddrive, but rather
 ;; organized into specific backup directories."  From:
