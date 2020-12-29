@@ -74,13 +74,6 @@
 (use-package evil-collection
   :after evil
 
-  :straight
-  (evil-collection
-   :type git
-   :host github
-   :repo "countvajhula/evil-collection" ; temporarily, for ripgrep config
-   :branch "add-ripgrep-mode")
-
   :config
   (evil-collection-init))
 
