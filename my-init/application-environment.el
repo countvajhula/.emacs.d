@@ -16,6 +16,40 @@
 ;; intuitive "state machine" menus
 (use-package hydra)
 
+(use-package general
+  ;; general is a package that provides various
+  ;; resources and utilities for defining keybindings
+  :config
+  (setq general-override-states '(insert
+                                  emacs
+                                  hybrid
+                                  normal
+                                  visual
+                                  motion
+                                  operator
+                                  replace))
+  (general-override-mode)
+
+  (defhydra hydra-leader (:timeout my-leader-timeout
+                          :columns 2
+                          :exit t)
+    "Quick actions"
+    ("a" org-agenda "Org agenda")
+    ("d" dictionary-lookup-definition "lookup in dictionary")
+    ("f" my-current-dir "dir")
+    ("g" magit-status "Magit (git)")
+    ("l" my-lisp-repl "Lisp REPL")
+    ("m" my-switch-to-messages-buffer "Go to Messages buffer")
+    ("s" eshell "Shell")
+    ("t" dired-sidebar-toggle-sidebar "Nav Sidebar")
+    ("u" undo-tree-visualize "Undo tree"))
+
+  ;; define global vim-style "leader" key
+  (general-define-key
+   :states '(normal visual motion)
+   :keymaps 'override
+   "SPC" 'hydra-leader/body))
+
 ;; zoom entire frame including status bar (works by modifying font faces)
 (use-package zoom-frm)
 
@@ -452,40 +486,6 @@ Version 2017-11-01"
     (when switch-p
       (switch-to-buffer $buf))
     $buf))
-
-(use-package general
-  ;; general is a package that provides various
-  ;; resources and utilities for defining keybindings
-  :config
-  (setq general-override-states '(insert
-                                  emacs
-                                  hybrid
-                                  normal
-                                  visual
-                                  motion
-                                  operator
-                                  replace))
-  (general-override-mode)
-
-  (defhydra hydra-leader (:timeout my-leader-timeout
-                          :columns 2
-                          :exit t)
-    "Quick actions"
-    ("a" org-agenda "Org agenda")
-    ("d" dictionary-lookup-definition "lookup in dictionary")
-    ("f" my-current-dir "dir")
-    ("g" magit-status "Magit (git)")
-    ("l" my-lisp-repl "Lisp REPL")
-    ("m" my-switch-to-messages-buffer "Go to Messages buffer")
-    ("s" eshell "Shell")
-    ("t" dired-sidebar-toggle-sidebar "Nav Sidebar")
-    ("u" undo-tree-visualize "Undo tree"))
-
-  ;; define global vim-style "leader" key
-  (general-define-key
-   :states '(normal visual motion)
-   :keymaps 'override
-   "SPC" 'hydra-leader/body))
 
 (require 'my-familiar)
 
