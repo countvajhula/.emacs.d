@@ -120,3 +120,71 @@ From: https://stackoverflow.com/a/13313091"
   (let ((result (s-snake-case (thing-at-point 'word))))
     (apply #'evil-delete (evil-inner-word))
     (insert result)))
+
+(defun my-count-lines-page ()
+  "Modified from emacs's built-in count-lines-page to return a list of
+   values corresponding to the position in the page."
+  (interactive)
+  (save-excursion
+    (let ((opoint (point)) beg end
+	  total before after)
+      (forward-page)
+      (beginning-of-line)
+      (or (looking-at page-delimiter)
+	  (end-of-line))
+      (setq end (point))
+      (backward-page)
+      (setq beg (point))
+      (setq total (count-lines beg end)
+	    before (count-lines beg opoint)
+	    after (count-lines opoint end))
+      (list total before after))))
+
+(defun my-buffer-info ()
+  "get info on current buffer -- similar to Vim's C-g"
+  (interactive)
+  (-let [(total before after) (my-count-lines-page)]
+    (if (= total 0)
+	(setq bufinfo (list "-- No lines in buffer --"))
+      (progn (setq percentage (floor (* (/ (float before)
+					   total)
+					100)))
+	     (setq page-position (concat
+				  "-- "
+				  (number-to-string percentage)
+				  "%"
+				  " --"))
+	     (setq total-lines (concat
+				(number-to-string total)
+				" lines"))
+	     (setq bufinfo (list total-lines page-position))))
+    (add-to-list 'bufinfo
+		 (buffer-file-name))
+    (message "%s" (string-join bufinfo " "))))
+
+(cl-defun my-new-empty-buffer (&optional
+                               buffer-name
+                               major-mode-to-use
+                               &key
+                               switch-p)
+  "Create a new empty buffer.
+
+If BUFFER-NAME is not provided, the new buffer will be named
+“untitled” or “untitled<2>”, “untitled<3>”, etc. The buffer will be
+created in the currently active (at the time of command execution)
+major mode.
+If SWITCH-P is true, switch to the newly created buffer.
+
+Modified from:
+URL `http://ergoemacs.org/emacs/emacs_new_empty_buffer.html'
+Version 2017-11-01"
+  (interactive)
+  (let* ((buffer-name (or buffer-name "untitled"))
+         (major-mode-to-use (or major-mode-to-use major-mode))
+         ($buf (generate-new-buffer buffer-name)))
+    (with-current-buffer $buf
+      (funcall major-mode-to-use)
+      (setq buffer-offer-save t))
+    (when switch-p
+      (switch-to-buffer $buf))
+    $buf))
