@@ -258,9 +258,7 @@
   :config
   (global-evil-matchit-mode 1))
 
-;; not sure why this is necessary, but this initializes sunrise
-;; commander, along with all of its extensions
-(el-get-bundle sunrise-commander)
+(use-package sunrise-commander)
 
 (use-package recentf
   :config

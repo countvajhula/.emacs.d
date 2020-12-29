@@ -9,11 +9,7 @@
   (add-to-list 'load-path user-packages-directory)
   ;; add all its subfolders too
   (let ((default-directory user-packages-directory))
-    (normal-top-level-add-subdirs-to-load-path))
-  ;; el-get -- an alternative package manager to ELPA/MELPA,
-  ;; used for packages not on ELPA/MELPA
-  (add-to-list 'load-path (concat user-emacs-directory
-                                  "el-get/el-get")))
+    (normal-top-level-add-subdirs-to-load-path)))
 
 (setup-load-path)
 

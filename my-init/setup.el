@@ -34,11 +34,3 @@
                                my-package-archives))
 
 ;; (setq use-package-always-defer t)
-
-;; set up el-get, e.g. for packages not on ELPA/MELPA
-(unless (require 'el-get nil t)
-  (url-retrieve
-   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
-   (lambda (s)
-     (end-of-buffer)
-     (eval-print-last-sexp))))
