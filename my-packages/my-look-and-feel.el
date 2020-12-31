@@ -18,6 +18,8 @@
   :config
   (remember-last-theme-enable))
 
+(use-package doom-themes)
+
 (set-frame-font "Menlo 12" nil t)
 
 ;; line numbers on by default
