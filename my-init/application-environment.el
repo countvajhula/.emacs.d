@@ -53,7 +53,8 @@
 ;; zoom entire frame including status bar (works by modifying font faces)
 (use-package zoom-frm)
 
-(use-package dictionary)
+(use-package dictionary
+  :defer t)
 
 (use-package etymology-of-word
   :straight
