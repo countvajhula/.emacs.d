@@ -16,6 +16,13 @@
 
 ;; Vim interface
 (use-package evil
+  :straight
+  (evil
+   :type git
+   :host github
+   :repo "sorawee/evil"
+   :branch "tab-line-height")
+
   :custom
   ;; these settings are required by evil-collection
   (evil-undo-system 'undo-tree)
