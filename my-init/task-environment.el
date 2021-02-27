@@ -109,6 +109,14 @@
    ?\] '("[ " . " ]")
    ?\} '("{ " . " }")))
 
+(use-package evil-commentary
+  :config
+  (evil-commentary-mode))
+
+(use-package evil-textobj-line)
+
+(use-package evil-textobj-entire)
+
 (use-package evil-goggles
   :config
   (evil-goggles-mode)
