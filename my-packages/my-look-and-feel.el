@@ -20,6 +20,16 @@
 
 (use-package doom-themes)
 
+(use-package srcery-theme)
+
+(use-package humanoid-themes
+  :straight
+  (humanoid-themes
+   :type git
+   :host github
+   :repo "humanoid-colors/emacs-humanoid-themes"
+   :branch "main"))
+
 (set-frame-font "Menlo 12" nil t)
 
 ;; line numbers on by default
