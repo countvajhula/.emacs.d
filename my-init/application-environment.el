@@ -35,6 +35,11 @@
                           :exit t)
     "Quick actions"
     ("a" org-agenda "Org agenda")
+    ("c" (lambda ()
+           (interactive)
+           (save-excursion
+             (execute-kbd-macro (kbd ":%s///gn<return>"))))
+     "count search results") ; this gets buried
     ("d" dictionary-lookup-definition "lookup in dictionary")
     ("f" my-current-dir "dir")
     ("g" magit-status "Magit (git)")

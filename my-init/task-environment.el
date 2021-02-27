@@ -41,6 +41,7 @@
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   ;; C-z goes to emacs mode in "insert" mode
   (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
+
   ;; so that W uses symbols
   ;; (while w uses words, and # and * use symbols)
   (defalias #'forward-evil-WORD #'forward-evil-symbol)

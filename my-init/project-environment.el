@@ -19,7 +19,7 @@
   :config
   ;(setq dired-sidebar-theme 'vscode)
   (setq dired-sidebar-theme 'icons)
-  (setq dired-sidebar-subtree-line-prefix "__")
+  ;; (setq dired-sidebar-subtree-line-prefix "__")
   (setq dired-sidebar-use-custom-font t))
 
 (use-package ripgrep)
