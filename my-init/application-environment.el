@@ -104,10 +104,7 @@
    :local-repo "~/.emacs.d/my-packages/symex"
    :type git)
   :config
-  (dolist (mode-name symex-lisp-modes)
-    (let ((mode-hook (intern (concat (symbol-name mode-name)
-                                     "-hook"))))
-      (add-hook mode-hook 'symex-mode)))
+  (symex-initialize)
   (symex-hide-menu))
 
 (use-package php-mode
