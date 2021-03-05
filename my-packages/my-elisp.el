@@ -37,6 +37,13 @@
         ((equal what ?d) (edebug-defun))
         (t nil)))
 
+(defun my-elisp-show-definitions ()
+  "Show all definitions in the current buffer.
+
+This includes functions, variables, constants, etc."
+  (interactive)
+  (occur "\\(^(def\\|^(cl-def\\|^(evil-define\\)"))
+
 (defhydra hydra-elisp (:timeout my-leader-timeout
                        :columns 2
                        :exit t)
@@ -47,6 +54,7 @@
   ("g" evil-jump-to-tag "Go to definition")
   ("t" ert-run-tests-interactively "Run ERT tests")
   ("T" ert-delete-all-tests "Unload all ERT tests")
+  ("o" my-elisp-show-definitions "Show all definitions")
   ("i" my-elisp-describe-symbol "See documentation on this")
   ("?" my-elisp-describe-symbol "See documentation on this")
   ("r" my-lisp-repl "Go to elisp REPL"))

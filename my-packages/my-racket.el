@@ -85,6 +85,13 @@ Accounts for different point location in evil vs emacs mode."
         ((equal what ?f) (racket-send-definition nil))
         (t nil)))
 
+(defun my-racket-show-definitions ()
+  "Show all definitions in the current buffer.
+
+This includes functions, variables, constants, etc."
+  (interactive)
+  (occur "\\(^(define\\|^(struct\\)"))
+
 (defhydra hydra-racket (:timeout my-leader-timeout
                         :columns 2
                         :exit t)
@@ -92,6 +99,7 @@ Accounts for different point location in evil vs emacs mode."
   ("e" my-racket-eval "Eval")
   ("v" my-racket-eval "Eval")
   ("g" evil-jump-to-tag "Go to definition")
+  ("o" my-racket-show-definitions "Show all definitions")
   ("i" my-racket-describe-symbol "See documentation on this")
   ("?" my-racket-describe-symbol "See documentation on this")
   ("r" racket-repl "Go to racket REPL")
