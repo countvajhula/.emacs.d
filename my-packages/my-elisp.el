@@ -46,6 +46,7 @@
   ("d" edebug-defun "Eval fn for debug")
   ("g" evil-jump-to-tag "Go to definition")
   ("t" ert-run-tests-interactively "Run ERT tests")
+  ("T" ert-delete-all-tests "Unload all ERT tests")
   ("i" my-elisp-describe-symbol "See documentation on this")
   ("?" my-elisp-describe-symbol "See documentation on this")
   ("r" my-lisp-repl "Go to elisp REPL"))
