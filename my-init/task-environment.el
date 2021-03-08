@@ -46,6 +46,23 @@
     (lambda ()
       (interactive)
       (insert " ")))
+  ;; convenient way to add a newlines above and below
+  (define-key evil-normal-state-map
+    (kbd "M-o")
+    (lambda ()
+      (interactive)
+      (with-undo-collapse
+        (save-excursion
+          (end-of-line)
+          (newline)))))
+  (define-key evil-normal-state-map
+    (kbd "M-O")
+    (lambda ()
+      (interactive)
+      (with-undo-collapse
+        (save-excursion
+          (beginning-of-line)
+          (newline)))))
 
   ;; so that W uses symbols
   ;; (while w uses words, and # and * use symbols)
@@ -75,7 +92,7 @@
   (defun my-expand-lines ()
     (interactive)
     (let ((hippie-expand-try-functions-list
-	   '(try-expand-line)))
+           '(try-expand-line)))
       (call-interactively 'hippie-expand)))
 
   (define-key
