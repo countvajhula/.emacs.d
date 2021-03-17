@@ -178,9 +178,10 @@
   (ivy-rich-mode t))
 
 (use-package prescient
+  :custom
+  (prescient-history-length 512)
   :config
-  (prescient-persist-mode t)
-  (setq prescient-history-length 256))
+  (prescient-persist-mode t))
 
 (use-package ivy-prescient
   :after (counsel prescient ivy)
