@@ -43,7 +43,7 @@
   ;; C-z goes to emacs mode in "insert" mode
   (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
   (define-key evil-normal-state-map ; convenient way to add a space
-    (kbd "C-SPC")
+    (kbd "M-SPC")
     (lambda ()
       (interactive)
       (insert " ")))
