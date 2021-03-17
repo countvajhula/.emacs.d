@@ -41,7 +41,7 @@
 ;; the alpha params are "active" and "inactive" frame
 ;; this is if you want the in-focus and not-in-focus
 ;; emacs frames to have different transparencies
-(set-frame-parameter (selected-frame) 'alpha '(95 95))
-(add-to-list 'default-frame-alist '(alpha 95 95))
+;; (set-frame-parameter (selected-frame) 'alpha '(95 95))
+;; (add-to-list 'default-frame-alist '(alpha 95 95))
 
 (provide 'my-look-and-feel)
