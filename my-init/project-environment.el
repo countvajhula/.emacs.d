@@ -24,6 +24,8 @@
 
 (use-package ripgrep)
 
+(use-package wgrep)
+
 ;; handy project-related functions like grep search, find file, etc.
 (use-package projectile
   :after hydra
