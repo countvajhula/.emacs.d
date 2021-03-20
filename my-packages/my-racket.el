@@ -16,11 +16,12 @@
 (defun my-racket-describe-symbol ()
   "Describe symbol at point"
   (interactive)
-  (racket-describe nil))
+  (cond (racket-xp-mode (racket-xp-describe))
+        (racket-repl-mode (racket-repl-describe))
+        (t (error "Enable either racket-xp-mode or racket-repl-mode!"))))
 
-(defun racket--send-to-repl (code)
-  "(Keeping this here for now pending possible incorporation into racket-mode)
-Internal function to send CODE to the Racket REPL for evaluation.
+(defun my-racket-send-to-repl (code)
+  "Send CODE to the Racket REPL for evaluation.
 
 Before sending the code (in string form), calls `racket-repl' and
 `racket--repl-forget-errors'. Also inserts a ?\n at the process
@@ -30,7 +31,7 @@ the prompt.
 Afterwards call `racket--repl-show-and-move-to-end'."
   (racket-repl t)
   (racket--repl-forget-errors)
-  (let ((proc (get-buffer-process racket--repl-buffer-name)))
+  (let ((proc (get-buffer-process racket-repl-buffer-name)))
     (with-racket-repl-buffer
       (save-excursion
         (goto-char (process-mark proc))
@@ -38,7 +39,8 @@ Afterwards call `racket--repl-show-and-move-to-end'."
         (set-marker (process-mark proc) (point))))
     (comint-send-string proc code)
     (comint-send-string proc "\n"))
-  (racket--repl-show-and-move-to-end))
+  (when (fboundp 'racket--repl-show-and-move-to-end)
+    (racket--repl-show-and-move-to-end)))
 
 (defun my-racket-eval-symex-pretty ()
   "Evaluate symex and render the result in a useful string form."
@@ -51,7 +53,7 @@ Afterwards call `racket--repl-show-and-move-to-end'."
                         " (cond [(stream? result) (stream->list result)]
                                   [(sequence? result) (sequence->list result)]
                                   [else result]))"))))
-    (racket--send-to-repl pretty-code)))
+    (my-racket-send-to-repl pretty-code)))
 
 (defun my-racket-eval-symex ()
   "Eval last sexp.
@@ -92,6 +94,12 @@ This includes functions, variables, constants, etc."
   (interactive)
   (occur "\\(^(define\\|^(struct\\)"))
 
+(defun my-racket-show-references ()
+  "Show all references to identifier under point."
+  (interactive)
+  (let ((xref-prompt-for-identifier nil))
+    (call-interactively #'xref-find-references)))
+
 (defhydra hydra-racket (:timeout my-leader-timeout
                         :columns 2
                         :exit t)
@@ -99,6 +107,7 @@ This includes functions, variables, constants, etc."
   ("e" my-racket-eval "Eval")
   ("v" my-racket-eval "Eval")
   ("g" evil-jump-to-tag "Go to definition")
+  ("f" my-racket-show-references "Show references")
   ("o" my-racket-show-definitions "Show all definitions")
   ("i" my-racket-describe-symbol "See documentation on this")
   ("?" my-racket-describe-symbol "See documentation on this")
