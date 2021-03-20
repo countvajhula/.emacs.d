@@ -1,4 +1,5 @@
 (use-package racket-mode
+  :hook (racket-mode . racket-xp-mode)
   :config
   ;; explicitly indicate .rkt files are to be opened in racket-mode
   ;; Somewhere (I don't know where), .rkt is already being added to
@@ -171,8 +172,8 @@ This includes functions, variables, constants, etc."
 (add-hook 'racket-mode-hook
           (lambda ()
             (general-evil-define-key 'normal racket-mode-map
-              (kbd "C-]") 'racket-visit-definition)
+              (kbd "C-]") 'xref-find-definitions)
             (general-evil-define-key 'normal racket-mode-map
-              (kbd "C-{") 'racket-unvisit))) ; can't rebind C-[ (treated as escape)
+              (kbd "C-{") 'xref-pop-marker-stack))) ; can't rebind C-[ (treated as escape)
 
 (provide 'my-racket)
