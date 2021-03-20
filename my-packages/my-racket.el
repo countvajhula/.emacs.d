@@ -17,8 +17,8 @@
   "Describe symbol at point"
   (interactive)
   (cond (racket-xp-mode (racket-xp-describe))
-        (racket-repl-mode (racket-repl-describe))
-        (t (error "Enable either racket-xp-mode or racket-repl-mode!"))))
+        ((eq major-mode 'racket-repl-mode) (racket-repl-describe))
+        (t (error "Enable either racket-xp-mode or start the REPL!"))))
 
 (defun my-racket-send-to-repl (code)
   "Send CODE to the Racket REPL for evaluation.
