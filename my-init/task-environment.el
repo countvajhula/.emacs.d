@@ -300,3 +300,14 @@
 
 ;; highlight matching paren
 (show-paren-mode 1)
+
+;; ASCII emojis from https://gitlab.com/fommil/dotfiles/blob/master/.emacs.d/init.el
+(defun my-insert-shruggie ()
+  "Insert ASCII shrug dude."
+  (interactive)
+  (insert "¯\\_(ツ)_/¯"))
+
+(defun my-insert-table-flip ()
+  "Insert an ASCII table flip."
+  (interactive)
+  (insert "(╯°□°）╯︵ ┻━┻)"))
