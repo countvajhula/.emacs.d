@@ -112,7 +112,10 @@ This includes functions, variables, constants, etc."
   ("o" my-racket-show-definitions "Show all definitions")
   ("i" my-racket-describe-symbol "See documentation on this")
   ("?" my-racket-describe-symbol "See documentation on this")
-  ("r" racket-repl "Go to racket REPL")
+  ("r" (lambda ()
+         (interactive)
+         (racket-repl)
+         (goto-char (point-max))) "Go to racket REPL")
   ("x" racket-run "Save and evaluate buffer in REPL"))
 
 (defun register-racket-leader ()

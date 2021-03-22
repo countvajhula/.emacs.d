@@ -43,7 +43,10 @@
   ("g" evil-jump-to-tag "Go to definition")
   ("i" my-scheme-describe-symbol "See documentation on this")
   ("?" my-scheme-describe-symbol "See documentation on this")
-  ("r" geiser-mode-switch-to-repl "Go to scheme REPL"))
+  ("r" (lambda ()
+         (interactive)
+         (geiser-mode-switch-to-repl)
+         (goto-char (point-max))) "Go to scheme REPL"))
 
 (defun register-scheme-leader ()
   "Pull up scheme hydra with local leader"
