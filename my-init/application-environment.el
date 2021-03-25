@@ -46,6 +46,7 @@
     ("l" my-lisp-repl "Lisp REPL")
     ("m" my-switch-to-messages-buffer "Go to Messages buffer")
     ("s" eshell "Shell")
+    ("r" ripgrep-regexp "recursive search")
     ("t" dired-sidebar-toggle-sidebar "Nav Sidebar")
     ("u" undo-tree-visualize "Undo tree"))
 
