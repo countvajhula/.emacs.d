@@ -5,12 +5,12 @@
 
 (defun my-jump-down ()
   (interactive)
-  (dotimes (i 9)
+  (dotimes (i 5)
     (evil-next-line)))
 
 (defun my-jump-up ()
   (interactive)
-  (dotimes (i 9)
+  (dotimes (i 5)
     (evil-previous-line)))
 
 (defun my-scroll-down ()
