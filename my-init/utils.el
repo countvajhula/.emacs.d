@@ -8,7 +8,7 @@
 If there is only one window, open REPL in a new window.  Otherwise
 open in most recently used other window."
   (interactive)
-  (let ((window (rigpa-window-for-buffer "*ielm*")))
+  (let ((window (get-buffer-window "*ielm*")))
     (cond (window (select-window window))
           ((= 1 (length (window-list)))
            (evil-window-vsplit)
@@ -24,7 +24,7 @@ open in most recently used other window."
 If there is only one window, open REPL in a new window.  Otherwise
 open in most recently used other window."
   (interactive)
-  (let ((window (rigpa-window-for-buffer "*eshell*")))
+  (let ((window (get-buffer-window "*eshell*")))
     (cond (window (select-window window))
           ((= 1 (length (window-list)))
            (evil-window-vsplit)
