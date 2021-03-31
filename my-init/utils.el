@@ -8,14 +8,31 @@
 If there is only one window, open REPL in a new window.  Otherwise
 open in most recently used other window."
   (interactive)
-  (if (= (length (window-list))
-         1)
-      (progn (evil-window-vsplit)
-             (evil-window-right 1)
-             (ielm))
-    (evil-window-mru)
-    (ielm))
-  (goto-char (point-max)))
+  (let ((window (rigpa-window-for-buffer "*ielm*")))
+    (cond (window (select-window window))
+          ((= 1 (length (window-list)))
+           (evil-window-vsplit)
+           (evil-window-right 1)
+           (ielm))
+          (t (evil-window-mru)  ; better LRU
+             (ielm)))
+    (goto-char (point-max))))
+
+(defun my-shell ()
+  "Enter eshell.
+
+If there is only one window, open REPL in a new window.  Otherwise
+open in most recently used other window."
+  (interactive)
+  (let ((window (rigpa-window-for-buffer "*eshell*")))
+    (cond (window (select-window window))
+          ((= 1 (length (window-list)))
+           (evil-window-vsplit)
+           (evil-window-right 1)
+           (eshell))
+          (t (evil-window-mru)  ; better LRU
+             (eshell)))
+    (goto-char (point-max))))
 
 (defun my-switch-to-scratch-buffer ()
   "Switch to scratch buffer."

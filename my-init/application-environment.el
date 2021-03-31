@@ -45,7 +45,7 @@
     ("g" magit-status "Magit (git)")
     ("l" my-lisp-repl "Lisp REPL")
     ("m" my-switch-to-messages-buffer "Go to Messages buffer")
-    ("s" eshell "Shell")
+    ("s" my-shell "Shell")
     ("r" ripgrep-regexp "recursive search")
     ("t" dired-sidebar-toggle-sidebar "Nav Sidebar")
     ("u" undo-tree-visualize "Undo tree"))
@@ -471,7 +471,7 @@
   ;; drop into a shell (preserves path)
   (current-global-map)
   (kbd "C-c s")
-  'eshell)
+  'my-shell)
 
 (define-key
   ;; lookup in dictionary
