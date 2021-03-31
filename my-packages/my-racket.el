@@ -112,6 +112,7 @@ This includes functions, variables, constants, etc."
   ("o" my-racket-show-definitions "Show all definitions")
   ("i" my-racket-describe-symbol "See documentation on this")
   ("?" my-racket-describe-symbol "See documentation on this")
+  ("C-?" racket-documentation-search "Search documentation")
   ("r" (lambda ()
          (interactive)
          (racket-repl)
