@@ -5,7 +5,8 @@
 (defun my-lisp-repl ()
   "Enter elisp REPL, context-aware.
 
-If there is only one window, open REPL in a new window.  Otherwise
+If the REPL is already visible, switch to that window.  Otherwise,
+if there is only one window, open REPL in a new window.  Otherwise
 open in most recently used other window."
   (interactive)
   (let ((window (get-buffer-window "*ielm*")))

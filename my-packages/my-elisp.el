@@ -42,7 +42,8 @@
 
 This includes functions, variables, constants, etc."
   (interactive)
-  (occur "\\(^(def\\|^(cl-def\\|^(evil-define\\)"))
+  ;; TODO: maybe just so that ^(symbol-containing-"def"...
+  (occur "\\(^(def\\|^(cl-def\\|^(evil-define\\|^(ert-def\\)"))
 
 (defhydra hydra-elisp (:timeout my-leader-timeout
                        :columns 2
@@ -71,5 +72,11 @@ This includes functions, variables, constants, etc."
   (let ((mode-hook (intern (concat (symbol-name mode-name)
                                    "-hook"))))
     (add-hook mode-hook 'register-elisp-leader)))
+
+;; to visit definition in ielm REPL
+(add-hook 'inferior-emacs-lisp-mode-hook
+          (lambda ()
+            (general-evil-define-key 'normal inferior-emacs-lisp-mode-map
+              (kbd "C-]") 'find-function-at-point)))
 
 (provide 'my-elisp)
