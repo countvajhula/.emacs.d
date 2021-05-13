@@ -117,6 +117,7 @@ This includes functions, variables, constants, etc."
          (interactive)
          (racket-repl)
          (goto-char (point-max))) "Go to racket REPL")
+  ("a" racket-xp-mode "Toggle Racket XP mode")
   ("x" racket-run "Save and evaluate buffer in REPL"))
 
 (defun register-racket-leader ()
