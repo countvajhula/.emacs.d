@@ -200,6 +200,8 @@
   (smex-initialize))
 
 (use-package magit
+  :custom
+  (magit-bury-buffer-function #'magit-mode-quit-window)
   :config
   ;; use side-by-side view for blame -- this doesn't work atm
   ;; (setq magit-blame--style (nth 1 magit-blame-styles))
