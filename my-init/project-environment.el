@@ -148,7 +148,67 @@ _d_: dir             _g_: update gtags
     ("s" org-schedule "schedule"))
 
   ;; access the org-mode menu via a "body" keybinding
-  (global-set-key (kbd "s-o") 'hydra-org/body))
+  (global-set-key (kbd "s-o") 'hydra-org/body)
+
+  (defun my-remember-work-buffer ()
+    "Remember work context buffer as a property on the hydra."
+    (unless (string-suffix-p ".org" (buffer-file-name))
+      (hydra-set-property 'hydra-daisy
+                          :entry-buffer (current-buffer))))
+
+  (defun my-note-work-buffer ()
+    "Note down work context buffer as a buffer-local in all org buffers."
+    (let ((entry-buffer (hydra-get-property 'hydra-daisy :entry-buffer)))
+      (when (and (string-suffix-p ".org" (buffer-file-name))
+                 (not (string-suffix-p ".org" (buffer-name entry-buffer))))
+        ;; set the origin buffer in both of the relevant org buffers
+        ;; when we arrive afresh from a non-org (work) buffer
+        (with-current-buffer "daisywheel.org"
+          (setq-local my-entry-buffer entry-buffer))
+        (with-current-buffer "continuations.org"
+          (setq-local my-entry-buffer entry-buffer))))
+    (hydra-set-property 'hydra-daisy
+                        :entry-buffer nil))
+
+  (defun my-get-org-context ()
+    "The last org buffer I was in."
+    (with-current-buffer "daisywheel.org"
+      my-org-context-buffer))
+
+  (defun my-switch-to-org-context (&optional buffer-name)
+    "Switch to org context."
+    (let ((buffer-name (or buffer-name (my-get-org-context))))
+      (switch-to-buffer buffer-name))
+    (with-current-buffer "daisywheel.org"
+      (setq-local my-org-context-buffer buffer-name))
+    (with-current-buffer "continuations.org"
+      (setq-local my-org-context-buffer buffer-name)))
+
+  (defun my-switch-to-work-context ()
+    "Switch to work context."
+    (switch-to-buffer my-entry-buffer))
+
+  ;; quick access to daisy wheel and continuations
+  (defhydra hydra-daisy (:body-pre (my-remember-work-buffer)
+                         :after-exit (my-note-work-buffer)
+                         :exit t)
+    "Daisy wheel"
+    ("d" (lambda ()
+           (interactive)
+           (my-switch-to-org-context "daisywheel.org"))
+     "daisy wheel")
+    ("c" (lambda ()
+           (interactive)
+           (my-switch-to-org-context "continuations.org"))
+     "continuations")
+    ("s-j" (lambda ()
+             (interactive)
+             (if (string-suffix-p ".org" (buffer-file-name))
+                 (my-switch-to-work-context)
+               (my-switch-to-org-context)))
+     "daisy wheel"))
+
+  (global-set-key (kbd "s-j") 'hydra-daisy/body))
 
 (use-package sicp
   :defer t)
