@@ -178,6 +178,8 @@ _d_: dir             _g_: update gtags
         (with-current-buffer "daisywheel.org"
           (setq-local my-entry-buffer entry-buffer))
         (with-current-buffer "continuations.org"
+          (setq-local my-entry-buffer entry-buffer))
+        (with-current-buffer "plan.org"
           (setq-local my-entry-buffer entry-buffer))))
     (hydra-set-property 'hydra-daisy
                         :entry-buffer nil))
@@ -187,24 +189,51 @@ _d_: dir             _g_: update gtags
     (with-current-buffer "daisywheel.org"
       my-org-context-buffer))
 
-  (defun my-switch-to-org-context (&optional buffer-name)
-    "Switch to org context."
-    (let ((buffer-name (or buffer-name (my-get-org-context))))
-      (switch-to-buffer buffer-name))
-    (with-current-buffer "daisywheel.org"
-      (setq-local my-org-context-buffer buffer-name))
-    (with-current-buffer "continuations.org"
-      (setq-local my-org-context-buffer buffer-name)))
+  (defun my-update-org-context ()
+    "Update org context."
+    (let ((buffer-name (buffer-name (current-buffer))))
+      (with-current-buffer "daisywheel.org"
+        (setq-local my-org-context-buffer buffer-name))
+      (with-current-buffer "continuations.org"
+        (setq-local my-org-context-buffer buffer-name))
+      (with-current-buffer "plan.org"
+        (setq-local my-org-context-buffer buffer-name))))
 
   (defun my-switch-to-work-context ()
     "Switch to work context."
+    (interactive)
     (switch-to-buffer my-entry-buffer))
 
+  (defun my-org-create-buffer-ring ()
+    "Create the buffer ring upon entry into org mode.
+
+If the ring already exists, just switch to it."
+    (interactive)
+    ;; delete buffer ring and rebuild from scratch each time
+    (let ((ring-name "my-org-buffer-ring"))
+      (unless (buffer-ring-torus--find-ring ring-name) ; change semantics in buffer-ring
+        (dolist (buf (list (get-buffer "daisywheel.org")
+                           (get-buffer "continuations.org")
+                           (get-buffer "plan.org")))
+          (buffer-ring-add ring-name buf)))
+      (buffer-ring-torus-switch-to-ring ring-name)))
+
   ;; quick access to daisy wheel and continuations
-  (defhydra hydra-daisy (:body-pre (my-remember-work-buffer)
+  (defhydra hydra-daisy (:body-pre (progn (my-remember-work-buffer)
+                                          (my-org-create-buffer-ring))
                          :after-exit (my-note-work-buffer)
                          :exit t)
     "Daisy wheel"
+    ("h" (lambda ()
+           (interactive)
+           (buffer-ring-prev-buffer)
+           (my-update-org-context))
+     "previous" :exit nil)
+    ("l" (lambda ()
+           (interactive)
+           (buffer-ring-next-buffer)
+           (my-update-org-context))
+     "next" :exit nil)
     ("d" (lambda ()
            (interactive)
            (my-switch-to-org-context "daisywheel.org"))
@@ -213,16 +242,15 @@ _d_: dir             _g_: update gtags
            (interactive)
            (my-switch-to-org-context "continuations.org"))
      "continuations")
-    ("s-j" (lambda ()
-             (interactive)
-             (if (string-suffix-p ".org" (buffer-file-name))
-                 (my-switch-to-work-context)
-               (my-switch-to-org-context)))
-     "daisy wheel")
+    ("s-j" my-switch-to-work-context "return to work")
     ("s-o" (lambda ()
              (interactive)
              (show-msg-after-timer (* 5 60) "The wheel turns."))
-     "timer"))
+     "timer")
+    ("q" (lambda ()
+           (interactive)
+           (my-switch-to-work-context))
+     "daisy wheel"))
 
   (global-set-key (kbd "s-j") 'hydra-daisy/body))
 
