@@ -27,7 +27,10 @@
 (load "physical-environment")
 
 (use-package rigpa
-  :after (evil symex)  ;; TODO: should be independent of symex and arguably evil too
+  ;; TODO: should be independent of symex and arguably evil too
+  ;; and, eventually, non-essential modes should be removed from
+  ;; the core into separate packages
+  :after (evil symex buffer-ring)
 
   :straight
   (rigpa
