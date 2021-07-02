@@ -162,27 +162,20 @@ _d_: dir             _g_: update gtags
   ;; access the org-mode menu via a "body" keybinding
   (global-set-key (kbd "s-o") 'hydra-org/body)
 
+  (defun my-start-daisy-timer ()
+    "Start timer for daisy wheel."
+    (show-msg-after-timer (* 5 60) "The wheel turns."))
+
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
-    (unless (string-suffix-p ".org" (buffer-file-name))
-      (hydra-set-property 'hydra-daisy
-                          :entry-buffer (current-buffer))))
-
-  (defun my-note-work-buffer ()
-    "Note down work context buffer as a buffer-local in all org buffers."
-    (let ((entry-buffer (hydra-get-property 'hydra-daisy :entry-buffer)))
-      (when (and (string-suffix-p ".org" (buffer-file-name))
-                 (not (string-suffix-p ".org" (buffer-name entry-buffer))))
-        ;; set the origin buffer in both of the relevant org buffers
-        ;; when we arrive afresh from a non-org (work) buffer
+    (let ((buffer-name (buffer-name (current-buffer))))
+      (unless (string-suffix-p ".org" buffer-name)
         (with-current-buffer "daisywheel.org"
-          (setq-local my-entry-buffer entry-buffer))
+          (setq-local my-entry-buffer buffer-name))
         (with-current-buffer "continuations.org"
-          (setq-local my-entry-buffer entry-buffer))
+          (setq-local my-entry-buffer buffer-name))
         (with-current-buffer "plan.org"
-          (setq-local my-entry-buffer entry-buffer))))
-    (hydra-set-property 'hydra-daisy
-                        :entry-buffer nil))
+          (setq-local my-entry-buffer buffer-name)))))
 
   (defun my-switch-to-work-context ()
     "Switch to work context."
@@ -206,7 +199,6 @@ If the ring already exists, just switch to it."
   ;; quick access to daisy wheel and continuations
   (defhydra hydra-daisy (:body-pre (progn (my-remember-work-buffer)
                                           (my-org-create-buffer-ring))
-                         :after-exit (my-note-work-buffer)
                          :exit t)
     "Daisy wheel"
     ("h" buffer-ring-prev-buffer "previous" :exit nil)
@@ -225,8 +217,14 @@ If the ring already exists, just switch to it."
      "plan")
     ("s-o" (lambda ()
              (interactive)
-             (show-msg-after-timer (* 5 60) "The wheel turns."))
-     "timer")
+             (my-start-daisy-timer)
+             (my-switch-to-work-context))
+     "start timer")
+    ("o" (lambda ()
+           (interactive)
+           (my-start-daisy-timer)
+           (my-switch-to-work-context))
+     "start timer")
     ("s-j" my-switch-to-work-context "return to work")
     ("q" my-switch-to-work-context "quit"))
 
