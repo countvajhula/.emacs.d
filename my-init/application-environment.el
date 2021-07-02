@@ -146,18 +146,10 @@
   (setq inferior-lisp-program "sbcl")
   (setq slime-auto-start 'always))
 
-(use-package dynaring
-  :straight
-  (dynaring
-   :local-repo "~/.emacs.d/my-packages/dynaring"
-   :type git))
+(use-package dynaring)
 
 (use-package buffer-ring
-  :after dynaring
-  :straight
-  (buffer-ring
-   :local-repo "~/.emacs.d/my-packages/buffer-ring"
-   :type git))
+  :after dynaring)
 
 (use-package arc
   :defer t
