@@ -19,10 +19,14 @@ elpy
 transient
 .python-environments
 var
+racket-mode
 
 # projects tracked elsewhere
 symex
-epistemic-mode
+rigpa
+arc
+dynaring
+buffer-ring
 
 # vim noise
 *~
