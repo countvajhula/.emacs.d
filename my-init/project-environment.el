@@ -184,21 +184,6 @@ _d_: dir             _g_: update gtags
     (hydra-set-property 'hydra-daisy
                         :entry-buffer nil))
 
-  (defun my-get-org-context ()
-    "The last org buffer I was in."
-    (with-current-buffer "daisywheel.org"
-      my-org-context-buffer))
-
-  (defun my-update-org-context ()
-    "Update org context."
-    (let ((buffer-name (buffer-name (current-buffer))))
-      (with-current-buffer "daisywheel.org"
-        (setq-local my-org-context-buffer buffer-name))
-      (with-current-buffer "continuations.org"
-        (setq-local my-org-context-buffer buffer-name))
-      (with-current-buffer "plan.org"
-        (setq-local my-org-context-buffer buffer-name))))
-
   (defun my-switch-to-work-context ()
     "Switch to work context."
     (interactive)
@@ -224,33 +209,26 @@ If the ring already exists, just switch to it."
                          :after-exit (my-note-work-buffer)
                          :exit t)
     "Daisy wheel"
-    ("h" (lambda ()
-           (interactive)
-           (buffer-ring-prev-buffer)
-           (my-update-org-context))
-     "previous" :exit nil)
-    ("l" (lambda ()
-           (interactive)
-           (buffer-ring-next-buffer)
-           (my-update-org-context))
-     "next" :exit nil)
+    ("h" buffer-ring-prev-buffer "previous" :exit nil)
+    ("l" buffer-ring-next-buffer "next" :exit nil)
     ("d" (lambda ()
            (interactive)
-           (my-switch-to-org-context "daisywheel.org"))
+           (switch-to-buffer "daisywheel.org"))
      "daisy wheel")
     ("c" (lambda ()
            (interactive)
-           (my-switch-to-org-context "continuations.org"))
+           (switch-to-buffer "continuations.org"))
      "continuations")
-    ("s-j" my-switch-to-work-context "return to work")
+    ("p" (lambda ()
+           (interactive)
+           (switch-to-buffer "plan.org"))
+     "plan")
     ("s-o" (lambda ()
              (interactive)
              (show-msg-after-timer (* 5 60) "The wheel turns."))
      "timer")
-    ("q" (lambda ()
-           (interactive)
-           (my-switch-to-work-context))
-     "daisy wheel"))
+    ("s-j" my-switch-to-work-context "return to work")
+    ("q" my-switch-to-work-context "quit"))
 
   (global-set-key (kbd "s-j") 'hydra-daisy/body))
 
