@@ -182,6 +182,16 @@ _d_: dir             _g_: update gtags
     (interactive)
     (switch-to-buffer my-entry-buffer))
 
+  (defun my-initialize-org-buffers ()
+    "Ensure that org buffers are open - open them if they aren't already."
+    (interactive)
+    (unless (get-buffer "daisywheel.org")
+      (find-file "~/log/org/daisywheel.org"))
+    (unless (get-buffer "continuations.org")
+      (find-file "~/log/org/continuations.org"))
+    (unless (get-buffer "plan.org")
+      (find-file "~/log/org/plan.org")))
+
   (defun my-org-create-buffer-ring ()
     "Create the buffer ring upon entry into org mode.
 
@@ -197,7 +207,8 @@ If the ring already exists, just switch to it."
       (buffer-ring-torus-switch-to-ring ring-name)))
 
   ;; quick access to daisy wheel and continuations
-  (defhydra hydra-daisy (:body-pre (progn (my-remember-work-buffer)
+  (defhydra hydra-daisy (:body-pre (progn (my-initialize-org-buffers)
+                                          (my-remember-work-buffer)
                                           (my-org-create-buffer-ring))
                          :exit t)
     "Daisy wheel"
