@@ -162,35 +162,50 @@ _d_: dir             _g_: update gtags
   ;; access the org-mode menu via a "body" keybinding
   (global-set-key (kbd "s-o") 'hydra-org/body)
 
+  (defvar my--org-context-buffers (list "daisywheel.org"
+                                        "continuations.org"
+                                        "plan.org"))
+
+  (defvar my--org-path-prefix "~/log/org/")
+
+  (defun my-org-reference-buffer ()
+    (get-buffer "daisywheel.org"))
+
   (defun my-start-daisy-timer ()
     "Start timer for daisy wheel."
-    (show-msg-after-timer (* 5 60) "The wheel turns."))
+    (let ((timer (show-msg-after-timer (* 5 60) "The wheel turns.")))
+      (with-current-buffer (my-org-reference-buffer)
+        (setq-local timer timer))))
+
+  (defun my-cancel-daisy-timer ()
+    "Cancel daisy wheel timer."
+    (let ((timer (with-current-buffer (my-org-reference-buffer)
+                   timer)))
+      (cancel-timer timer) ; doesn't work
+      (cancel-function-timers #'message-box) ; works - maybe narrow scope later
+      (message "Canceled timer.")))
 
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
     (let ((buffer-name (buffer-name (current-buffer))))
       (unless (string-suffix-p ".org" buffer-name)
-        (with-current-buffer "daisywheel.org"
-          (setq-local my-entry-buffer buffer-name))
-        (with-current-buffer "continuations.org"
-          (setq-local my-entry-buffer buffer-name))
-        (with-current-buffer "plan.org"
+        (with-current-buffer (my-org-reference-buffer)
           (setq-local my-entry-buffer buffer-name)))))
 
   (defun my-switch-to-work-context ()
     "Switch to work context."
     (interactive)
-    (switch-to-buffer my-entry-buffer))
+    (let ((entry-buffer (with-current-buffer (my-org-reference-buffer)
+                          my-entry-buffer)))
+      (switch-to-buffer entry-buffer)))
 
   (defun my-initialize-org-buffers ()
     "Ensure that org buffers are open - open them if they aren't already."
     (interactive)
-    (unless (get-buffer "daisywheel.org")
-      (find-file "~/log/org/daisywheel.org"))
-    (unless (get-buffer "continuations.org")
-      (find-file "~/log/org/continuations.org"))
-    (unless (get-buffer "plan.org")
-      (find-file "~/log/org/plan.org")))
+    (dolist (buf-name my--org-context-buffers)
+      (unless (get-buffer buf-name)
+        (find-file (concat my--org-path-prefix
+                           buf-name)))))
 
   (defun my-org-create-buffer-ring ()
     "Create the buffer ring upon entry into org mode.
@@ -200,9 +215,7 @@ If the ring already exists, just switch to it."
     ;; delete buffer ring and rebuild from scratch each time
     (let ((ring-name "my-org-buffer-ring"))
       (unless (buffer-ring-torus--find-ring ring-name) ; change semantics in buffer-ring
-        (dolist (buf (list (get-buffer "daisywheel.org")
-                           (get-buffer "continuations.org")
-                           (get-buffer "plan.org")))
+        (dolist (buf my--org-context-buffers)
           (buffer-ring-add ring-name buf)))
       (buffer-ring-torus-switch-to-ring ring-name)))
 
@@ -231,9 +244,9 @@ If the ring already exists, just switch to it."
              (my-start-daisy-timer)
              (my-switch-to-work-context))
      "start timer")
-    ("o" (lambda ()
+    ("O" (lambda ()
            (interactive)
-           (my-start-daisy-timer)
+           (my-cancel-daisy-timer)
            (my-switch-to-work-context))
      "start timer")
     ("s-j" my-switch-to-work-context "return to work")
