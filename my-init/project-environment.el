@@ -239,6 +239,7 @@ If the ring already exists, just switch to it."
            (interactive)
            (switch-to-buffer "plan.org"))
      "plan")
+    ("'" rigpa-buffer-return-to-mark "return to buffer mark")
     ("s-o" (lambda ()
              (interactive)
              (my-cancel-daisy-timer)
