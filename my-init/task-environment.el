@@ -138,7 +138,14 @@
 
 (use-package evil-textobj-line)
 
-(use-package evil-textobj-entire)
+(use-package evil-textobj-entire
+  :config
+  (define-key evil-outer-text-objects-map
+    evil-textobj-entire-key
+    #'evil-entire-entire-buffer)
+  (define-key evil-inner-text-objects-map
+    evil-textobj-entire-key
+    #'evil-entire-entire-buffer))
 
 (use-package evil-goggles
   :config
