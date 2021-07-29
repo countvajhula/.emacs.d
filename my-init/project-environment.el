@@ -180,10 +180,11 @@ _d_: dir             _g_: update gtags
   (defun my-cancel-daisy-timer ()
     "Cancel daisy wheel timer."
     (let ((timer (with-current-buffer (my-org-reference-buffer)
-                   timer)))
-      (cancel-timer timer) ; doesn't work
-      (cancel-function-timers #'message-box) ; works - maybe narrow scope later
-      (message "Canceled timer.")))
+                   (and (boundp 'timer) timer))))
+      (when timer
+        (cancel-timer timer) ; doesn't work
+        (cancel-function-timers #'message-box) ; works - maybe narrow scope later
+        (message "Canceled timer."))))
 
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
