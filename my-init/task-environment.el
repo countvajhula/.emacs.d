@@ -18,10 +18,8 @@
 (use-package evil
   :straight
   (evil
-   :type git
-   :host github
-   :repo "sorawee/evil"
-   :branch "tab-line-height")
+   :local-repo "~/.emacs.d/my-packages/evil"
+   :type git)
 
   :custom
   ;; these settings are required by evil-collection
@@ -30,9 +28,11 @@
   (evil-want-keybinding nil)
   (evil-want-C-u-scroll t) ;; most usecases for Emacs C-u are best handled in normal mode
   ;; use "symbols" instead of simple words in point searches
-  (evil-want-Y-yank-to-eol t)
   (evil-symbol-word-search t)
+  ;; no cursor creep - keep mode transitions idempotent
   (evil-move-cursor-back nil)
+  ;; Y yanks to eol like D and C (and unlike V)
+  (evil-want-Y-yank-to-eol t)
 
   :config
   (evil-mode 1)
