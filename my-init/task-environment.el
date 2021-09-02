@@ -217,6 +217,8 @@
   (setq company-require-match nil)            ; Don't require match, so you can still move your cursor as expected.
   (setq company-tooltip-align-annotations t)  ; Align annotation to the right side.
   (setq company-dabbrev-downcase nil)         ; No downcase when completion.
+  :bind (:map company-active-map
+              ("<tab>" . #'company-complete-common-or-cycle))
   :config
   ;; enable company mode autocompletion in all buffers
   (setq company-idle-delay 0.2)
