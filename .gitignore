@@ -20,6 +20,7 @@ transient
 .python-environments
 var
 racket-mode
+company-statistics-cache.el
 
 # projects tracked elsewhere
 symex

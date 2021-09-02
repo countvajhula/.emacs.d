@@ -216,12 +216,14 @@
   :init
   (setq company-require-match nil)            ; Don't require match, so you can still move your cursor as expected.
   (setq company-tooltip-align-annotations t)  ; Align annotation to the right side.
-  (setq company-dabbrev-downcase nil)         ; No downcase when completion.
+  (setq company-dabbrev-downcase nil)         ; Don't downcase completion candidates
+  (setq company-dabbrev-ignore-case nil)      ; Consider prefix case significant
   :bind (:map company-active-map
               ("<tab>" . #'company-complete-common-or-cycle))
   :config
   ;; enable company mode autocompletion in all buffers
   (setq company-idle-delay 0.2)
+  (setq company-minimum-prefix-length 2)      ; show completions when 2 characters typed
   ;; company-capf seems to block succeeding backends even if it doesn't have a match?
   ;; this could mean that oddmuse and dabbrev are never going to be hit
   ;; use company-diag at point to debug
@@ -242,6 +244,13 @@
   )
 
 (use-package company-jedi)
+
+(use-package company-statistics
+  :config
+  (company-statistics-mode))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 (use-package scroll-on-jump
   :disabled t
