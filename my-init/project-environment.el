@@ -203,10 +203,15 @@ _d_: dir             _g_: update gtags
   (defun my-initialize-org-buffers ()
     "Ensure that org buffers are open - open them if they aren't already."
     (interactive)
-    (dolist (buf-name my--org-context-buffers)
-      (unless (get-buffer buf-name)
-        (find-file (concat my--org-path-prefix
-                           buf-name)))))
+    (let ((original-buffer (current-buffer)))
+      (dolist (buf-name my--org-context-buffers)
+        (unless (get-buffer buf-name)
+          (find-file (concat my--org-path-prefix
+                             buf-name))))
+      (unless (eq original-buffer (current-buffer))
+        ;; if we ended up creating any missing org buffers
+        ;; we would have switched to them - let's return
+        (switch-to-buffer original-buffer))))
 
   (defun my-org-create-buffer-ring ()
     "Create the buffer ring upon entry into org mode.
