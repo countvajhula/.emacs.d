@@ -113,12 +113,14 @@ This includes functions, variables, constants, etc."
   ("i" my-racket-describe-symbol "See documentation on this")
   ("?" my-racket-describe-symbol "See documentation on this")
   ("C-?" racket-documentation-search "Search documentation")
+  ("d" racket-documentation-search "Search documentation")
   ("r" (lambda ()
          (interactive)
          (racket-repl)
          (goto-char (point-max))) "Go to racket REPL")
   ("a" racket-xp-mode "Toggle Racket XP mode")
-  ("x" racket-run "Save and evaluate buffer in REPL"))
+  ("x" racket-run "Save and evaluate buffer in REPL")
+  ("\\" racket-run "Save and evaluate buffer in REPL"))
 
 (defun register-racket-leader ()
   "Pull up racket hydra with local leader"
