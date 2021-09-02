@@ -224,6 +224,15 @@
   ;; enable company mode autocompletion in all buffers
   (setq company-idle-delay 0.2)
   (setq company-minimum-prefix-length 2)      ; show completions when 2 characters typed
+  ;; When multiple backends return completion candidates, they are deduplicated
+  ;; based on both the completion string itself as well as any annotations by
+  ;; the backend. This means that the completion set may include duplicates if
+  ;; two backends find the same completion but one includes metadata and the
+  ;; other doesn't, which isn't what we want. Since the backends are already
+  ;; ordered in terms of decreasing specificity, we get the results we want
+  ;; by favoring the first result whenever there are such duplicates.
+  ;; See https://github.com/company-mode/company-mode/issues/528 for more info
+  (add-to-list 'company-transformers #'delete-consecutive-dups)
   ;; company-capf seems to block succeeding backends even if it doesn't have a match?
   ;; this could mean that oddmuse and dabbrev are never going to be hit
   ;; use company-diag at point to debug
