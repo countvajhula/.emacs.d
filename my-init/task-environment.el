@@ -218,6 +218,7 @@
   (setq company-tooltip-align-annotations t)  ; Align annotation to the right side.
   (setq company-dabbrev-downcase nil)         ; Don't downcase completion candidates
   (setq company-dabbrev-ignore-case nil)      ; Consider prefix case significant
+  (setq company-dabbrev-other-buffers nil)    ; Doom config suggests this prevents lag with many open buffers
   :bind (:map company-active-map
               ("<tab>" . #'company-complete-common-or-cycle))
   :config
