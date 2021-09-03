@@ -166,6 +166,12 @@ _d_: dir             _g_: update gtags
                                         "continuations.org"
                                         "plan.org"))
 
+  ;; keep these org buffers out of the rigpa primary
+  ;; buffer ring, so that navigating them doesn't affect
+  ;; buffer locality on the primary ring
+  (dolist (buf-name my--org-context-buffers)
+    (add-to-list 'rigpa-buffer-ignore-buffers buf-name))
+
   (defvar my--org-path-prefix "~/log/org/")
 
   (defun my-org-reference-buffer ()
@@ -198,6 +204,10 @@ _d_: dir             _g_: update gtags
     (interactive)
     (let ((entry-buffer (with-current-buffer (my-org-reference-buffer)
                           my-entry-buffer)))
+      ;; bury the org buffers so that we don't navigate
+      ;; to them in work context
+      (dolist (buf-name my--org-context-buffers)
+        (bury-buffer buf-name))
       (switch-to-buffer entry-buffer)))
 
   (defun my-initialize-org-buffers ()
