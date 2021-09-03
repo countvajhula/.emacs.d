@@ -254,9 +254,9 @@
 
 (use-package company-jedi)
 
-(use-package company-statistics
+(use-package company-prescient
   :config
-  (company-statistics-mode))
+  (company-prescient-mode))
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
