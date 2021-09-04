@@ -204,10 +204,6 @@ _d_: dir             _g_: update gtags
     (interactive)
     (let ((entry-buffer (with-current-buffer (my-org-reference-buffer)
                           my-entry-buffer)))
-      ;; bury the org buffers so that we don't navigate
-      ;; to them in work context
-      (dolist (buf-name my--org-context-buffers)
-        (bury-buffer buf-name))
       (switch-to-buffer entry-buffer)))
 
   (defun my-initialize-org-buffers ()
