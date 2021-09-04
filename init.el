@@ -78,8 +78,10 @@
   (global-set-key (kbd "C-<return>")
                   (lambda ()
                     (interactive)
-                    (rigpa-exit-tower-mode)
-                    (rigpa-enter-mode-mode)))
+                    (when (eq rigpa--complex rigpa-meta-tower-complex)
+                      ;; only exit tower mode if we are actually in it
+                      (rigpa-exit-tower-mode)
+                      (rigpa-enter-mode-mode))))
   ;; index entry to various modes
   (global-set-key (kbd "s-y")        ; symex mode
                   (lambda ()
