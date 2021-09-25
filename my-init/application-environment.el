@@ -30,12 +30,18 @@
                                   replace))
   (general-override-mode)
 
+  (defhydra hydra-unicode (:columns 4
+                           :exit t)
+    "Unicode characters"
+    ("y" (lambda () (interactive) (insert-char #x262f)) "☯"))
+
   (defhydra hydra-leader (:timeout my-leader-timeout
                           :columns 2
                           :exit t)
     "Quick actions"
     ("a" org-agenda "Org agenda")
-    ("c" (lambda ()
+    ("c" hydra-unicode/body "Unicode characters")
+    ("n" (lambda ()
            (interactive)
            (save-excursion
              (execute-kbd-macro (kbd ":%s///gn<return>"))))
@@ -54,7 +60,11 @@
   (general-define-key
    :states '(normal visual motion)
    :keymaps 'override
-   "SPC" 'hydra-leader/body))
+   "SPC" 'hydra-leader/body)
+  (general-define-key
+   :states '(insert emacs)
+   :keymaps 'override
+   "C-c SPC" 'hydra-leader/body))
 
 ;; zoom entire frame including status bar (works by modifying font faces)
 (use-package zoom-frm)
