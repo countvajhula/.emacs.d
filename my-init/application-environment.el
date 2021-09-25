@@ -133,7 +133,13 @@
   (symex--unquote-prefix-list (list "," ",@" "#,@"))
   :config
   (symex-initialize)
-  (symex-hide-menu))
+  (symex-hide-menu)
+  (define-key
+    symex-mode-map
+    (kbd "C-w")
+    (lambda ()
+      (interactive)
+      (execute-kbd-macro (kbd "(")))))
 
 (use-package php-mode
   :defer t)
