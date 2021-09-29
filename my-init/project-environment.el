@@ -93,7 +93,7 @@ _d_: dir             _g_: update gtags
   (org-ibuffer :local-repo "~/.emacs.d/my-packages/org-ibuffer" :type nil))
 
 (use-package org
-  :after (org-ibuffer hydra buffer-ring)
+  :after (org-ibuffer hydra buffer-ring rigpa)
   :config
   ;; visually indent lower hierarchy levels
   (setq org-startup-indented t)
