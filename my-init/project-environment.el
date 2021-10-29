@@ -201,14 +201,12 @@ _d_: dir             _g_: update gtags
     "Remember work context buffer as a property on the hydra."
     (let ((buffer-name (buffer-name (current-buffer))))
       (unless (string-suffix-p ".org" buffer-name)
-        (with-current-buffer (my-org-reference-buffer)
-          (setq-local my-entry-buffer buffer-name)))))
+        (setq my-daisy-entry-buffer buffer-name))))
 
   (defun my-switch-to-work-context ()
     "Switch to work context."
     (interactive)
-    (let ((entry-buffer (with-current-buffer (my-org-reference-buffer)
-                          my-entry-buffer)))
+    (let ((entry-buffer my-daisy-entry-buffer))
       (switch-to-buffer entry-buffer)))
 
   (defun my-initialize-org-buffers ()
