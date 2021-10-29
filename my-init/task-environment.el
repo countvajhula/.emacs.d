@@ -223,7 +223,7 @@
               ("<tab>" . #'company-complete-common-or-cycle))
   :config
   ;; enable company mode autocompletion in all buffers
-  (setq company-idle-delay 0.2)
+  (setq company-idle-delay 0.1)
   (setq company-minimum-prefix-length 2)      ; show completions when 2 characters typed
   ;; When multiple backends return completion candidates, they are deduplicated
   ;; based on both the completion string itself as well as any annotations by
