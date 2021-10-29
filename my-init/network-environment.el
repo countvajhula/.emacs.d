@@ -8,4 +8,5 @@
   (setq erc-nick "countvajhula")
   (setq erc-server "irc.libera.chat")
   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#racket")))
-  (setq erc-autojoin-channels-alist '(("libera.chat" "#emacs" "#racket"))))
+  (setq erc-autojoin-channels-alist '(("libera.chat" "#emacs" "#racket")))
+  (setq erc-prompt-for-password nil))
