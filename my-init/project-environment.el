@@ -107,6 +107,11 @@ _d_: dir             _g_: update gtags
   (setq org-tag-alist '(("@SF" . ?s)
                         ("@Oakland" . ?o)
                         ("raMP" . ?r)))
+  ;; use evil hierarchy bindings in insert state too
+  (define-key org-mode-map
+    (kbd "M-h") #'org-promote-subtree)
+  (define-key org-mode-map
+    (kbd "M-l") #'org-demote-subtree)
 
   ;; Modified from:
   ;; https://www.reddit.com/r/emacs/comments/7wsnoi/using_countdown_timers_for_alerts/
