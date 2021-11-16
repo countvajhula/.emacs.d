@@ -112,6 +112,10 @@ _d_: dir             _g_: update gtags
     (kbd "M-h") #'org-promote-subtree)
   (define-key org-mode-map
     (kbd "M-l") #'org-demote-subtree)
+  (define-key org-mode-map
+    (kbd "M-j") #'outline-move-subtree-down)
+  (define-key org-mode-map
+    (kbd "M-k") #'outline-move-subtree-up)
 
   ;; Modified from:
   ;; https://www.reddit.com/r/emacs/comments/7wsnoi/using_countdown_timers_for_alerts/
