@@ -40,6 +40,9 @@
   :config
   (setq rigpa-mode t)
 
+  ;; workaround for https://github.com/countvajhula/rigpa/issues/9
+  (remove-hook 'evil-symex-state-exit-hook #'symex-disable-editing-minor-mode)
+
   ;; custom config
   (setq rigpa-show-menus nil)
 
