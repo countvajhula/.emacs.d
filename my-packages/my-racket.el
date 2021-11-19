@@ -1,5 +1,9 @@
 (use-package racket-mode
   :hook (racket-mode . racket-xp-mode)
+  :straight
+  (racket-mode
+   :local-repo "~/.emacs.d/my-packages/racket-mode"
+   :type git)
   :config
   ;; explicitly indicate .rkt files are to be opened in racket-mode
   ;; Somewhere (I don't know where), .rkt is already being added to
