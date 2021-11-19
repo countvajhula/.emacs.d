@@ -9,7 +9,12 @@
   ;; auto-mode-alist for .rkt (who knows where this is added...),
   ;; in an earlier position in the list.
   ;; So, forcing addition at the head here by using `push` instead
-  (push '("\\.rkt\\'" . racket-mode) auto-mode-alist))
+  (push '("\\.rkt\\'" . racket-mode) auto-mode-alist)
+  ;; indent levels for qi forms
+  (put 'switch 'racket-indent-function 1)
+  (put 'switch-lambda 'racket-indent-function 1)
+  (put 'on 'racket-indent-function 1)
+  (put 'π 'racket-indent-function 1))
 
 (defvar racket-modes (list 'racket-mode
                            'racket-repl-mode))
