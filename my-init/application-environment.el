@@ -51,6 +51,7 @@
     ("g" magit-status "Magit (git)")
     ("l" my-lisp-repl "Lisp REPL")
     ("m" my-switch-to-messages-buffer "Go to Messages buffer")
+    ("o" sunrise-cd "Sunrise Commander")
     ("s" my-shell "Shell")
     ("r" ripgrep-regexp "recursive search")
     ("t" dired-sidebar-toggle-sidebar "Nav Sidebar")
