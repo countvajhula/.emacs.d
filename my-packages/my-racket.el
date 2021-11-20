@@ -20,6 +20,10 @@
   (put 'on 'racket-indent-function 1)
   (put 'π 'racket-indent-function 1))
 
+(use-package scribble-mode
+  :hook (scribble-mode . (lambda ()
+                           (setq indent-tabs-mode nil))))
+
 (defvar racket-modes (list 'racket-mode
                            'racket-repl-mode))
 
