@@ -1,5 +1,35 @@
+(defun my-set-qi-insert-bindings ()
+  "Set insert mode bindings for the Qi language in Racket."
+  (interactive)
+  (local-set-key (kbd "C-;")
+                 (lambda ()
+                   (interactive)
+                   (insert-char #x262f)))
+  (local-set-key (kbd "C->")
+                 (lambda ()
+                   (interactive)
+                   (insert "~>")))
+  (local-set-key (kbd "C-<")
+                 (lambda ()
+                   (interactive)
+                   (insert "-<")))
+  (local-set-key (kbd "C-=")
+                 (lambda ()
+                   (interactive)
+                   (insert-char #x23da)))
+  (local-set-key (kbd "C-v")
+                 (lambda ()
+                   (interactive)
+                   (insert-char #x25b3)))
+  (local-set-key (kbd "C-S-v")
+                 (lambda ()
+                   (interactive)
+                   (insert-char #x25bd))))
+
 (use-package racket-mode
-  :hook (racket-mode . racket-xp-mode)
+  :hook ((racket-mode . racket-xp-mode)
+         (racket-mode . my-set-qi-insert-bindings)
+         (racket-repl-mode . my-set-qi-insert-bindings))
   :straight
   (racket-mode
    :local-repo "~/.emacs.d/my-packages/racket-mode"
@@ -21,8 +51,9 @@
   (put 'π 'racket-indent-function 1))
 
 (use-package scribble-mode
-  :hook (scribble-mode . (lambda ()
-                           (setq indent-tabs-mode nil))))
+  :hook ((scribble-mode . (lambda ()
+                            (setq indent-tabs-mode nil)))
+         (scribble-mode . my-set-qi-insert-bindings)))
 
 (defvar racket-modes (list 'racket-mode
                            'racket-repl-mode))
