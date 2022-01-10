@@ -44,6 +44,9 @@
   ;; in an earlier position in the list.
   ;; So, forcing addition at the head here by using `push` instead
   (push '("\\.rkt\\'" . racket-mode) auto-mode-alist)
+  ;; indent levels for cli forms
+  (put 'program 'racket-indent-function 1)
+  (put 'flag 'racket-indent-function 1)
   ;; indent levels for qi forms
   (put 'switch 'racket-indent-function 1)
   (put 'switch-lambda 'racket-indent-function 1)
