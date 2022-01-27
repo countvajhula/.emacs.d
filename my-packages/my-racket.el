@@ -44,6 +44,11 @@
   ;; in an earlier position in the list.
   ;; So, forcing addition at the head here by using `push` instead
   (push '("\\.rkt\\'" . racket-mode) auto-mode-alist)
+  ;; indent levels for minikanren forms
+  (put 'run 'racket-indent-function 2)
+  (put 'run* 'racket-indent-function 1)
+  (put 'fresh 'racket-indent-function 1)
+  (put 'conde 'racket-indent-function 0)
   ;; indent levels for cli forms
   (put 'program 'racket-indent-function 1)
   (put 'flag 'racket-indent-function 1)
