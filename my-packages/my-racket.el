@@ -152,7 +152,7 @@ Accounts for different point location in evil vs emacs mode."
 
 This includes functions, variables, constants, etc."
   (interactive)
-  (occur "\\(^(define\\|^(struct\\)"))
+  (occur "\\(^\s*(define\\|^(struct\\)"))
 
 (defun my-racket-show-references ()
   "Show all references to identifier under point."
