@@ -90,6 +90,8 @@
 
 (require 'my-racket)
 
+(require 'my-haskell)
+
 (use-package cider
   :defer t)
 
@@ -146,9 +148,6 @@
       (execute-kbd-macro (kbd "(")))))
 
 (use-package php-mode
-  :defer t)
-
-(use-package haskell-mode
   :defer t)
 
 (require 'my-latex)
