@@ -172,8 +172,7 @@ _d_: dir             _g_: update gtags
   (global-set-key (kbd "s-o") 'hydra-org/body)
 
   (defvar my--org-context-buffers (list "daisywheel.org"
-                                        "continuations.org"
-                                        "plan.org"))
+                                        "continuations.org")) ; "plan.org"
 
   ;; keep these org buffers out of the rigpa primary
   ;; buffer ring, so that navigating them doesn't affect
