@@ -298,7 +298,38 @@
   :config
   (global-evil-matchit-mode 1))
 
-(use-package sunrise-commander)
+(use-package sunrise-commander
+  :after evil
+  :config
+  ;; tab in sunrise commander should alternate pane
+  ;; TODO: add this to evil-collection eventually,
+  ;; incl. / as its behavior in sr-mode
+  ;;
+  ;; this (below) doesn't enter normal state for some reason,
+  ;; probably related to why evil-collection doesn't
+  ;; set the initial state as normal, either
+  ;; (add-hook 'sr-mode-hook #'evil-normal-state)
+
+  (general-define-key
+   :states '(normal visual motion)
+   :keymaps 'sr-mode-map
+   "<tab>" 'sr-change-window)
+  (general-define-key
+   :states '(normal visual motion)
+   :keymaps 'sr-mode-map
+   "/" 'sr-goto-dir)
+  (general-define-key
+   :states '(normal visual motion)
+   :keymaps 'sr-mode-map
+   "y" 'sr-synchronize-panes)
+  (general-define-key
+   :states '(normal visual motion)
+   :keymaps 'sr-mode-map
+   "<backspace>" 'sr-dired-prev-subdir)
+  (general-define-key
+   :states '(normal visual motion)
+   :keymaps 'sr-mode-map
+   "q" 'sr-quit))
 
 (use-package recentf
   :config
