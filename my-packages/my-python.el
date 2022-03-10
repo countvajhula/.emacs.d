@@ -45,6 +45,7 @@
   ("o" elpy-occur-definitions "See all definitions in current buffer")
   ("r" elpy-shell-switch-to-shell "Go to Python REPL")
   ("x" elpy-shell-send-region-or-buffer "Send to REPL")
+  ("\\" elpy-shell-send-region-or-buffer "Send to REPL")
   ("t" elpy-test "Run test(s)"))
 
 ;; pull up python hydra with local leader
