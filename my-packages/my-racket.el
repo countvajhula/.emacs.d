@@ -44,6 +44,9 @@
   ;; in an earlier position in the list.
   ;; So, forcing addition at the head here by using `push` instead
   (push '("\\.rkt\\'" . racket-mode) auto-mode-alist)
+  ;; indent levels for built-in forms
+  (put 'datum->syntax 'racket-indent-function 1)
+  (put 'generator 'racket-indent-function 1)
   ;; indent levels for minikanren forms
   (put 'run 'racket-indent-function 2)
   (put 'run* 'racket-indent-function 1)
@@ -56,7 +59,11 @@
   (put 'switch 'racket-indent-function 1)
   (put 'switch-lambda 'racket-indent-function 1)
   (put 'on 'racket-indent-function 1)
-  (put 'π 'racket-indent-function 1))
+  (put 'π 'racket-indent-function 1)
+  ;; indent levels for db interaction
+  (put 'query-exec 'racket-indent-function 1)
+  (put 'query-value 'racket-indent-function 1)
+  (put 'query-list 'racket-indent-function 1))
 
 (use-package scribble-mode
   :hook ((scribble-mode . (lambda ()
