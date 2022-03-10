@@ -160,12 +160,20 @@ This includes functions, variables, constants, etc."
   (let ((xref-prompt-for-identifier nil))
     (call-interactively #'xref-find-references)))
 
+(defun my-racket-macro-stepper ()
+  "Use the macro stepper to expand the current expression."
+  (interactive)
+  (let ((expr (string-join
+               `("(expand/step " "#'" ,(thing-at-point 'sexp) ")"))))
+    (symex--racket-send-to-repl expr)))
+
 (defhydra hydra-racket (:timeout my-leader-timeout
                         :columns 2
                         :exit t)
   "Racket menu"
   ("e" my-racket-eval "Eval")
   ("v" my-racket-eval "Eval")
+  ("m" my-racket-macro-stepper "Macro Stepper")
   ("g" evil-jump-to-tag "Go to definition")
   ("f" my-racket-show-references "Show references")
   ("o" my-racket-show-definitions "Show all definitions")
