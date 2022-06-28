@@ -93,6 +93,8 @@
 
 (require 'my-haskell)
 
+(require 'my-rst)
+
 (use-package cider
   :defer t)
 
