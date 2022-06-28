@@ -26,11 +26,20 @@ This includes functions, variables, constants, etc."
 (defun my-haskell-run-buffer ()
   "Load current buffer into REPL."
   (interactive)
-  (let ((module-name (file-name-base
-                      (buffer-file-name))))
-    (my-haskell-go-to-repl)
-    (insert ":l" " " module-name)
-    (comint-send-input)))
+  (let* ((buffer (buffer-file-name))
+         (module-name (file-name-base buffer))
+         (dir (file-name-directory buffer)))
+    (save-buffer)
+    (save-window-excursion
+      (my-haskell-go-to-repl)
+      (insert ":cd" " " dir)
+      (comint-send-input)
+      (insert ":l" " " module-name)
+      (comint-send-input)
+      ;; TODO: only if there is a line starting with "main"
+      ;; (insert "main")
+      ;; (comint-send-input)
+      )))
 
 (defhydra hydra-haskell (:timeout my-leader-timeout
                          :columns 2
