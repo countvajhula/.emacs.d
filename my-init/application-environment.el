@@ -136,7 +136,7 @@
    :type git)
   :custom
   (symex-modal-backend 'evil)
-  (symex-quote-prefix-list (list "'" "#'" "`" "#`"))
+  (symex-quote-prefix-list (list "'" "#'" "`" "#`" "#"))
   (symex-unquote-prefix-list (list "," "#," ",@" "#,@"))
   :config
   (symex-initialize)
