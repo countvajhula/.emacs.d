@@ -230,6 +230,32 @@ This includes functions, variables, constants, etc."
                                    "-hook"))))
     (add-hook mode-hook 'register-racket-leader)))
 
+(defun my-scribble-show-definitions ()
+  "Show all definitions in the current buffer.
+
+This includes functions, variables, constants, etc."
+  (interactive)
+  (occur "\\(^\s*@def\\|^.*section{\\)"))
+
+(defhydra hydra-scribble (:timeout my-leader-timeout
+                                   :columns 2
+                                   :exit t)
+  "Scribble menu"
+  ("o" my-scribble-show-definitions "Show all definitions")
+  ("i" my-racket-describe-symbol "See documentation on this")
+  ("?" my-racket-describe-symbol "See documentation on this")
+  ("C-?" racket-documentation-search "Search documentation")
+  ("d" racket-documentation-search "Search documentation"))
+
+(defun register-scribble-leader ()
+  "Pull up Scribble hydra with local leader"
+  (interactive)
+  (general-define-key :states '(normal visual motion)
+                      :keymaps 'local
+                      my-local-leader 'hydra-scribble/body))
+
+(add-hook 'scribble-mode-hook #'register-scribble-leader)
+
 ;; ensure that paredit delimiter behavior isn't overridden in REPL
 ;; by racket mode. Not sure why this happens, but it may be evil-mode related:
 ;; https://github.com/greghendershott/racket-mode/issues/289
