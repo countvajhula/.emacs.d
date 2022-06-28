@@ -167,6 +167,31 @@ This includes functions, variables, constants, etc."
                `("(expand/step " "#'" ,(thing-at-point 'sexp) ")"))))
     (symex--racket-send-to-repl expr)))
 
+(defun my-racket-launch-macro-stepper ()
+  "Use the macro stepper to expand the current expression."
+  (interactive)
+  (let ((expr1 "(require macro-debugger/stepper)")
+        (expr2 (string-join
+                `("(expand/step " "#'" ,(thing-at-point 'sexp) ")"))))
+    (symex--racket-send-to-repl expr1)
+    (symex--racket-send-to-repl expr2)))
+
+(defun my-racket-syntax-browser ()
+  "Explore a syntax object using the syntax browser."
+  (interactive)
+  (let ((expr (string-join
+               `("(browse-syntax " ,(thing-at-point 'sexp) ")"))))
+    (symex--racket-send-to-repl expr)))
+
+(defun my-racket-launch-syntax-browser ()
+  "Explore a syntax object using the syntax browser."
+  (interactive)
+  (let ((expr1 "(require macro-debugger/stepper)")
+        (expr2 (string-join
+                `("(browse-syntax " ,(thing-at-point 'sexp) ")"))))
+    (symex--racket-send-to-repl expr1)
+    (symex--racket-send-to-repl expr2)))
+
 (defhydra hydra-racket (:timeout my-leader-timeout
                         :columns 2
                         :exit t)
@@ -174,6 +199,9 @@ This includes functions, variables, constants, etc."
   ("e" my-racket-eval "Eval")
   ("v" my-racket-eval "Eval")
   ("m" my-racket-macro-stepper "Macro Stepper")
+  ("M" my-racket-launch-macro-stepper "Launch macro stepper")
+  ("s" my-racket-syntax-browser "Syntax Browser")
+  ("S" my-racket-launch-syntax-browser "Launch syntax browser")
   ("g" evil-jump-to-tag "Go to definition")
   ("f" my-racket-show-references "Show references")
   ("o" my-racket-show-definitions "Show all definitions")
