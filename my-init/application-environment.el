@@ -95,6 +95,8 @@
 
 (require 'my-rst)
 
+(require 'my-markdown)
+
 (use-package cider
   :defer t)
 
