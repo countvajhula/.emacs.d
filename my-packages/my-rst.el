@@ -1,8 +1,14 @@
+(defun my-rst-open-output-file ()
+  "Open HTML output."
+  (interactive)
+  (shell-command (string-join (list "open" " " (file-name-base (buffer-name)) ".html"))))
+
 (defhydra hydra-rst (:timeout my-leader-timeout
                      :columns 2
                      :exit t)
   "reStructuredText menu"
   ("o" rst-toc "TOC")
+  ("l" my-rst-open-output-file "Open output file")
   ("g" rst-toc-follow-link "Follow link")
   ;; ("i" my-racket-describe-symbol "See documentation on this")
   ;; ("?" my-racket-describe-symbol "See documentation on this")
