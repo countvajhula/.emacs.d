@@ -64,7 +64,13 @@
   ;; indent levels for db interaction
   (put 'query-exec 'racket-indent-function 1)
   (put 'query-value 'racket-indent-function 1)
-  (put 'query-list 'racket-indent-function 1))
+  (put 'query-list 'racket-indent-function 1)
+
+  ;; Rhombus config (maybe move to separate, dependent
+  ;; file, eventually)
+  (racket-add-back-end "~/work/racket/rhombus"
+                       :racket-program "~/work/racket/racket/racket/bin/racket")
+  (push '("\\.rhm\\'" . racket-mode) auto-mode-alist))
 
 (use-package scribble-mode
   :hook ((scribble-mode . (lambda ()
