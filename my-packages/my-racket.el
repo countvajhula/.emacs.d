@@ -60,6 +60,7 @@
   (put 'switch-lambda 'racket-indent-function 1)
   (put 'on 'racket-indent-function 1)
   (put 'π 'racket-indent-function 1)
+  (put 'try 'racket-indent-function 1)
   ;; indent levels for db interaction
   (put 'query-exec 'racket-indent-function 1)
   (put 'query-value 'racket-indent-function 1)
