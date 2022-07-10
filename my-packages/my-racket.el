@@ -41,10 +41,6 @@
          ;; (racket-mode . my-enable-racket-xp-eldoc)
          ;; (racket-repl-mode . my-enable-racket-repl-eldoc)
          (racket-repl-mode . my-set-qi-insert-bindings))
-  :straight
-  (racket-mode
-   :local-repo "~/.emacs.d/my-packages/racket-mode"
-   :type git)
   :config
   ;; explicitly indicate .rkt files are to be opened in racket-mode
   ;; Somewhere (I don't know where), .rkt is already being added to
