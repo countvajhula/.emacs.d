@@ -16,11 +16,6 @@
 
 ;; Vim interface
 (use-package evil
-  :straight
-  (evil
-   :local-repo "~/.emacs.d/my-packages/evil"
-   :type git)
-
   :custom
   ;; these settings are required by evil-collection
   (evil-undo-system 'undo-tree)
@@ -104,12 +99,6 @@
 
 (use-package evil-collection
   :after evil
-
-  :straight
-  (evil-collection
-   :local-repo "~/.emacs.d/my-packages/evil-collection"
-   :type git)
-
   :config
   (evil-collection-init))
 
