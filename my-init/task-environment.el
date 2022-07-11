@@ -217,6 +217,16 @@
   ;; retain a convenient, non-hydra, escape hatch
   (global-set-key (kbd "s-D") 'evil-mc-undo-all-cursors))
 
+(defun my-company-complete-to-selection ()
+  "Insert the selected candidate but retain the completion menu."
+  (interactive)
+  (when (and (company-manual-begin) company-selection)
+    (let ((result (nth company-selection company-candidates)))
+      (if (and (not (cdr company-candidates))
+               (equal result (car company-candidates)))
+          (company-complete-selection)
+        (company--insert-candidate result)))))
+
 (use-package company
   :init
   (setq company-require-match nil)            ; Don't require match, so you can still move your cursor as expected.
@@ -225,7 +235,8 @@
   (setq company-dabbrev-ignore-case nil)      ; Consider prefix case significant
   (setq company-dabbrev-other-buffers nil)    ; Doom config suggests this prevents lag with many open buffers
   :bind (:map company-active-map
-              ("<tab>" . #'company-complete-common))
+              ("<tab>" . #'company-complete-common)
+              ("S-<tab>" . #'my-company-complete-to-selection))
   :config
   ;; enable company mode autocompletion in all buffers
   (setq company-idle-delay 0.1)
