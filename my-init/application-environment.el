@@ -91,6 +91,8 @@
 
 (require 'my-racket)
 
+(require 'my-scribble)
+
 (require 'my-haskell)
 
 (require 'my-rst)
