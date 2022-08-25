@@ -91,6 +91,15 @@
 
 (require 'my-racket)
 
+(use-package mindstream
+  :after racket-mode
+  :straight
+  (mindstream
+   :local-repo "~/.emacs.d/my-packages/mindstream"
+   :type git)
+  :config
+  (mindstream-initialize))
+
 (require 'my-scribble)
 
 (require 'my-haskell)
