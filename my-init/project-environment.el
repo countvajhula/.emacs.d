@@ -207,7 +207,12 @@ _d_: dir             _g_: update gtags
 
   (defun my-render-time (time)
     "Render a time value in a useful way at the right scale."
-    (let* ((seconds (decoded-time-second time))
+    (let* ((time (decode-time time
+                              ;; set utc offset of zero? otherwise
+                              ;; the hour reports as 16
+                              ;; see: https://stackoverflow.com/q/41231682/323874
+                              0))
+           (seconds (decoded-time-second time))
            (minutes (decoded-time-minute time))
            (hours (decoded-time-hour time)))
       (if (> hours 0)
@@ -222,23 +227,15 @@ _d_: dir             _g_: update gtags
                    (and (boundp 'daisy-timer) daisy-timer))))
       (when timer
         (my-render-time
-         (decode-time
-          (seconds-to-time
-           (- (timer-until timer
-                           (current-time))))
-          ;; see note re: "utc offset" in
-          ;; task-timer-status
-          0)))))
+         (seconds-to-time
+          (- (timer-until timer
+                          (current-time))))))))
 
   (defun task-timer-status ()
     (interactive)
-    (let ((remaining-time (decode-time
-                           (time-subtract (current-time)
-                                          task-timer-started)
-                           ;; set utc offset of zero? otherwise
-                           ;; the hour reports as 16
-                           ;; see: https://stackoverflow.com/q/41231682/323874
-                           0)))
+    (let ((remaining-time
+           (time-subtract (current-time)
+                          task-timer-started)))
       (my-render-time remaining-time)))
 
   (defun my-timer-status ()
@@ -339,6 +336,11 @@ If the ring already exists, just switch to it."
            (interactive)
            (my-timer-status)
            (my-switch-to-work-context))
+     "active timers status")
+    ("s-k" (lambda ()
+             (interactive)
+             (my-timer-status)
+             (my-switch-to-work-context))
      "active timers status")
     ("s-j" my-switch-to-work-context "return to work")
     ("q" my-switch-to-work-context "quit"))
