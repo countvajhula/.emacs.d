@@ -203,7 +203,7 @@ _d_: dir             _g_: update gtags
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
     (let ((buffer-name (buffer-name (current-buffer))))
-      (unless (string-suffix-p ".org" buffer-name)
+      (unless (member buffer-name my--org-context-buffers)
         (setq my-daisy-entry-buffer buffer-name))))
 
   (defun my-switch-to-work-context ()
