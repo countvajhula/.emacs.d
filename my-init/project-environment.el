@@ -185,6 +185,7 @@ _d_: dir             _g_: update gtags
   (defun my-org-reference-buffer ()
     (get-buffer "daisywheel.org"))
 
+  ;; TODO: ability to check remaining time on existing timer
   (defun my-start-daisy-timer ()
     "Start timer for daisy wheel."
     (let ((timer (show-msg-after-timer (* 5 60) "The wheel turns.")))
@@ -199,6 +200,26 @@ _d_: dir             _g_: update gtags
         (cancel-timer timer) ; doesn't work
         (cancel-function-timers #'message-box) ; works - maybe narrow scope later
         (message "Canceled timer."))))
+
+  ;; Modified from task-timer Emacs library:
+  ;; https://www.emacswiki.org/emacs/TaskTimer
+  (defun task-timer-begin ()
+    (interactive)
+    (setq task-timer-started (current-time)))
+
+  (defun task-timer-status ()
+    (interactive)
+    (let* ((remaining-time (decode-time (time-subtract (current-time) task-timer-started)
+                                        ;; set utc offset of zero? otherwise
+                                        ;; the hour reports as 16
+                                        ;; see: https://stackoverflow.com/q/41231682/323874
+                                        0))
+           (remaining-seconds (decoded-time-second remaining-time))
+           (remaining-minutes (decoded-time-minute remaining-time))
+           (remaining-hours (decoded-time-hour remaining-time)))
+      (if (> remaining-hours 0)
+          (message "%d hr %d min" remaining-hours remaining-minutes)
+        (message "%d min %d sec" remaining-minutes remaining-seconds))))
 
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
@@ -275,6 +296,26 @@ If the ring already exists, just switch to it."
            (my-cancel-daisy-timer)
            (my-switch-to-work-context))
      "start timer")
+    ("i" (lambda ()
+           (interactive)
+           (task-timer-begin)
+           (my-switch-to-work-context))
+     "start task timer")
+    ("s-i" (lambda ()
+             (interactive)
+             (task-timer-begin)
+             (my-switch-to-work-context))
+     "start task timer")
+    ("k" (lambda ()
+           (interactive)
+           (task-timer-status)
+           (my-switch-to-work-context))
+     "task timer status")
+    ("s-k" (lambda ()
+             (interactive)
+             (task-timer-status)
+             (my-switch-to-work-context))
+     "task timer status")
     ("s-j" my-switch-to-work-context "return to work")
     ("q" my-switch-to-work-context "quit"))
 
