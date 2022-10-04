@@ -185,20 +185,32 @@ _d_: dir             _g_: update gtags
   (defun my-org-reference-buffer ()
     (get-buffer "daisywheel.org"))
 
-  ;; TODO: ability to check remaining time on existing timer
   (defun my-start-daisy-timer ()
     "Start timer for daisy wheel."
     (let ((timer (show-msg-after-timer (* 5 60) "The wheel turns.")))
       (with-current-buffer (my-org-reference-buffer)
-        (setq-local timer timer))))
+        (setq-local daisy-timer timer))))
+
+  (defun my-daisy-timer-status ()
+    "Check time remaining on daisy timer."
+    (let ((timer (with-current-buffer (my-org-reference-buffer)
+                   (and (boundp 'daisy-timer) daisy-timer))))
+      (when timer
+        (message (my-render-time
+                  (decode-time
+                   (seconds-to-time
+                    (- (timer-until timer
+                                    (current-time))))
+                   ;; see note re: "utc offset" in
+                   ;; task-timer-status
+                   0))))))
 
   (defun my-cancel-daisy-timer ()
     "Cancel daisy wheel timer."
     (let ((timer (with-current-buffer (my-org-reference-buffer)
-                   (and (boundp 'timer) timer))))
+                   (and (boundp 'daisy-timer) daisy-timer))))
       (when timer
-        (cancel-timer timer) ; doesn't work
-        (cancel-function-timers #'message-box) ; works - maybe narrow scope later
+        (cancel-timer timer)
         (message "Canceled timer."))))
 
   ;; Modified from task-timer Emacs library:
@@ -207,19 +219,27 @@ _d_: dir             _g_: update gtags
     (interactive)
     (setq task-timer-started (current-time)))
 
+  (defun my-render-time (time)
+    "Render a time value in a useful way at the right scale."
+    (let* ((seconds (decoded-time-second time))
+           (minutes (decoded-time-minute time))
+           (hours (decoded-time-hour time)))
+      (if (> hours 0)
+          (format "%d hr %d min" hours minutes)
+        (if (> minutes 0)
+            (format "%d min %d sec" minutes seconds)
+          (format "%d sec" seconds)))))
+
   (defun task-timer-status ()
     (interactive)
-    (let* ((remaining-time (decode-time (time-subtract (current-time) task-timer-started)
-                                        ;; set utc offset of zero? otherwise
-                                        ;; the hour reports as 16
-                                        ;; see: https://stackoverflow.com/q/41231682/323874
-                                        0))
-           (remaining-seconds (decoded-time-second remaining-time))
-           (remaining-minutes (decoded-time-minute remaining-time))
-           (remaining-hours (decoded-time-hour remaining-time)))
-      (if (> remaining-hours 0)
-          (message "%d hr %d min" remaining-hours remaining-minutes)
-        (message "%d min %d sec" remaining-minutes remaining-seconds))))
+    (let ((remaining-time (decode-time
+                           (time-subtract (current-time)
+                                          task-timer-started)
+                           ;; set utc offset of zero? otherwise
+                           ;; the hour reports as 16
+                           ;; see: https://stackoverflow.com/q/41231682/323874
+                           0)))
+      (message (my-render-time remaining-time))))
 
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
@@ -316,6 +336,11 @@ If the ring already exists, just switch to it."
              (task-timer-status)
              (my-switch-to-work-context))
      "task timer status")
+    ("?" (lambda ()
+           (interactive)
+           (my-daisy-timer-status)
+           (my-switch-to-work-context))
+     "daisy timer status")
     ("s-j" my-switch-to-work-context "return to work")
     ("q" my-switch-to-work-context "quit"))
 
