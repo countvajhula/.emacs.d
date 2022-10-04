@@ -191,20 +191,6 @@ _d_: dir             _g_: update gtags
       (with-current-buffer (my-org-reference-buffer)
         (setq-local daisy-timer timer))))
 
-  (defun my-daisy-timer-status ()
-    "Check time remaining on daisy timer."
-    (let ((timer (with-current-buffer (my-org-reference-buffer)
-                   (and (boundp 'daisy-timer) daisy-timer))))
-      (when timer
-        (message (my-render-time
-                  (decode-time
-                   (seconds-to-time
-                    (- (timer-until timer
-                                    (current-time))))
-                   ;; see note re: "utc offset" in
-                   ;; task-timer-status
-                   0))))))
-
   (defun my-cancel-daisy-timer ()
     "Cancel daisy wheel timer."
     (let ((timer (with-current-buffer (my-org-reference-buffer)
@@ -230,6 +216,20 @@ _d_: dir             _g_: update gtags
             (format "%d min %d sec" minutes seconds)
           (format "%d sec" seconds)))))
 
+  (defun my-daisy-timer-status ()
+    "Check time remaining on daisy timer."
+    (let ((timer (with-current-buffer (my-org-reference-buffer)
+                   (and (boundp 'daisy-timer) daisy-timer))))
+      (when timer
+        (my-render-time
+         (decode-time
+          (seconds-to-time
+           (- (timer-until timer
+                           (current-time))))
+          ;; see note re: "utc offset" in
+          ;; task-timer-status
+          0)))))
+
   (defun task-timer-status ()
     (interactive)
     (let ((remaining-time (decode-time
@@ -239,7 +239,16 @@ _d_: dir             _g_: update gtags
                            ;; the hour reports as 16
                            ;; see: https://stackoverflow.com/q/41231682/323874
                            0)))
-      (message (my-render-time remaining-time))))
+      (my-render-time remaining-time)))
+
+  (defun my-timer-status ()
+    "Show status of active timers."
+    (interactive)
+    (let ((daisy-status (my-daisy-timer-status))
+          (plumb-status (task-timer-status)))
+      (message "%s to go [Plumb line: %s]"
+               daisy-status
+               plumb-status)))
 
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
@@ -326,21 +335,11 @@ If the ring already exists, just switch to it."
              (task-timer-begin)
              (my-switch-to-work-context))
      "start task timer")
-    ("k" (lambda ()
-           (interactive)
-           (task-timer-status)
-           (my-switch-to-work-context))
-     "task timer status")
-    ("s-k" (lambda ()
-             (interactive)
-             (task-timer-status)
-             (my-switch-to-work-context))
-     "task timer status")
     ("?" (lambda ()
            (interactive)
-           (my-daisy-timer-status)
+           (my-timer-status)
            (my-switch-to-work-context))
-     "daisy timer status")
+     "active timers status")
     ("s-j" my-switch-to-work-context "return to work")
     ("q" my-switch-to-work-context "quit"))
 
