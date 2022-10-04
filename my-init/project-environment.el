@@ -226,10 +226,10 @@ _d_: dir             _g_: update gtags
     (let ((timer (with-current-buffer (my-org-reference-buffer)
                    (and (boundp 'daisy-timer) daisy-timer))))
       (when timer
-        (my-render-time
-         (seconds-to-time
-          (- (timer-until timer
-                          (current-time))))))))
+        (let ((seconds (- (timer-until timer
+                                       (current-time)))))
+          (when (> seconds 0)
+            (my-render-time (seconds-to-time seconds)))))))
 
   (defun task-timer-status ()
     (interactive)
@@ -243,9 +243,12 @@ _d_: dir             _g_: update gtags
     (interactive)
     (let ((daisy-status (my-daisy-timer-status))
           (plumb-status (task-timer-status)))
-      (message "%s to go [Plumb line: %s]"
-               daisy-status
-               plumb-status)))
+      (if daisy-status
+          (message "%s to go [Plumb line: %s]"
+                   daisy-status
+                   plumb-status)
+        (message "Plumb line: %s"
+                 plumb-status))))
 
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
