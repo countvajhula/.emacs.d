@@ -185,11 +185,24 @@ _d_: dir             _g_: update gtags
   (defun my-org-reference-buffer ()
     (get-buffer "daisywheel.org"))
 
+  (defun my--set-plumb-line ()
+    "Set the plumb line unconditionally."
+    ;; This assumes it is being called in the org reference buffer
+    (setq-local plumb-line-started (current-time)))
+
+  (defun my-ensure-plumb-line ()
+    "Ensure the plumb line has been set."
+    (with-current-buffer (my-org-reference-buffer)
+      (unless (and (boundp 'plumb-line-started) plumb-line-started)
+        (my--set-plumb-line))))
+
   (defun my-start-daisy-timer ()
     "Start timer for daisy wheel."
     (let ((timer (show-msg-after-timer (* 5 60) "The wheel turns.")))
       (with-current-buffer (my-org-reference-buffer)
-        (setq-local daisy-timer timer))))
+        (setq-local daisy-timer timer)
+        ;; set a plumb line if one isn't already set
+        (my-ensure-plumb-line))))
 
   (defun my-cancel-daisy-timer ()
     "Cancel daisy wheel timer."
@@ -199,11 +212,18 @@ _d_: dir             _g_: update gtags
         (cancel-timer timer)
         (message "Canceled timer."))))
 
+  (defun my-cancel-plumb-line ()
+    "Cancel plumb line."
+    (with-current-buffer (my-org-reference-buffer)
+      (setq-local plumb-line-started nil)
+      (message "Lost plumb line.")))
+
   ;; Modified from task-timer Emacs library:
   ;; https://www.emacswiki.org/emacs/TaskTimer
-  (defun task-timer-begin ()
+  (defun my-reset-plumb-line ()
     (interactive)
-    (setq task-timer-started (current-time)))
+    (with-current-buffer (my-org-reference-buffer)
+      (my--set-plumb-line)))
 
   (defun my-render-time (time)
     "Render a time value in a useful way at the right scale."
@@ -233,10 +253,12 @@ _d_: dir             _g_: update gtags
 
   (defun task-timer-status ()
     (interactive)
-    (let ((remaining-time
-           (time-subtract (current-time)
-                          task-timer-started)))
-      (my-render-time remaining-time)))
+    (let ((time-started (with-current-buffer (my-org-reference-buffer)
+                          (and (boundp 'plumb-line-started) plumb-line-started))))
+      (when time-started
+        (my-render-time
+         (time-subtract (current-time)
+                        time-started)))))
 
   (defun my-timer-status ()
     "Show status of active timers."
@@ -327,12 +349,12 @@ If the ring already exists, just switch to it."
      "start timer")
     ("i" (lambda ()
            (interactive)
-           (task-timer-begin)
+           (my-reset-plumb-line)
            (my-switch-to-work-context))
      "start task timer")
     ("s-i" (lambda ()
              (interactive)
-             (task-timer-begin)
+             (my-reset-plumb-line)
              (my-switch-to-work-context))
      "start task timer")
     ("?" (lambda ()
