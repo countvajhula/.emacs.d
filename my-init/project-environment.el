@@ -269,8 +269,10 @@ _d_: dir             _g_: update gtags
           (message "%s to go [Plumb line: %s]"
                    daisy-status
                    plumb-status)
-        (message "Plumb line: %s"
-                 plumb-status))))
+        (if plumb-status
+            (message "Plumb line: %s"
+                     plumb-status)
+          (message "No plumb line set. Time to dive in?")))))
 
   (defun my-remember-work-buffer ()
     "Remember work context buffer as a property on the hydra."
@@ -347,16 +349,21 @@ If the ring already exists, just switch to it."
            (my-cancel-daisy-timer)
            (my-switch-to-work-context))
      "start timer")
-    ("i" (lambda ()
-           (interactive)
-           (my-reset-plumb-line)
-           (my-switch-to-work-context))
-     "start task timer")
     ("s-i" (lambda ()
              (interactive)
              (my-reset-plumb-line)
              (my-switch-to-work-context))
      "start task timer")
+    ("i" (lambda ()
+           (interactive)
+           (my-reset-plumb-line)
+           (my-switch-to-work-context))
+     "start task timer")
+    ("I" (lambda ()
+           (interactive)
+           (my-cancel-plumb-line)
+           (my-switch-to-work-context))
+     "cancel plumb line")
     ("?" (lambda ()
            (interactive)
            (my-timer-status)
