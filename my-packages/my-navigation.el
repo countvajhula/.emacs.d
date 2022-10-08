@@ -21,6 +21,13 @@
   (interactive)
   (evil-scroll-line-up 3))
 
+;; TODO: is there a better way than manual registration?
+;; also, should this be in a setup function instead of at
+;; the top level?
+(mapc #'evil-declare-abort-repeat
+      '(my-scroll-down
+        my-scroll-up))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CUSTOM NAVIGATION KEYBINDINGS ;;
