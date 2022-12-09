@@ -52,6 +52,14 @@
   (put 'run* 'racket-indent-function 1)
   (put 'fresh 'racket-indent-function 1)
   (put 'conde 'racket-indent-function 0)
+  ;; indent levels for syntax-spec
+  (put 'syntax-spec 'racket-indent-function 0)
+  (put 'nonterminal 'racket-indent-function 1)
+  (put 'nonterminal/nesting 'racket-indent-function 2)
+  (put 'nonterminal/two-pass 'racket-indent-function 1)
+  (put 'host-interface/expression 'racket-indent-function 0)
+  (put 'host-interface/definition 'racket-indent-function 1)
+  (put 'host-interface/definitions 'racket-indent-function 1)
   ;; indent levels for cli forms
   (put 'program 'racket-indent-function 1)
   (put 'flag 'racket-indent-function 1)
