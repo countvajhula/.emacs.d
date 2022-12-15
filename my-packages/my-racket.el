@@ -45,8 +45,10 @@
   ;; So, forcing addition at the head here by using `push` instead
   (push '("\\.rkt\\'" . racket-mode) auto-mode-alist)
   ;; indent levels for built-in forms
+  ;; TODO: probably contribute upstream to racket-mode
   (put 'datum->syntax 'racket-indent-function 1)
   (put 'generator 'racket-indent-function 1)
+  (put 'pattern 'racket-indent-function 1)
   ;; indent levels for minikanren forms
   (put 'run 'racket-indent-function 2)
   (put 'run* 'racket-indent-function 1)
@@ -73,6 +75,8 @@
   (put 'query-exec 'racket-indent-function 1)
   (put 'query-value 'racket-indent-function 1)
   (put 'query-list 'racket-indent-function 1)
+  ;; one-offs / project-specific
+  (put 'report-syntax-error 'racket-indent-function 1)
 
   ;; Rhombus config (maybe move to separate, dependent
   ;; file, eventually)
