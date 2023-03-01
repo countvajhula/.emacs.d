@@ -97,6 +97,10 @@
   (mindstream
    :local-repo "~/.emacs.d/my-packages/mindstream"
    :type git)
+  :custom
+  (mindstream-save-session-path
+   (concat (file-name-as-directory user-home-directory)
+           "work/sandbox/scratch"))
   :config
   (mindstream-initialize))
 
