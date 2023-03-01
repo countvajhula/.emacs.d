@@ -63,10 +63,10 @@
   (put 'host-interface/definition 'racket-indent-function 1)
   (put 'host-interface/definitions 'racket-indent-function 1)
   ;; indent levels for cli forms
-  (put 'program 'racket-indent-function 1)
+  (put 'program 'racket-indent-function 'defun)
   (put 'flag 'racket-indent-function 1)
   ;; indent levels for qi forms
-  (put 'switch 'racket-indent-function 1)
+  (put 'switch 'racket-indent-function 'defun)
   (put 'switch-lambda 'racket-indent-function 1)
   (put 'on 'racket-indent-function 1)
   (put 'π 'racket-indent-function 1)
