@@ -136,6 +136,12 @@ _d_: dir             _g_: update gtags
                          (t (format "%d minutes" mins))))
                   (t (format "%d seconds" secs)))))
       (message "Started timer for %s..." time-string)
+      ;; TODO: separate the timer from the message
+      ;; so this should be about starting a timer for the duration
+      ;; and pretty printing it. it should accept a lambda as input arg
+      ;; and then call that with the timer here, rather than
+      ;; message-box directly (the lambda would call it and also
+      ;; have a default message if none is set).
       (run-at-time time-duration nil #'message-box msg-to-show)))
 
   ;; interface with org-mode via a hydra menu
@@ -201,6 +207,7 @@ _d_: dir             _g_: update gtags
     (let ((timer (show-msg-after-timer (* 5 60) "The wheel turns.")))
       (with-current-buffer (my-org-reference-buffer)
         (setq-local daisy-timer timer)
+        (setq-local daisy-message nil)
         ;; set a plumb line if one isn't already set
         (my-ensure-plumb-line))))
 
@@ -209,6 +216,10 @@ _d_: dir             _g_: update gtags
     (let ((timer (with-current-buffer (my-org-reference-buffer)
                    (and (boundp 'daisy-timer) daisy-timer))))
       (when timer
+        ;; TODO: daisy timer isn't getting canceled
+        ;; check whether it's correctly defined in the org buffers
+        ;; and whehter it (at 3 sec) can be canceled manually
+        ;; actually check a timer in isolation at the REPL
         (cancel-timer timer)
         (message "Canceled timer."))))
 
@@ -260,6 +271,10 @@ _d_: dir             _g_: update gtags
          (time-subtract (current-time)
                         time-started)))))
 
+  ;; TODO: add ability to pause plumb line?
+  ;; this would start a separate pause "timer"
+  ;; then, the result would always be actual minus
+  ;; the sum of all pause times collected in a list
   (defun my-timer-status ()
     "Show status of active timers."
     (interactive)
