@@ -19,6 +19,7 @@ This includes functions, variables, constants, etc."
 (defun my-scribble-compile ()
   "Compile to HTML."
   (interactive)
+  (save-buffer)
   (shell-command (string-join (list "scribble" " " (buffer-file-name)))))
 
 (defhydra hydra-scribble (:timeout my-leader-timeout
