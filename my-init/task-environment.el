@@ -258,6 +258,15 @@
                          company-cmake company-files
                          (company-capf company-dabbrev-code company-gtags company-etags company-keywords)
                          company-oddmuse company-dabbrev))
+  ;; trying this out, from @xgqt
+  (setq company-backends
+        (mapcar (lambda (backend)
+                  (if (and (listp backend)
+                           (member 'company-yasnippet backend))
+                      backend
+                    (append (if (consp backend) backend (list backend))
+                            '(:with company-yasnippet))))
+                company-backends))
   ;; Enable downcase only when completing the completion.
   ;; This and the :init config from https://github.com/jcs-elpa/company-fuzzy
   ;; (defun jcs--company-complete-selection--advice-around (fn)
