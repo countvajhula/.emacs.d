@@ -207,3 +207,30 @@ Version 2017-11-01"
     (when switch-p
       (switch-to-buffer $buf))
     $buf))
+
+;; Modified from:
+;; https://www.reddit.com/r/emacs/comments/7wsnoi/using_countdown_timers_for_alerts/
+(defun show-msg-after-timer (&optional time-duration msg-to-show)
+  "Show a message after timer expires. Based on run-at-time and can understand time like it can."
+  (interactive "nTime (sec)? ")
+  (let* ((msg-to-show (or msg-to-show (read-string "Enter msg to show: ")))
+         (hrs (/ time-duration 3600))
+         (mins (/ (% time-duration 3600) 60))
+         (secs (% time-duration 60))
+         (time-string
+          (cond ((> hrs 0)
+                 (cond ((> secs 0) (format "%d hrs, %d mins, %d secs" hrs mins secs))
+                       ((> mins 0) (format "%d hours %d minutes" hrs mins))
+                       (t (format "%d hours" hrs))))
+                ((> mins 0)
+                 (cond ((> secs 0) (format "%d mins %d secs" mins secs))
+                       (t (format "%d minutes" mins))))
+                (t (format "%d seconds" secs)))))
+    (message "Started timer for %s..." time-string)
+    ;; TODO: separate the timer from the message
+    ;; so this should be about starting a timer for the duration
+    ;; and pretty printing it. it should accept a lambda as input arg
+    ;; and then call that with the timer here, rather than
+    ;; message-box directly (the lambda would call it and also
+    ;; have a default message if none is set).
+    (run-at-time time-duration nil #'message-box msg-to-show)))
