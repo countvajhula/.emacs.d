@@ -43,7 +43,13 @@
 This includes functions, variables, constants, etc."
   (interactive)
   ;; TODO: maybe just so that ^(symbol-containing-"def"...
-  (occur "\\(^(def\\|^(cl-def\\|^(use-package\\|^(evil-define\\|^(ert-def\\)"))
+  (occur
+   (concat "\\(^(def\\|"
+           "^(cl-def\\|"
+           "^(use-package\\|"
+           "^(evil-define\\|"
+           "^(symex-def\\|"
+           "^(ert-def\\)")))
 
 (defhydra hydra-elisp (:timeout my-leader-timeout
                        :columns 2
