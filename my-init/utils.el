@@ -35,10 +35,13 @@ open in most recently used other window."
              (eshell)))
     (goto-char (point-max))))
 
-(defun my-switch-to-scratch-buffer ()
+(defun my-switch-to-scratch-buffer (&optional other)
   "Switch to scratch buffer."
   (interactive)
-  (switch-to-buffer-other-window "*scratch*"))  ; TODO: create in lisp interaction mode if missing
+  ;; TODO: create in lisp interaction mode if missing
+  (if other
+      (switch-to-buffer-other-window "*scratch*")
+    (switch-to-buffer "*scratch*")))
 
 (defun my-switch-to-messages-buffer ()
   "Switch to messages buffer while retaining focus in original window."
