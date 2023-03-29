@@ -112,6 +112,8 @@
 
 (require 'my-markdown)
 
+(require 'my-texinfo)
+
 (use-package cider
   :defer t)
 
