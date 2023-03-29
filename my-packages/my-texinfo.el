@@ -68,6 +68,9 @@
 ;; simply using info mode isn't enough
 ;; NOTE: for some reason, this doesn't work. It works on any made-up
 ;; file extension, but does not work on .info.
+;; UPDATE: it's because the info file contains a file-local
+;; variable specification at the top which takes precedence
+;; over auto-mode-alist. See https://www.emacswiki.org/emacs/SetAutoMode
 (add-to-list 'auto-mode-alist '("\\.info\\'" . Info-on-current-buffer))
 
 (provide 'my-texinfo)
