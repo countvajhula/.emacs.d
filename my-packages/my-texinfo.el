@@ -12,27 +12,11 @@
   "Compile to Info output."
   (interactive)
   (save-buffer)
-  (let ((temp-buffer (concat "*--" (buffer-name) "--temporary-buffer*"))
-        (output-buffer (concat (string-remove-suffix ".texi"
-                                                     (buffer-name))
-                               ".info")))
-    ;; hitting `q` dismisses the buffer but leaves them open
-    ;; and that causes an error when compile is run again
-    ;; so make sure any such buffers are killed before recompiling
-    (when (get-buffer output-buffer)
-      (kill-buffer output-buffer))
-    (when (get-buffer temp-buffer)
-      (kill-buffer temp-buffer))
-    (message "First updating nodes and menus, then creating Info file.")
-    (copy-to-buffer temp-buffer (point-min) (point-max))
-    (switch-to-buffer temp-buffer)
-    (texinfo-master-menu t)
-    (message "Now creating Info file.")
-    (texinfo-format-buffer)
-    (save-buffer)
-    (kill-buffer temp-buffer)
-    (kill-buffer))
-  (my-texinfo-open-output-file))
+  (let ((original-window (selected-window)))
+    (switch-to-buffer-other-window (buffer-name))
+    (makeinfo-buffer)
+    (sit-for 0.3) ; otherwise it selects the original window too soon ¯\_(ツ) _/¯
+    (select-window original-window)))
 
 (defhydra hydra-texinfo (:timeout my-leader-timeout
                          :columns 2
