@@ -39,6 +39,7 @@
                          :exit t)
   "Texinfo menu"
   ("l" my-texinfo-open-output-file "Open output file")
+  ("o" texinfo-show-structure "View in Info mode")
   ("p" Info-on-current-buffer "View in Info mode")
   ("i" TeX-doc "See documentation on this")
   ("?" TeX-doc "See documentation on this")
