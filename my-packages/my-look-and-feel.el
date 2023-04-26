@@ -12,6 +12,10 @@
 (add-to-list 'load-path (concat user-emacs-directory
                                 "themes/"))
 
+;; used in some (third-party) custom themes
+;; (not sure if there's a better way to indicate this dependency)
+(use-package autothemer)
+
 ;; set color scheme
 ;; (load-theme 'tango-dark t)
 (use-package remember-last-theme

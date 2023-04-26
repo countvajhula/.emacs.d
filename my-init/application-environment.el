@@ -9,10 +9,6 @@
 ;; convenient dict-related macros
 (use-package ht)
 
-;; used in some (third-party) custom themes
-;; (not sure if there's a better way to indicate this dependency)
-(use-package autothemer)
-
 ;; intuitive "state machine" menus
 (use-package hydra)
 
