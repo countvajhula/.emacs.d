@@ -188,7 +188,7 @@ If the ring already exists, just switch to it."
          (interactive)
          (my-cancel-daisy-timer)
          (my-switch-to-work-context))
-   "start timer")
+   "cancel timer")
   ("s-i" (lambda ()
            (interactive)
            (my-reset-plumb-line)
