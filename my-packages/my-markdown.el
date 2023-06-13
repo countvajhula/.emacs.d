@@ -13,7 +13,8 @@
   ;; ("o" rst-toc "TOC")
   ;; markdown-preview opens a fresh file each time
   ;; and so cannot be refreshed
-  ("l" my-markdown-open-output-file "Open output file")
+  ("l" markdown-insert-link "Insert link")
+  ("v" my-markdown-open-output-file "Open output file")
   ;; ("g" rst-toc-follow-link "Follow link")
   ;; ("i" my-racket-describe-symbol "See documentation on this")
   ;; ("?" my-racket-describe-symbol "See documentation on this")
