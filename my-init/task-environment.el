@@ -100,7 +100,37 @@
     ;; Vim style full line completion
     evil-insert-state-map
     (kbd "C-x C-l")
-    'my-expand-lines))
+    'my-expand-lines)
+
+  ;; ** THIS IS WIP **
+  ;; From: https://emacs.stackexchange.com/a/21402/24024
+  ;; TODO: handle other in-word characters like
+  ;; / and \ and _ and .
+  ;; and ensure it only happens when the character
+  ;; is _within_ the word.
+  ;; is -within- the word <- here it should |-within- and then
+  ;; |the
+  ;; once this is working as intended, create a feature request
+  ;; on the evil repo with the behavior spec in each case
+  (defun skip-dash-backward (n &rest foo)
+    (if (eq (char-before (point)) ?-)
+        (backward-char))
+    (message "Skipped dash"))
+
+  (defun skip-dash-forward (n &rest foo)
+    (if (and (eq (char-after (point)) ?-)
+             (not (bolp)))
+        (forward-char))
+    (message "Skipped dash"))
+
+  (defun skip-dash-forward-end (n &rest foo)
+    (if (eq (char-after (+ 1 (point))) ?-)
+        (forward-char))
+    (message "Skipped dash"))
+
+  (advice-add 'evil-forward-word-begin :after #'skip-dash-forward)
+  (advice-add 'evil-forward-word-end :before #'skip-dash-forward-end)
+  (advice-add 'evil-backward-word-begin :before #'skip-dash-backward))
 
 (use-package evil-collection
   :after evil
