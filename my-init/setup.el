@@ -29,7 +29,9 @@
 
 ;; add some standard package repos with lots of non-bundled goodies
 (setq my-package-archives '(("melpa-stable" . "http://stable.melpa.org/packages/")
-                            ("melpa" . "https://melpa.org/packages/")))
+                            ("melpa" . "https://melpa.org/packages/")
+                            ("GNU ELPA"     . "https://elpa.gnu.org/packages/")
+                            ("NonGNU ELPA"  . "https://elpa.nongnu.org/nongnu/")))
 (setq package-archives (append package-archives
                                my-package-archives))
 
