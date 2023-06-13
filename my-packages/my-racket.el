@@ -26,9 +26,20 @@
                    (interactive)
                    (insert-char #x25bd))))
 
+(defun my-enable-racket-xp-eldoc ()
+  (add-function :before-until (local 'eldoc-documentation-function)
+                #'racket-xp-eldoc-function))
+
+(defun my-enable-racket-repl-eldoc ()
+  (add-function :before-until (local 'eldoc-documentation-function)
+                #'racket-repl-eldoc-function))
+
 (use-package racket-mode
   :hook ((racket-mode . racket-xp-mode)
          (racket-mode . my-set-qi-insert-bindings)
+         ;; WIP (disabled) attempt at trying eldoc for Racket
+         ;; (racket-mode . my-enable-racket-xp-eldoc)
+         ;; (racket-repl-mode . my-enable-racket-repl-eldoc)
          (racket-repl-mode . my-set-qi-insert-bindings))
   :straight
   (racket-mode
