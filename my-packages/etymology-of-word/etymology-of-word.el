@@ -9,7 +9,7 @@
 (defun etymology-of-word (word)
   "Provide etymology of WORD from the Online Etymology Dictionary"
   (interactive (list (read-string "Word: ")))
-  (let ((link (concat "https://etymonline.com/word/" (downcase word))))
+  (let ((link (concat "https://www.etymonline.com/word/" (downcase word))))
     (url-retrieve
      link
      (lambda (status)
