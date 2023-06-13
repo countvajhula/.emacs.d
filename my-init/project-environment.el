@@ -151,7 +151,7 @@ _d_: dir             _g_: update gtags
   (global-set-key (kbd "s-o") 'hydra-org/body))
 
 (use-package daisy-wheel
-  :after org
+  :after (org hydra)
   :straight
   (daisy-wheel
    :local-repo "~/.emacs.d/my-packages/daisy-wheel"
