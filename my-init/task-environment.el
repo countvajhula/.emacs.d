@@ -259,6 +259,34 @@
           (company-complete-selection)
         (company--insert-candidate result)))))
 
+;; desired behavior:
+;; "company complete common strict or cycle with preview"
+;; abc {abc abcdef abcdefg}
+;; tab -> abc
+;; tab -> abcdef
+;; tab -> abcdefg
+;; abc {abcd abcdef abcdefg}
+;; tab -> abcd
+;; tab -> abcdef
+;; tab -> abcdefg
+;; So on Tab:
+;; First complete common. *If already max common, then do nothing.*
+;; Then complete to first match.
+;; Then cycle to next match.
+;; Also, ideally, cycling should insert the candidate in the buffer so that
+;; we can just hit spacebar to continue typing, instead of hitting Enter first
+;; First get it to work without this requirement since it might be that
+;; inserting it into the buffer would lose the company completions list a priori
+;; maybe this link for inspiration on how to write the completion function:
+;; https://gist.github.com/rswgnu/85ca5c69bb26551f3f27500855893dbe
+;; Another possibility is to modify complete-common-or-cycle just to add
+;; the strict behavior of doing nothing the first time if already at max common
+;; Yes, the latter is probably simplest, and acceptable.
+;; Also:
+;; it would be great if recent candidates containing _any part_ of the typed word
+;; show up near the top. This is fuzzy matching I believe.
+;; So, recent+fuzzy prioritized over prefix, but no fuzzy matching aside from
+;; recent ones.
 (use-package company
   :init
   (setq company-require-match nil)            ; Don't require match, so you can still move your cursor as expected.
