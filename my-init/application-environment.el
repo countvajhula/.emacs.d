@@ -79,6 +79,8 @@
   :straight
   (column-marker :local-repo "~/.emacs.d/my-packages/column-marker" :type nil))
 
+(use-package auto-dim-other-buffers)
+
 (require 'my-python)
 
 (require 'my-elisp)
