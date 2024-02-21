@@ -22,6 +22,22 @@ This includes functions, variables, constants, etc."
   (save-buffer)
   (shell-command (string-join (list "scribble" " " (buffer-file-name)))))
 
+(evil-define-operator scribble-emph
+  (beg end type register yank-handler delete-func)
+  "Emphasize"
+  (interactive "<R><x><y>")
+  (insert "@emph{")
+  (goto-char (+ 6 end))
+  (insert "}"))
+
+;; TODO: this binds these in the global evil states.
+;; Instead, define an evil-scribble minor mode and use
+;; its mode map to bind these using evil-define-key
+;; (see symex-evil-support for an example)
+(define-key evil-normal-state-map "ge" 'scribble-emph)
+
+(define-key evil-visual-state-map "ge" 'scribble-emph)
+
 (defhydra hydra-scribble (:timeout my-leader-timeout
                                    :columns 2
                                    :exit t)
