@@ -43,7 +43,8 @@
   ("c" TeX-command-master "Compile")
   ("o" my-reftex-toc "TOC")
   ("l" TeX-recenter-output-buffer "See Output")
-  ("v" TeX-view "View"))
+  ("v" TeX-view "View")
+  ("\\" TeX-command-run-all "Compile and view"))
 
 ;; pull up LaTeX hydra with local leader
 (add-hook 'LaTeX-mode-hook
