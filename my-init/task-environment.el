@@ -133,9 +133,13 @@
     (when (my-word-separator-p (char-after (+ 1 (point))))
       (forward-char)))
 
-  (advice-add 'evil-forward-word-begin :after #'skip-dash-forward)
-  (advice-add 'evil-forward-word-end :before #'skip-dash-forward-end)
-  (advice-add 'evil-backward-word-begin :before #'skip-dash-backward))
+  ;; (advice-add 'evil-forward-word-begin :after #'skip-dash-forward)
+  ;; (advice-add 'evil-forward-word-end :before #'skip-dash-forward-end)
+  ;; (advice-add 'evil-backward-word-begin :before #'skip-dash-backward)
+  ;; (advice-remove 'evil-forward-word-begin #'skip-dash-forward)
+  ;; (advice-remove 'evil-forward-word-end #'skip-dash-forward-end)
+  ;; (advice-remove 'evil-backward-word-begin #'skip-dash-backward)
+  )
 
 (use-package evil-collection
   :after evil
