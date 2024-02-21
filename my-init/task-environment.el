@@ -192,8 +192,6 @@
     #'evil-entire-entire-buffer))
 
 (use-package evil-goggles
-  :custom
-  (evil-goggles-enable-paste nil)
   :config
   (evil-goggles-mode)
 
