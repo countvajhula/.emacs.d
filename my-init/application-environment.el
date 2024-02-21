@@ -103,7 +103,11 @@
   (mindstream-initialize))
 
 (use-package my-scribble
- :after (racket-mode evil))
+ :after (racket-mode evil)
+ :straight
+ (my-scribble
+  :local-repo "~/.emacs.d/my-packages/my-scribble"
+  :type nil))
 
 (require 'my-haskell)
 
