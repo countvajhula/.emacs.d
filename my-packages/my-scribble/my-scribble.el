@@ -9,7 +9,7 @@
 
 This includes functions, variables, constants, etc."
   (interactive)
-  (occur "\\(^\s*@def\\|^.*section{\\)"))
+  (occur "\\(^\s*@def\\|^.*section{\\|^\s*@title{\\)"))
 
 (defun my-scribble-open-output-file ()
   "Open HTML output."
