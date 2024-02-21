@@ -100,23 +100,7 @@
    (concat (file-name-as-directory user-home-directory)
            "work/sandbox/scratch"))
   :config
-  (mindstream-initialize)
-  (mindstream-configure-template "~/.mindstream/templates/rhombus.rkt"
-    ;; (racket-add-back-end nil
-    ;;                      :racket-program
-    ;;                      "~/work/racket/racket/racket/bin/racket")
-    (setq-local racket-buffer-back-end
-                (list
-                 :directory            default-directory
-                 :racket-program "~/work/racket/racket/racket/bin/racket"
-                 :remote-source-dir nil
-                 :repl-tcp-accept-host "127.0.0.1"
-                 :repl-tcp-port        0
-                 :restart-watch-directories nil
-                 ;; These booleanp things need to distinguish nil meaning
-                 ;; "user specififed false" from "user did not specify
-                 ;; anything".
-                 :windows              nil))))
+  (mindstream-initialize))
 
 (require 'my-scribble)
 
