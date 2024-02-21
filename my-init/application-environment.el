@@ -386,9 +386,9 @@
   :bind ("C-x C-b" . ibuffer)
   :init
   (add-hook 'ibuffer-mode-hook
-	    '(lambda ()
-	       (ibuffer-auto-mode 1)))
-	       ;;(ibuffer-switch-to-saved-filter-groups "default"))))
+            '(lambda ()
+               (ibuffer-auto-mode 1)))
+               ;;(ibuffer-switch-to-saved-filter-groups "default"))))
   :config
   (setq ibuffer-show-empty-filter-groups nil))
 
@@ -405,10 +405,10 @@
   ;;               (kbd "C-k")
   ;;               'ibuffer-backward-filter-group)))
   (add-hook 'ibuffer-hook
-	    (lambda ()
-	      (ibuffer-vc-set-filter-groups-by-vc-root)
-	      (unless (eq ibuffer-sorting-mode 'alphabetic)
-            (ibuffer-do-sort-by-alphabetic)))))
+            (lambda ()
+              (ibuffer-vc-set-filter-groups-by-vc-root)
+              (unless (eq ibuffer-sorting-mode 'alphabetic)
+              (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package ibuffer-sidebar
   :disabled t
