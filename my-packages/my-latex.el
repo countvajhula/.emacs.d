@@ -28,12 +28,20 @@
   ;; Activate nice interface between RefTeX and AUCTeX
   (setq reftex-plug-into-AUCTeX t))
 
+(defun my-reftex-toc ()
+  "TOC in other window."
+  (interactive)
+  (reftex-toc)
+  (delete-window)
+  (switch-to-buffer-other-window "*toc*"))
+
 (defhydra hydra-tex (:timeout my-leader-timeout
                      :columns 2
                      :exit t)
   "LaTeX menu"
   ("a" TeX-command-run-all "Compile and view")
   ("c" TeX-command-master "Compile")
+  ("o" my-reftex-toc "TOC")
   ("l" TeX-recenter-output-buffer "See Output")
   ("v" TeX-view "View"))
 
