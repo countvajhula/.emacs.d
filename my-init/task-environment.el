@@ -112,21 +112,26 @@
   ;; |the
   ;; once this is working as intended, create a feature request
   ;; on the evil repo with the behavior spec in each case
+  (defun my-word-separator-p (char)
+    "Check whether CHAR is a word separator."
+    (or (eq char ?-)
+        (eq char ?.)
+        (eq char ?,)
+        (eq char ?/)
+        (eq char ?\\)))
+
   (defun skip-dash-backward (n &rest foo)
-    (if (eq (char-before (point)) ?-)
-        (backward-char))
-    (message "Skipped dash"))
+    (when (my-word-separator-p (char-before (point)))
+      (backward-char)))
 
   (defun skip-dash-forward (n &rest foo)
-    (if (and (eq (char-after (point)) ?-)
-             (not (bolp)))
-        (forward-char))
-    (message "Skipped dash"))
+    (when (and (my-word-separator-p (char-after (point)))
+               (not (bolp)))
+      (forward-char)))
 
   (defun skip-dash-forward-end (n &rest foo)
-    (if (eq (char-after (+ 1 (point))) ?-)
-        (forward-char))
-    (message "Skipped dash"))
+    (when (my-word-separator-p (char-after (+ 1 (point))))
+      (forward-char)))
 
   (advice-add 'evil-forward-word-begin :after #'skip-dash-forward)
   (advice-add 'evil-forward-word-end :before #'skip-dash-forward-end)
