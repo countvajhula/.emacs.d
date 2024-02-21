@@ -102,7 +102,8 @@
   :config
   (mindstream-initialize))
 
-(require 'my-scribble)
+(use-package my-scribble
+ :after (racket-mode evil))
 
 (require 'my-haskell)
 
