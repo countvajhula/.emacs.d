@@ -264,6 +264,7 @@
 (use-package magit
   :custom
   (magit-bury-buffer-function #'magit-mode-quit-window)
+  (magit-diff-refine-hunk 'all)
   :config
   ;; use side-by-side view for blame -- this doesn't work atm
   ;; (setq magit-blame--style (nth 1 magit-blame-styles))
