@@ -83,6 +83,9 @@
 
 (require 'my-python)
 
+;; to discover Elisp functions by providing examples
+(use-package suggest)
+
 (require 'my-elisp)
 
 (require 'my-scheme)
