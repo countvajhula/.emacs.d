@@ -30,6 +30,22 @@ This includes functions, variables, constants, etc."
   (goto-char (+ 6 end))
   (insert "}"))
 
+(evil-define-operator scribble-hyperlink
+  (beg end type register yank-handler delete-func)
+  "Hyperlink"
+  (interactive "<R><x><y>")
+  (insert "@hyperlink{")
+  (goto-char (+ 11 end))
+  (insert "}"))
+
+(evil-define-operator scribble-racket
+  (beg end type register yank-handler delete-func)
+  "Racket"
+  (interactive "<R><x><y>")
+  (insert "@racket[")
+  (goto-char (+ 8 end))
+  (insert "]"))
+
 ;; TODO: this binds these in the global evil states.
 ;; Instead, define an evil-scribble minor mode and use
 ;; its mode map to bind these using evil-define-key
@@ -37,6 +53,14 @@ This includes functions, variables, constants, etc."
 (define-key evil-normal-state-map "ge" 'scribble-emph)
 
 (define-key evil-visual-state-map "ge" 'scribble-emph)
+
+(define-key evil-normal-state-map "gl" 'scribble-hyperlink)
+
+(define-key evil-visual-state-map "gl" 'scribble-hyperlink)
+
+(define-key evil-normal-state-map "gr" 'scribble-racket)
+
+(define-key evil-visual-state-map "gr" 'scribble-racket)
 
 (defhydra hydra-scribble (:timeout my-leader-timeout
                                    :columns 2
