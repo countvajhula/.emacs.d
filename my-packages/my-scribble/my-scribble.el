@@ -14,7 +14,7 @@ This includes functions, variables, constants, etc."
 (defun my-scribble-open-output-file ()
   "Open HTML output."
   (interactive)
-  (shell-command (string-join (list "open" " " (file-name-base (buffer-name)) ".html"))))
+  (shell-command (string-join (list "open" " " (file-name-base (buffer-file-name)) ".html"))))
 
 (defun my-scribble-compile ()
   "Compile to HTML."
