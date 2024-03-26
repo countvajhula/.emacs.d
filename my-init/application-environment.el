@@ -103,8 +103,7 @@
    (concat (file-name-as-directory user-home-directory)
            "work/sandbox/scratch"))
   :config
-  (mindstream-global-mode)
-  (mindstream-initialize))
+  (mindstream-mode))
 
 (use-package my-scribble
  :after (racket-mode evil)
