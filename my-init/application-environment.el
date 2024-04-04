@@ -173,7 +173,9 @@
     (kbd "C-w")
     (lambda ()
       (interactive)
-      (execute-kbd-macro (kbd "(")))))
+      (execute-kbd-macro (kbd "("))))
+  (add-to-list 'Info-directory-list
+               (expand-file-name "~/work/symex/doc/")))
 
 (use-package php-mode
   :defer t)
