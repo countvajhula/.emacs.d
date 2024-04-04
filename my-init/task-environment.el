@@ -12,7 +12,9 @@
   (quail-defrule ",." greek-map)
   ;; set default input method to TeX so that it can be activated
   ;; with C-\, e.g. to enter math or other symbols in general
-  (setq default-input-method "TeX"))
+  (setq default-input-method "TeX")
+  ;; mostly for Evil's sentence noun
+  (setq sentence-end-double-space nil))
 
 ;; Vim interface
 (use-package evil
