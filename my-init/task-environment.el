@@ -167,8 +167,8 @@
   (global-evil-surround-mode 1)
   ;; use non-spaced pairs when surrounding with an opening brace
   ;; from: https://github.com/emacs-evil/evil-surround/issues/86
-  (evil-add-to-alist
-   'evil-surround-pairs-alist
+  (evil--add-to-alist
+   evil-surround-pairs-alist
    ?\( '("(" . ")")
    ?\[ '("[" . "]")
    ?\{ '("{" . "}")
