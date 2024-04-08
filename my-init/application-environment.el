@@ -93,7 +93,6 @@
 (require 'my-racket)
 
 (use-package mindstream
-  :after racket-mode
   :straight
   (mindstream
    :local-repo "~/.emacs.d/my-packages/mindstream"
