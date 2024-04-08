@@ -103,7 +103,17 @@
    (concat (file-name-as-directory user-home-directory)
            "work/sandbox/scratch"))
   :config
-  (mindstream-mode))
+  (mindstream-mode)
+
+  (plist-put mindstream-live-action-plist
+             'racket-mode #'racket-run)
+
+  (advice-add 'mindstream-start-session
+              :after
+              (lambda (&rest _args)
+                ;; Ignore whatever `racket-repl-buffer-name-function' just did to
+                ;; set `racket-repl-buffer-name' and give this its own REPL.
+                (setq-local racket-repl-buffer-name "*scratch - Racket REPL*"))))
 
 (use-package my-scribble
  :after (racket-mode evil)
