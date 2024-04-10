@@ -78,8 +78,17 @@
   (advice-add 'evil-search :around #'my-recenter-view-advice)
   (advice-add 'evil-goto-mark :around #'my-recenter-view-advice)
 
+  (defun my-autoindent (&rest args)
+    "Auto-indent line"
+    ;; this is necessary because advice provides arguments
+    ;; which are not accepted by the underlying function;
+    ;; would be better to do it functionally with a generic
+    ;; wrapper that invokes the underlying function while
+    ;; ignoring passed-in args ("thunk*")
+    (indent-according-to-mode))
+
   ;; preserve indentation when joining lines
-  (advice-add 'evil-join :after #'indent-according-to-mode)
+  (advice-add 'evil-join :after #'my-autoindent)
 
   ;; Vim C-x line completion emulation,
   ;; from https://stackoverflow.com/questions/17928467/full-line-completion-in-emacs
