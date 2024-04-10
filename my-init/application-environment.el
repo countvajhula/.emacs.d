@@ -97,15 +97,16 @@
   (mindstream
    :local-repo "~/.emacs.d/my-packages/mindstream"
    :type git)
+
   :custom
   (mindstream-save-session-path
    (concat (file-name-as-directory user-home-directory)
            "work/sandbox/scratch"))
+  (mindstream-live-action '(racket-mode racket-run))
+  (mindstream-preferred-template '(racket-mode "racket.rkt"))
+
   :config
   (mindstream-mode)
-
-  (plist-put mindstream-live-action-plist
-             'racket-mode #'racket-run)
 
   (advice-add 'mindstream-start-session
               :after
