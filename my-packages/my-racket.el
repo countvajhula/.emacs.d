@@ -231,7 +231,7 @@ A helper used while tidying a macro expansion."
            (symex-delete 2)
            (paredit-raise-sexp)))))
 
-(defun my-racket-tidy-expansion ()
+(defun my-racket-tidy-expanded-macro ()
   "Make a macro expansion more readable.
 
 The Racket Macro Stepper shows the expanion in all its gory detail
@@ -244,10 +244,6 @@ anything in the core Racket language that we consider 'noise', so that
 the output more closely resembles the usual Racket surface language."
   (interactive)
   (symex--do-while-traversing #'my-racket-tidy-node symex--traversal-preorder))
-
-(defun my-tidy-expanded-macro ()
-  (interactive)
-  (symex--do-while-traversing #'my-tidy-node symex--traversal-preorder))
 
 
 (defhydra hydra-racket (:timeout my-leader-timeout
