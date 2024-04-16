@@ -217,6 +217,39 @@ This includes functions, variables, constants, etc."
     (symex--racket-send-to-repl expr1)
     (symex--racket-send-to-repl expr2)))
 
+(defun my-racket-tidy-node ()
+  "Rules for tidying individual nodes.
+
+A helper used while tidying a macro expansion."
+  (let ((expr (thing-at-point 'sexp)))
+    (cond ((s-starts-with-p "#%app" expr)
+           (symex-delete 1))
+          ((equal "quote" expr)
+           (symex-delete 1)
+           (paredit-raise-sexp))
+          ((equal "#%top" expr)
+           (symex-delete 2)
+           (paredit-raise-sexp)))))
+
+(defun my-racket-tidy-expansion ()
+  "Make a macro expansion more readable.
+
+The Racket Macro Stepper shows the expanion in all its gory detail
+that is incredibly helpful while debugging. But sometimes you're just
+curious what the macro expands to, in conventional, simple terms. E.g.
+Does `cond` expand to `if`? What does `compose` expand to? In these
+cases, the full expansion output contains too much information. This
+simple utility uses a Symex traversal with a side effect to remove
+anything in the core Racket language that we consider 'noise', so that
+the output more closely resembles the usual Racket surface language."
+  (interactive)
+  (symex--do-while-traversing #'my-racket-tidy-node symex--traversal-preorder))
+
+(defun my-tidy-expanded-macro ()
+  (interactive)
+  (symex--do-while-traversing #'my-tidy-node symex--traversal-preorder))
+
+
 (defhydra hydra-racket (:timeout my-leader-timeout
                         :columns 2
                         :exit t)
