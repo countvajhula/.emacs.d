@@ -99,16 +99,19 @@
    :type git)
 
   :custom
+  (mindstream-path
+   (concat (file-name-as-directory user-home-directory)
+           "tmp/mindstream"))
   (mindstream-save-session-path
    (concat (file-name-as-directory user-home-directory)
-           "work/sandbox/scratch"))
+           "log/mindstream"))
   (mindstream-live-action '(racket-mode racket-run))
-  (mindstream-preferred-template '(racket-mode "racket.rkt"))
+  (mindstream-preferred-template '(racket-mode "racket"))
 
   :config
   (mindstream-mode)
 
-  (advice-add 'mindstream-start-session
+  (advice-add 'mindstream-new
               :after
               (lambda (&rest _args)
                 ;; Ignore whatever `racket-repl-buffer-name-function' just did to
