@@ -2,6 +2,8 @@
 ;; DAISY WHEEL ;;
 ;;;;;;;;;;;;;;;;;
 
+(require 'hydra)
+
 (defvar my--org-context-buffers (list "daisywheel.org"
                                       "continuations.org")) ; "plan.org"
 
