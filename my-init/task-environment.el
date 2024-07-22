@@ -436,3 +436,5 @@
   "Insert an ASCII table flip."
   (interactive)
   (insert "(╯°□°）╯︵ ┻━┻)"))
+
+(global-set-key (kbd "C-c m") #'recompile)
