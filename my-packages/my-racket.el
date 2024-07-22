@@ -87,9 +87,10 @@
 
   ;; Rhombus config (maybe move to separate, dependent
   ;; file, eventually)
-  (racket-add-back-end "~/work/racket/rhombus"
-                       :racket-program "~/work/racket/racket/racket/bin/racket")
-  (push '("\\.rhm\\'" . racket-mode) auto-mode-alist))
+  ;; (racket-add-back-end "~/work/racket/rhombus"
+  ;;                      :racket-program "~/work/racket/racket/racket/bin/racket")
+  ;; (push '("\\.rhm\\'" . racket-mode) auto-mode-alist)
+  )
 
 (defvar racket-modes (list 'racket-mode
                            'racket-repl-mode))
