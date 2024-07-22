@@ -36,7 +36,8 @@
   (rigpa
    :type git
    :host github
-   :repo "countvajhula/rigpa")
+   :repo "countvajhula/rigpa"
+   :branch "main")
 
   :config
   (rigpa-initialize)
