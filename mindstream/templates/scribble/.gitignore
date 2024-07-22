@@ -1,0 +1,8 @@
+# build artifacts
+compiled
+# rendered output
+*.html
+*.css
+*.js
+MathJax
+katex
