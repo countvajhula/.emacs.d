@@ -107,6 +107,8 @@
            "log/mindstream"))
   (mindstream-live-action '(racket-mode racket-run))
   (mindstream-preferred-template '(racket-mode "racket"))
+  (mindstream-persist t)
+  (mindstream-unique nil)
 
   :config
   (mindstream-mode)
