@@ -38,6 +38,7 @@
    :type git)
 
   :config
+  (rigpa-initialize)
   (setq rigpa-mode t)
 
   ;; workaround for https://github.com/countvajhula/rigpa/issues/9
