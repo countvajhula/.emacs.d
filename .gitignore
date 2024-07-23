@@ -1,5 +1,6 @@
 .cask
-straight
+straight/*
+!straight/versions
 auto-save
 elpa
 elpa.old
