@@ -4,7 +4,7 @@ An `evil <https://www.emacswiki.org/emacs/Evil>`__-based Emacs configuration tha
 
 This configuration is set up to work out of the box in any Emacs installation as it follows the approach described in `Turn Your .emacs.d Into an Emacs Distribution <https://countvajhula.com/2020/12/27/turn-your-emacs-d-into-an-emacs-distribution-with-straight-el/>`__.
 
-If you are interested in using this as your Emacs config, just clone the repo to :code:`~/.emacs.d` **but make sure** to use the :code:`public` rather than the :code:`master` branch [1]_. And then launch Emacs. Something like:
+If you are interested in using this as your Emacs config, just clone the repo to :code:`~/.emacs.d` **but make sure** to use the :code:`public` rather than the :code:`main` branch [1]_. And then launch Emacs. Something like:
 
 .. code-block:: bash
 
@@ -15,7 +15,7 @@ If you are interested in using this as your Emacs config, just clone the repo to
   git branch -t public origin/public
   git checkout public
 
-.. [1] This repo uses `straight.el <https://github.com/raxod502/straight.el>`_ for package management, and the :code:`public` branch relies exclusively on publicly accessible package repositories, so it should work out of the box in your environment. On the other hand, the :code:`master` branch may use local development versions of package repositories rather than publicly accessible ones and may fail to find those in your environment.
+.. [1] This repo uses `Straight.el <https://github.com/radian-software/straight.el>`_ for package management, and the :code:`public` branch relies exclusively on publicly accessible package repositories with frozen versions, so it should work out of the box in your environment. On the other hand, the :code:`main` branch may use local development versions of package repositories rather than publicly accessible ones and may fail to find those in your environment.
 
 "License":
 ==========
