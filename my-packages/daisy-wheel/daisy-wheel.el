@@ -29,6 +29,8 @@
     (unless (and (boundp 'plumb-line-started) plumb-line-started)
       (my--set-plumb-line))))
 
+;; TODO: when the plumb line is canceled after starting a timer
+;; canceling the timer doesn't work
 (defun my-start-daisy-timer ()
   "Start timer for daisy wheel."
   (let ((timer (show-msg-after-timer (* 5 60) "The wheel turns.")))
