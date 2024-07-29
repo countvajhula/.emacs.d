@@ -70,6 +70,7 @@
  ("map" . "7ef991a4e234195f125dc2b2ad4cad5a1d11a7d5")
  ("markdown-mode" . "4469553a7395359e96b8796e1fac4de73cb6ccc4")
  ("melpa" . "7df9edede9c67c88acbd446742960cd5d75bdd3d")
+ ("mindstream" . "48da7ea999969e072156f7370247eb768d7a71a3")
  ("nongnu-elpa" . "f031337c6ee125455a98e2de899a563388e5de19")
  ("org" . "114c7640351c370bb253827758e4bd9b60400e61")
  ("paredit" . "8330a41e8188fe18d3fa805bb9aa529f015318e8")
@@ -111,6 +112,5 @@
  ("yasnippet" . "5cbdbf0d2015540c59ed8ee0fcf4788effdf75b6")
  ("yasnippet-snippets" . "f50b4c16ca2a73fd04ebd301f0bf2f5ab6107d88")
  ("zoom-frm" . "ca865f395a8c93f7180e152218ecf2a1e1091f50")
- ("zoutline" . "d678b0ea805dd18c18746455c70ea68e51422c1d")
- ("~/.emacs.d/my-packages/mindstream" . "d4b4240663962d54add5f771a49a45c58d03b8b0"))
+ ("zoutline" . "d678b0ea805dd18c18746455c70ea68e51422c1d"))
 :gamma

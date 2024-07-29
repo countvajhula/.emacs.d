@@ -93,11 +93,6 @@
 (require 'my-racket)
 
 (use-package mindstream
-  :straight
-  (mindstream
-   :local-repo "~/.emacs.d/my-packages/mindstream"
-   :type git)
-
   :custom
   (mindstream-path
    (concat (file-name-as-directory user-home-directory)
