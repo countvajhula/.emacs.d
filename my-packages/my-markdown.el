@@ -1,4 +1,6 @@
 (use-package markdown-mode
+  :hook ((markdown-mode . (lambda ()
+                            (setq indent-tabs-mode nil))))
   :mode ("README\\.md\\'" . gfm-mode))
 
 (defun my-markdown-open-output-file ()
