@@ -253,6 +253,12 @@ the output more closely resembles the usual Racket surface language."
   (interactive)
   (symex--do-while-traversing #'my-racket-tidy-node symex--traversal-preorder))
 
+(defun my-racket-compile ()
+  "Compile this Racket module."
+  (interactive)
+  (when (buffer-file-name)
+    (let ((compile-command (format "raco make %s" (buffer-file-name))))
+      (recompile))))
 
 (defhydra hydra-racket (:timeout my-leader-timeout
                         :columns 2
@@ -260,6 +266,7 @@ the output more closely resembles the usual Racket surface language."
   "Racket menu"
   ("e" my-racket-eval "Eval")
   ("v" my-racket-eval "Eval")
+  ("c" my-racket-compile "Compile")
   ("m" my-racket-macro-stepper "Macro Stepper")
   ("M" my-racket-launch-macro-stepper "Launch macro stepper")
   ("s" my-racket-syntax-browser "Syntax Browser")
