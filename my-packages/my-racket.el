@@ -135,14 +135,13 @@ Afterwards call `racket--repl-show-and-move-to-end'."
 (defun my-racket-eval-symex-pretty ()
   "Evaluate symex and render the result in a useful string form."
   (interactive)
-  (let ((pretty-code (string-join
-                      `("(let ([result "
-                        ,(buffer-substring (racket--repl-last-sexp-start)
-                                           (point))
-                        "])"
-                        " (cond [(stream? result) (stream->list result)]
+  (let ((pretty-code (concat "(let ([result "
+                             (buffer-substring (racket--repl-last-sexp-start)
+                                               (point))
+                             "])"
+                             " (cond [(stream? result) (stream->list result)]
                                   [(sequence? result) (sequence->list result)]
-                                  [else result]))"))))
+                                  [else result]))")))
     (my-racket-send-to-repl pretty-code)))
 
 (defun my-racket-eval-symex ()
@@ -193,34 +192,38 @@ This includes functions, variables, constants, etc."
 (defun my-racket-macro-stepper ()
   "Use the macro stepper to expand the current expression."
   (interactive)
-  (let ((expr (string-join
-               `("(expand/step " "#'" ,(thing-at-point 'sexp) ")"))))
+  (let ((expr (concat "(expand/step "
+                      "#'"
+                      (substring-no-properties (thing-at-point 'sexp))
+                      ")")))
     (symex--racket-send-to-repl expr)))
 
 (defun my-racket-launch-macro-stepper ()
   "Use the macro stepper to expand the current expression."
   (interactive)
   (let ((expr1 "(require macro-debugger/stepper)")
-        (expr2 (string-join
-                `("(expand/step " "#'" ,(thing-at-point 'sexp) ")"))))
-    (symex--racket-send-to-repl expr1)
-    (symex--racket-send-to-repl expr2)))
+        (expr2 (concat "(expand/step "
+                       "#'"
+                       (substring-no-properties (thing-at-point 'sexp))
+                       ")")))
+    (symex--racket-send-to-repl (concat expr1 expr2))))
 
 (defun my-racket-syntax-browser ()
   "Explore a syntax object using the syntax browser."
   (interactive)
-  (let ((expr (string-join
-               `("(browse-syntax " ,(thing-at-point 'sexp) ")"))))
+  (let ((expr (concat "(browse-syntax "
+                      (substring-no-properties (thing-at-point 'sexp))
+                      ")")))
     (symex--racket-send-to-repl expr)))
 
 (defun my-racket-launch-syntax-browser ()
   "Explore a syntax object using the syntax browser."
   (interactive)
-  (let ((expr1 "(require macro-debugger/stepper)")
-        (expr2 (string-join
-                `("(browse-syntax " ,(thing-at-point 'sexp) ")"))))
-    (symex--racket-send-to-repl expr1)
-    (symex--racket-send-to-repl expr2)))
+  (let ((expr1 "(require macro-debugger/syntax-browser)")
+        (expr2 (concat "(browse-syntax "
+                       (substring-no-properties (thing-at-point 'sexp))
+                       ")")))
+    (symex--racket-send-to-repl (concat expr1 expr2))))
 
 (defun my-racket-tidy-node ()
   "Rules for tidying individual nodes.
