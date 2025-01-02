@@ -104,6 +104,9 @@
   (mindstream-save-session-path
    (concat (file-name-as-directory user-home-directory)
            "log/mindstream"))
+  (mindstream-archive-path
+   (concat (file-name-as-directory user-home-directory)
+           "log/archive"))
   (mindstream-live-action '(racket-mode racket-run))
   (mindstream-preferred-template '(racket-mode "racket"))
   (mindstream-persist t)
