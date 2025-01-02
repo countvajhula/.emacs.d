@@ -146,6 +146,8 @@
                     (interactive)
                     (rigpa-enter-mode "word"))))
 
+(setq native-comp-async-report-warnings-errors 'silent)
+
 ;; load any customizations done via EMACS UI
 (load custom-file 'noerror)
 (put 'narrow-to-region 'disabled nil)
