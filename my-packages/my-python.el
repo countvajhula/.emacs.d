@@ -35,6 +35,12 @@
                    '((company-capf company-dabbrev-code company-yasnippet elpy-company-backend company-keywords)
                      company-dabbrev)))))
 
+(defun my-goto-python-repl ()
+  "Go to python REPL."
+  (interactive)
+  (elpy-shell-switch-to-shell)
+  (goto-char (point-max)))
+
 (defhydra hydra-python (:timeout my-leader-timeout
                         :columns 2
                         :exit t)
@@ -43,7 +49,7 @@
   ("g" evil-jump-to-tag "Go to definition")
   ("i" elpy-doc "See documentation on this")
   ("o" elpy-occur-definitions "See all definitions in current buffer")
-  ("r" elpy-shell-switch-to-shell "Go to Python REPL")
+  ("r" my-goto-python-repl "Go to Python REPL")
   ("x" elpy-shell-send-region-or-buffer "Send to REPL")
   ("\\" elpy-shell-send-region-or-buffer "Send to REPL")
   ("t" elpy-test "Run test(s)"))
