@@ -89,6 +89,10 @@
   (put 'query-list 'racket-indent-function 1)
   ;; one-offs / project-specific
   (put 'report-syntax-error 'racket-indent-function 1)
+  ;; raqit experiments
+  (put 'fun 'racket-indent-function 'defun)
+  (put 'loop 'racket-indent-function 'defun)
+  (put 'flow 'racket-indent-function 'defun)
 
   ;; Rhombus config (maybe move to separate, dependent
   ;; file, eventually)
