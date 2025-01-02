@@ -333,4 +333,9 @@ the output more closely resembles the usual Racket surface language."
             (general-evil-define-key 'normal racket-mode-map
               (kbd "C-{") 'xref-pop-marker-stack))) ; can't rebind C-[ (treated as escape)
 
+;; hover eldoc tooltips at point
+(add-hook 'racket-mode-hook
+          (lambda ()
+            (eldoc-box-hover-at-point-mode 1)))
+
 (provide 'my-racket)

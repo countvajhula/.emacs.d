@@ -427,6 +427,10 @@
   (setq ibuffer-sidebar-use-custom-font t)
   (setq ibuffer-sidebar-face `(:family "Helvetica" :height 140)))
 
+(use-package eldoc-box
+  :config
+  (add-hook 'eldoc-box-buffer-hook #'my-disable-line-numbers))
+
 (use-package smart-mode-line
   :disabled t
   :config

@@ -88,6 +88,10 @@ initial screen (when centered) -- same behavior as Vim."
     (beginning-of-line)
     (looking-at "[[:space:]]*$")))
 
+(defun my-disable-line-numbers ()
+  "Disable line numbers in current buffer."
+  (display-line-numbers-mode -1))
+
 ;;; `with-undo-collapse` macro, to treat a sequence of operations
 ;;; as a single entry in the undo list.
 ;;; From: https://emacs.stackexchange.com/questions/7558/collapsing-undo-history/7560#7560
