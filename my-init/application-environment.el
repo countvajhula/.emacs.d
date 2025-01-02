@@ -9,6 +9,8 @@
 ;; intuitive "state machine" menus
 (use-package hydra)
 
+(use-package macrostep)
+
 (use-package general
   ;; general is a package that provides various
   ;; resources and utilities for defining keybindings
