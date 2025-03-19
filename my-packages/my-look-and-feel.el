@@ -36,8 +36,14 @@
 
 (set-frame-font "Menlo 12" nil t)
 
+(defun my-disable-line-numbers-in-buffer ()
+  "Disable line numbers in current buffer (called via hook)."
+  (when (or buffer-read-only
+            (string-match-p "^\*" (buffer-name)))
+    (display-line-numbers-mode -1)))
+
 ;; line numbers on by default
-(global-display-line-numbers-mode)
+(add-hook 'after-change-major-mode-hook #'my-disable-line-numbers-in-buffer)
 ;; show (line #, column #) in mode line
 (setq column-number-mode t)
 
