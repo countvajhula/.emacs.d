@@ -286,7 +286,10 @@ the output more closely resembles the usual Racket surface language."
 (defun register-racket-leader ()
   "Pull up racket hydra with local leader"
   (interactive)
-  (general-define-key :states '(normal visual motion)
+  ;; this is loaded before symex mode,
+  ;; but I think the states are treated as symbols here
+  ;; so it's OK to include symex
+  (general-define-key :states '(normal visual motion symex)
                       :keymaps 'local
                       my-local-leader 'hydra-racket/body))
 
