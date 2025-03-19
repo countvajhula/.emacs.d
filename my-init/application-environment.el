@@ -170,10 +170,6 @@
   :config
   (setq arc-source-path "~/work/lisp/arc/arc3.2"))
 
-(use-package tree-sitter)
-
-(use-package tree-sitter-langs)
-
 (use-package symex
   :after evil
   :straight
