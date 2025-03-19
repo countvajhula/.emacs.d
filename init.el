@@ -30,7 +30,7 @@
   ;; TODO: should be independent of symex and arguably evil too
   ;; and, eventually, non-essential modes should be removed from
   ;; the core into separate packages
-  :after (evil symex buffer-ring)
+  :after (evil symex buffer-ring lithium)
 
   :straight
   (rigpa
@@ -40,9 +40,6 @@
   :config
   (rigpa-initialize)
   (setq rigpa-mode t)
-
-  ;; workaround for https://github.com/countvajhula/rigpa/issues/9
-  (remove-hook 'evil-symex-state-exit-hook #'symex-disable-editing-minor-mode)
 
   ;; custom config
   (setq rigpa-show-menus nil)
