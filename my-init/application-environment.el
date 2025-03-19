@@ -189,7 +189,35 @@
       (interactive)
       (execute-kbd-macro (kbd "("))))
   (add-to-list 'Info-directory-list
-               (expand-file-name "~/work/symex/doc/")))
+               (expand-file-name "~/work/symex/doc/"))
+  (lithium-define-keys symex-editing-mode
+                       (("u" evil-undo)
+                        ("C-r" evil-redo)
+                        ("\"" evil-use-register)
+                        ("." evil-repeat)
+                        ("q" evil-record-macro)
+                        ("@" evil-execute-macro)
+                        ("/" evil-search-forward)
+                        ("?" evil-search-backward)
+                        ("#" evil-search-word-backward)
+                        ("*" evil-search-word-forward)
+                        ("n" evil-search-next)
+                        ("N" evil-search-previous)
+                        ("C-d" evil-scroll-down)
+                        ("C-u" evil-scroll-up)
+                        ("C-e" my-scroll-down)
+                        ("C-y" my-scroll-up)
+                        ("C-]" evil-jump-to-tag)
+                        ("C-i" evil-jump-forward)
+                        ("C-o" evil-jump-backward))))
+
+(use-package lithium
+  :straight
+  (lithium
+   :local-repo "~/.emacs.d/my-packages/lithium"
+   :type git)
+  :config
+  (lithium-mode))
 
 (use-package php-mode
   :defer t)
