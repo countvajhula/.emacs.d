@@ -211,6 +211,8 @@
                         ("*" evil-search-word-forward)
                         ("n" evil-search-next)
                         ("N" evil-search-previous)
+                        ("M" my-switch-to-messages-buffer)
+                        ("t" mindstream-enter-anonymous-session)
                         ("C-d" evil-scroll-down)
                         ("C-u" evil-scroll-up)
                         ("C-e" my-scroll-down)
