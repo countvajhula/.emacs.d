@@ -170,8 +170,16 @@
   :config
   (setq arc-source-path "~/work/lisp/arc/arc3.2"))
 
+(use-package lithium
+  :straight
+  (lithium
+   :local-repo "~/.emacs.d/my-packages/lithium"
+   :type git)
+  :config
+  (lithium-mode))
+
 (use-package symex
-  :after evil
+  :after (evil lithium)
   :straight
   (symex
    :local-repo "~/.emacs.d/my-packages/symex"
@@ -210,14 +218,6 @@
                         ("C-]" evil-jump-to-tag)
                         ("C-i" evil-jump-forward)
                         ("C-o" evil-jump-backward))))
-
-(use-package lithium
-  :straight
-  (lithium
-   :local-repo "~/.emacs.d/my-packages/lithium"
-   :type git)
-  :config
-  (lithium-mode))
 
 (use-package php-mode
   :defer t)

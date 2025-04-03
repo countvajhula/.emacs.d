@@ -30,7 +30,7 @@
   ;; TODO: should be independent of symex and arguably evil too
   ;; and, eventually, non-essential modes should be removed from
   ;; the core into separate packages
-  :after (evil symex buffer-ring lithium)
+  :after (evil lithium symex buffer-ring git-timemachine)
 
   :straight
   (rigpa
