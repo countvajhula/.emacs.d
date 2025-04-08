@@ -84,12 +84,6 @@
                       (rigpa-exit-tower-mode)
                       (rigpa-enter-mode-mode))))
   ;; index entry to various modes
-  (global-set-key (kbd "s-y")        ; symex mode
-                  (lambda ()
-                    (interactive)
-                    (rigpa-enter-mode "symex"))) ; since y looks like inverted lambda
-  (global-set-key (kbd "s-;") (kbd "s-y")) ; since y is hard to reach
-  ;; TODO: probably add the symex config under symex once hooks are added
   (global-set-key (kbd "s-w")        ; window mode
                   (lambda ()
                     (interactive)
