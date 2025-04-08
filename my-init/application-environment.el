@@ -180,18 +180,17 @@
   :config
   (lithium-mode))
 
-(defvar my-elisp-modes '(lisp-interaction-mode
-                         emacs-lisp-mode
-                         inferior-emacs-lisp-mode))
+(defvar my-local-leader-alist
+  '((lisp-interaction-mode . hydra-elisp/body)
+    (emacs-lisp-mode . hydra-elisp/body)
+    (inferior-emacs-lisp-mode . hydra-elisp/body)
+    (racket-mode . hydra-racket/body)
+    (scheme-mode . hydra-scheme/body)))
 
 (defun my-local-leader ()
   "Launch local leader menu."
   (interactive)
-  (let ((leader
-         ;; TODO: maybe use a hash
-         (cond ((eq major-mode 'racket-mode) 'hydra-racket/body)
-               ((memq major-mode my-elisp-modes) 'hydra-elisp/body)
-               ((eq major-mode 'scheme-mode) 'hydra-scheme/body))))
+  (let ((leader (cdr (assoc major-mode my-local-leader-alist))))
     (call-interactively leader)))
 
 (defun my-global-leader ()
