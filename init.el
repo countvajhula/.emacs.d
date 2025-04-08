@@ -116,6 +116,10 @@
                   (lambda ()
                     (interactive)
                     (rigpa-enter-mode "buffer")))
+  (global-set-key (kbd "s-k")        ; also buffer, to use the right hand more
+                  (lambda ()
+                    (interactive)
+                    (rigpa-enter-mode "buffer")))
   (global-set-key (kbd "s-f")        ; file mode
                   (lambda ()
                     (interactive)
