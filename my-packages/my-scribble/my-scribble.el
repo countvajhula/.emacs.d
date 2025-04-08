@@ -1,3 +1,9 @@
+(require 'evil-macros)
+(require 'hydra)
+(require 'constants)
+(require 'general)
+(require 'racket-mode)
+
 (use-package scribble-mode
   :hook ((scribble-mode . (lambda ()
                             (setq indent-tabs-mode nil)))
@@ -50,17 +56,14 @@ This includes functions, variables, constants, etc."
 ;; Instead, define an evil-scribble minor mode and use
 ;; its mode map to bind these using evil-define-key
 ;; (see symex-evil-support for an example)
-(define-key evil-normal-state-map "ge" 'scribble-emph)
+(define-key evil-normal-state-map "ge" #'scribble-emph)
+(define-key evil-visual-state-map "ge" #'scribble-emph)
 
-(define-key evil-visual-state-map "ge" 'scribble-emph)
+(define-key evil-normal-state-map "gl" #'scribble-hyperlink)
+(define-key evil-visual-state-map "gl" #'scribble-hyperlink)
 
-(define-key evil-normal-state-map "gl" 'scribble-hyperlink)
-
-(define-key evil-visual-state-map "gl" 'scribble-hyperlink)
-
-(define-key evil-normal-state-map "gr" 'scribble-racket)
-
-(define-key evil-visual-state-map "gr" 'scribble-racket)
+(define-key evil-normal-state-map "gr" #'scribble-racket)
+(define-key evil-visual-state-map "gr" #'scribble-racket)
 
 (defhydra hydra-scribble (:timeout my-leader-timeout
                                    :columns 2
@@ -68,8 +71,6 @@ This includes functions, variables, constants, etc."
   "Scribble menu"
   ("o" my-scribble-show-definitions "Show all definitions")
   ("l" my-scribble-open-output-file "Open output file")
-  ("i" my-racket-describe-symbol "See documentation on this")
-  ("?" my-racket-describe-symbol "See documentation on this")
   ("C-?" racket-documentation-search "Search documentation")
   ("d" racket-documentation-search "Search documentation")
   ("x" my-scribble-compile "Compile to an output format")
