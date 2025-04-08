@@ -34,7 +34,6 @@
 
 (defun register-texinfo-leader ()
   "Pull up Texinfo hydra with local leader"
-  (interactive)
   (general-define-key :states '(normal visual motion)
                       :keymaps 'local
                       my-local-leader 'hydra-texinfo/body))

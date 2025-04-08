@@ -50,12 +50,11 @@
 
 (defun register-scheme-leader ()
   "Pull up scheme hydra with local leader"
-  (interactive)
   (general-define-key :states '(normal visual motion)
                       :keymaps 'local
                       my-local-leader 'hydra-scheme/body))
 
 ;; register scheme leader in all scheme modes
-(add-hook 'scheme-mode-hook 'register-scheme-leader)
+(add-hook 'scheme-mode-hook #'register-scheme-leader)
 
 (provide 'my-scheme)

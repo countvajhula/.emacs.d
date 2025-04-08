@@ -25,7 +25,6 @@
 
 (defun register-markdown-leader ()
   "Pull up Markdown hydra with local leader"
-  (interactive)
   (general-define-key :states '(normal visual motion)
                       :keymaps 'local
                       my-local-leader 'hydra-markdown/body))
@@ -33,6 +32,6 @@
 ;; register markdown leader in all markdown modes
 (let ((mode-hook (intern (concat (symbol-name 'markdown-mode)
                                  "-hook"))))
-  (add-hook mode-hook 'register-markdown-leader))
+  (add-hook mode-hook #'register-markdown-leader))
 
 (provide 'my-markdown)

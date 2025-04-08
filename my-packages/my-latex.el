@@ -46,11 +46,12 @@
   ("v" TeX-view "View")
   ("\\" TeX-command-run-all "Compile and view"))
 
-;; pull up LaTeX hydra with local leader
-(add-hook 'LaTeX-mode-hook
-          (lambda () (general-define-key
-                      :states '(normal visual motion)
+(defun register-latex-leader ()
+  "Pull up LaTeX hydra with local leader"
+  (general-define-key :states '(normal visual motion)
                       :keymaps 'local
-                      my-local-leader 'hydra-tex/body)))
+                      my-local-leader 'hydra-tex/body))
+
+(add-hook 'LaTeX-mode-hook #'register-latex-leader)
 
 (provide 'my-latex)

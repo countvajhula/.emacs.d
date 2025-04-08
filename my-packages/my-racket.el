@@ -285,11 +285,7 @@ the output more closely resembles the usual Racket surface language."
 
 (defun register-racket-leader ()
   "Pull up racket hydra with local leader"
-  (interactive)
-  ;; this is loaded before symex mode,
-  ;; but I think the states are treated as symbols here
-  ;; so it's OK to include symex
-  (general-define-key :states '(normal visual motion symex)
+  (general-define-key :states '(normal visual motion)
                       :keymaps 'local
                       my-local-leader 'hydra-racket/body))
 
@@ -297,7 +293,7 @@ the output more closely resembles the usual Racket surface language."
 (dolist (mode-name racket-modes)
   (let ((mode-hook (intern (concat (symbol-name mode-name)
                                    "-hook"))))
-    (add-hook mode-hook 'register-racket-leader)))
+    (add-hook mode-hook #'register-racket-leader)))
 
 ;; ensure that paredit delimiter behavior isn't overridden in REPL
 ;; by racket mode. Not sure why this happens, but it may be evil-mode related:

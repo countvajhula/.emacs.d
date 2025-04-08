@@ -77,7 +77,6 @@ This includes functions, variables, constants, etc."
 
 (defun register-scribble-leader ()
   "Pull up Scribble hydra with local leader"
-  (interactive)
   (general-define-key :states '(normal visual motion)
                       :keymaps 'local
                       my-local-leader 'hydra-scribble/body))

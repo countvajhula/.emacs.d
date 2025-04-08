@@ -70,7 +70,6 @@ This includes functions, variables, constants, etc."
 
 (defun register-elisp-leader ()
   "Pull up elisp hydra with local leader"
-  (interactive)
   (general-define-key :states '(normal visual motion)
                       :keymaps 'local
                       my-local-leader 'hydra-elisp/body))
@@ -79,7 +78,7 @@ This includes functions, variables, constants, etc."
 (dolist (mode-name elisp-modes)
   (let ((mode-hook (intern (concat (symbol-name mode-name)
                                    "-hook"))))
-    (add-hook mode-hook 'register-elisp-leader)))
+    (add-hook mode-hook #'register-elisp-leader)))
 
 ;; to visit definition in ielm REPL
 (add-hook 'inferior-emacs-lisp-mode-hook

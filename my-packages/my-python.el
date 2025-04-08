@@ -54,12 +54,14 @@
   ("\\" elpy-shell-send-region-or-buffer "Send to REPL")
   ("t" elpy-test "Run test(s)"))
 
-;; pull up python hydra with local leader
-(add-hook 'python-mode-hook
-          (lambda () (general-define-key
-                      :states '(normal visual motion)
+(defun register-python-leader ()
+  "Pull up Python hydra with local leader"
+  (general-define-key :states '(normal visual motion)
                       :keymaps 'local
-                      my-local-leader 'hydra-python/body)))
+                      my-local-leader 'hydra-python/body))
+
+;; pull up python hydra with local leader
+(add-hook 'python-mode-hook #'register-python-leader)
 
 (add-hook 'python-mode-hook
           (lambda () (show-paren-mode 1)))

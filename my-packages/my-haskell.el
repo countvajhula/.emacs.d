@@ -59,7 +59,6 @@ This includes functions, variables, constants, etc."
 
 (defun register-haskell-leader ()
   "Pull up haskell hydra with local leader"
-  (interactive)
   (general-define-key :states '(normal visual motion)
                       :keymaps 'local
                       my-local-leader 'hydra-haskell/body))
@@ -68,6 +67,6 @@ This includes functions, variables, constants, etc."
 (dolist (mode-name haskell-modes)
   (let ((mode-hook (intern (concat (symbol-name mode-name)
                                    "-hook"))))
-    (add-hook mode-hook 'register-haskell-leader)))
+    (add-hook mode-hook #'register-haskell-leader)))
 
 (provide 'my-haskell)
