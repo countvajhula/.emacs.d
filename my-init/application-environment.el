@@ -178,6 +178,25 @@
   :config
   (lithium-mode))
 
+(defvar my-elisp-modes '(lisp-interaction-mode
+                         emacs-lisp-mode
+                         inferior-emacs-lisp-mode))
+
+(defun my-local-leader ()
+  "Launch local leader menu."
+  (interactive)
+  (let ((leader
+         ;; TODO: maybe use a hash
+         (cond ((eq major-mode 'racket-mode) 'hydra-racket/body)
+               ((memq major-mode my-elisp-modes) 'hydra-elisp/body)
+               ((eq major-mode 'scheme-mode) 'hydra-scheme/body))))
+    (call-interactively leader)))
+
+(defun my-global-leader ()
+  "Launch global leader menu"
+  (interactive)
+  (hydra-leader/body))
+
 (use-package symex
   :after (evil lithium)
   :straight
@@ -221,7 +240,9 @@
                         ("C-y" my-scroll-up)
                         ("C-]" evil-jump-to-tag)
                         ("C-i" evil-jump-forward)
-                        ("C-o" evil-jump-backward))))
+                        ("C-o" evil-jump-backward)
+                        ("\\" my-local-leader)
+                        ("SPC" my-global-leader))))
 
 (use-package php-mode
   :defer t)
