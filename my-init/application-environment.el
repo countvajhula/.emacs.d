@@ -228,6 +228,8 @@
                         ("." evil-repeat)
                         ("q" evil-record-macro)
                         ("@" evil-execute-macro)
+                        ("m" evil-set-marker)
+                        ("'" evil-goto-mark-line)
                         ("/" evil-search-forward)
                         ("?" evil-search-backward)
                         ("#" evil-search-word-backward)
