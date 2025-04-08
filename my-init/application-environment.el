@@ -91,6 +91,8 @@
 
 (require 'my-racket)
 
+(use-package clojure-ts-mode)
+
 (use-package mindstream
   :straight
   (mindstream
