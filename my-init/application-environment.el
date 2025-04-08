@@ -190,7 +190,7 @@
 (defun my-local-leader ()
   "Launch local leader menu."
   (interactive)
-  (let ((leader (cdr (assoc major-mode my-local-leader-alist))))
+  (let ((leader (cdr (assq major-mode my-local-leader-alist))))
     (call-interactively leader)))
 
 (defun my-global-leader ()
