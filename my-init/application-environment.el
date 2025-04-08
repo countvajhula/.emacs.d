@@ -214,11 +214,11 @@
   (global-set-key (kbd "s-y") #'symex-mode-interface) ; since y looks like inverted lambda
   (global-set-key (kbd "s-;") (kbd "s-y")) ; since y is hard to reach
   (define-key
-    symex-mode-map
-    (kbd "C-w")
-    (lambda ()
-      (interactive)
-      (execute-kbd-macro (kbd "("))))
+   symex-mode-map
+   (kbd "C-w")
+   (lambda ()
+     (interactive)
+     (execute-kbd-macro (kbd "("))))
   (add-to-list 'Info-directory-list
                (expand-file-name "~/work/symex/doc/"))
   (lithium-define-keys symex-editing-mode
@@ -282,9 +282,9 @@
 
   ;; don't wait for extra confirmation on matches
   (define-key
-    ivy-minibuffer-map
-    (kbd "TAB")
-    'ivy-alt-done))
+   ivy-minibuffer-map
+   (kbd "TAB")
+   'ivy-alt-done))
 
 (use-package selectrum
   :disabled t
@@ -457,7 +457,7 @@
   (add-hook 'ibuffer-mode-hook
             '(lambda ()
                (ibuffer-auto-mode 1)))
-               ;;(ibuffer-switch-to-saved-filter-groups "default"))))
+  ;;(ibuffer-switch-to-saved-filter-groups "default"))))
   :config
   (setq ibuffer-show-empty-filter-groups nil))
 
@@ -477,7 +477,7 @@
             (lambda ()
               (ibuffer-vc-set-filter-groups-by-vc-root)
               (unless (eq ibuffer-sorting-mode 'alphabetic)
-              (ibuffer-do-sort-by-alphabetic)))))
+                (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package ibuffer-sidebar
   :disabled t
@@ -639,55 +639,55 @@
 (global-set-key (kbd "s-\\") 'evil-execute-in-emacs-state)
 
 (define-key
-  ;; info on the current buffer
-  (current-global-map)
-  (kbd "C-c b")
-  'my-buffer-info)
+ ;; info on the current buffer
+ (current-global-map)
+ (kbd "C-c b")
+ 'my-buffer-info)
 
 (define-key
-  ;; info on the current region
-  (current-global-map)
-  (kbd "C-c g")
-  'count-words-region)
+ ;; info on the current region
+ (current-global-map)
+ (kbd "C-c g")
+ 'count-words-region)
 
 (define-key
-  ;; navigation sidebar
-  (current-global-map)
-  (kbd "C-c t")
-  'dired-sidebar-toggle-sidebar)
+ ;; navigation sidebar
+ (current-global-map)
+ (kbd "C-c t")
+ 'dired-sidebar-toggle-sidebar)
 
 (define-key
-  ;; open a new empty buffer
-  (current-global-map)
-  (kbd "C-c n")
-  'my-new-empty-buffer)
+ ;; open a new empty buffer
+ (current-global-map)
+ (kbd "C-c n")
+ 'my-new-empty-buffer)
 
 (define-key
-  ;; drop into a shell (preserves path)
-  (current-global-map)
-  (kbd "C-c s")
-  'my-shell)
+ ;; drop into a shell (preserves path)
+ (current-global-map)
+ (kbd "C-c s")
+ 'my-shell)
 
 (define-key
-  ;; lookup in dictionary
-  (current-global-map)
-  (kbd "C-c d")
-  'dictionary-lookup-definition)
+ ;; lookup in dictionary
+ (current-global-map)
+ (kbd "C-c d")
+ 'dictionary-lookup-definition)
 
 (define-key
-  ;; open an elisp shell
-  (current-global-map)
-  (kbd "C-c l")
-  'my-lisp-repl)
+ ;; open an elisp shell
+ (current-global-map)
+ (kbd "C-c l")
+ 'my-lisp-repl)
 
 (define-key
-  ;; emulate caps lock -- alternative to an actual CAPS LOCK key
-  (current-global-map)
-  (kbd "H-<escape>")
-  'caps-lock-mode)
+ ;; emulate caps lock -- alternative to an actual CAPS LOCK key
+ (current-global-map)
+ (kbd "H-<escape>")
+ 'caps-lock-mode)
 
 (define-key
-  ;; calculator mode
-  (current-global-map)
-  (kbd "C-+")
-  'calc)
+ ;; calculator mode
+ (current-global-map)
+ (kbd "C-+")
+ 'calc)
