@@ -18,6 +18,9 @@
 ;; load any local general-purpose utilities
 (load "utils")
 
+;; load core packages used in other packages
+(load "core")
+
 ;; load all configured packages
 (load "task-environment")
 (load "project-environment")

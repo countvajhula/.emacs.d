@@ -262,6 +262,18 @@
   ;; retain a convenient, non-hydra, escape hatch
   (global-set-key (kbd "s-D") 'evil-mc-undo-all-cursors))
 
+(use-package repeat-ring
+  :after dynaring
+  :straight
+  (repeat-ring
+   :local-repo "~/.emacs.d/my-packages/repeat-ring"
+   :type git)
+  :config
+  (repeat-ring-initialize)
+  (global-set-key (kbd "C-c .") #'repeat-ring-repeat)
+  (global-set-key (kbd "C-c M->") #'repeat-ring-rotate-ring-forwards)
+  (global-set-key (kbd "C-c M-<") #'repeat-ring-rotate-ring-backwards))
+
 (defun my-company-complete-to-selection ()
   "Insert the selected candidate but retain the completion menu."
   (interactive)
