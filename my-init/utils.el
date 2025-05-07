@@ -78,12 +78,6 @@ initial screen (when centered) -- same behavior as Vim."
                  res)))
     (error (message "Buried error: %S" err))))
 
-(defun current-line-empty-p ()
-  "From: https://emacs.stackexchange.com/questions/16792/easiest-way-to-check-if-current-line-is-empty-ignoring-whitespace "
-  (save-excursion
-    (beginning-of-line)
-    (looking-at "[[:space:]]*$")))
-
 (defun my-disable-line-numbers ()
   "Disable line numbers in current buffer."
   (display-line-numbers-mode -1))
