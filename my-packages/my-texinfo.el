@@ -11,14 +11,7 @@
   "Compile to Info output."
   (interactive)
   (save-buffer)
-  (let ((original-buffer (buffer-name))
-        (original-window (selected-window)))
-    (switch-to-buffer-other-window original-buffer)
-    (makeinfo-buffer)
-    (sit-for 0.3) ; otherwise it selects the original window too soon ¯\_(ツ) _/¯
-    (select-window original-window)
-    ;; the original window sometimes becomes the compilation result buffer ¯\_(ツ) _/¯
-    (switch-to-buffer original-buffer)))
+  (makeinfo-buffer))
 
 (defhydra hydra-texinfo (:timeout my-leader-timeout
                          :columns 2
