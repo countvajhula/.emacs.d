@@ -205,7 +205,6 @@
    :local-repo "~/.emacs.d/my-packages/symex"
    :type git)
   :custom
-  (symex-modal-backend 'evil)
   (symex-quote-prefix-list (list "'" "#'" "`" "#`" "#"))
   (symex-unquote-prefix-list (list "," "#," ",@" "#,@"))
   :config
@@ -225,6 +224,7 @@
                         ("C-r" evil-redo)
                         ("\"" evil-use-register)
                         ("." evil-repeat)
+                        ("C-." evil-repeat-pop)
                         ("q" evil-record-macro)
                         ("@" evil-execute-macro)
                         ("m" evil-set-marker)
