@@ -104,6 +104,10 @@
     (kbd "C-x C-l")
     'my-expand-lines)
 
+  ;; don't use evil bindings in Info mode
+  ;; Note: doesn't work for some reason
+  (evil-set-initial-state 'Info-mode 'emacs)
+
   ;; ** THIS IS WIP **
   ;; From: https://emacs.stackexchange.com/a/21402/24024
   ;; TODO: handle other in-word characters like
