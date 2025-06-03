@@ -49,6 +49,7 @@ This includes functions, variables, constants, etc."
            "^(use-package\\|"
            "^(evil-define\\|"
            "^(symex-def\\|"
+           "^(lithium-def\\|"
            "^(ert-def\\)")))
 
 (defhydra hydra-elisp (:timeout my-leader-timeout
