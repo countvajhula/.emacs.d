@@ -196,7 +196,11 @@ This includes functions, variables, constants, etc."
                       "#'"
                       (substring-no-properties (thing-at-point 'sexp))
                       ")")))
-    (symex--racket-send-to-repl expr)))
+    (let ((original-repl-buffer-name racket-repl-buffer-name))
+      (symex--with-temp-buffer
+        (setq racket-repl-buffer-name original-repl-buffer-name)
+        (insert expr)
+        (racket--send-region-to-repl (point-min) (point-max))))))
 
 (defun my-racket-launch-macro-stepper ()
   "Use the macro stepper to expand the current expression."
@@ -206,7 +210,11 @@ This includes functions, variables, constants, etc."
                        "#'"
                        (substring-no-properties (thing-at-point 'sexp))
                        ")")))
-    (symex--racket-send-to-repl (concat expr1 expr2))))
+    (let ((original-repl-buffer-name racket-repl-buffer-name))
+      (symex--with-temp-buffer
+        (setq racket-repl-buffer-name original-repl-buffer-name)
+        (insert (concat expr1 expr2))
+        (racket--send-region-to-repl (point-min) (point-max))))))
 
 (defun my-racket-syntax-browser ()
   "Explore a syntax object using the syntax browser."
@@ -214,7 +222,11 @@ This includes functions, variables, constants, etc."
   (let ((expr (concat "(browse-syntax "
                       (substring-no-properties (thing-at-point 'sexp))
                       ")")))
-    (symex--racket-send-to-repl expr)))
+    (let ((original-repl-buffer-name racket-repl-buffer-name))
+      (symex--with-temp-buffer
+        (setq racket-repl-buffer-name original-repl-buffer-name)
+        (insert expr)
+        (racket--send-region-to-repl (point-min) (point-max))))))
 
 (defun my-racket-launch-syntax-browser ()
   "Explore a syntax object using the syntax browser."
@@ -223,7 +235,11 @@ This includes functions, variables, constants, etc."
         (expr2 (concat "(browse-syntax "
                        (substring-no-properties (thing-at-point 'sexp))
                        ")")))
-    (symex--racket-send-to-repl (concat expr1 expr2))))
+    (let ((original-repl-buffer-name racket-repl-buffer-name))
+      (symex--with-temp-buffer
+        (setq racket-repl-buffer-name original-repl-buffer-name)
+        (insert (concat expr1 expr2))
+        (racket--send-region-to-repl (point-min) (point-max))))))
 
 (defun my-racket-tidy-node ()
   "Rules for tidying individual nodes.
