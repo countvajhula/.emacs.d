@@ -217,8 +217,6 @@
                        (("u" evil-undo)
                         ("C-r" evil-redo)
                         ("\"" evil-use-register)
-                        ("." evil-repeat)
-                        ("C-." evil-repeat-pop)
                         ("g-;" evil-goto-last-change)
                         ("g-," evil-goto-last-change-reverse)
                         ("q" evil-record-macro)
