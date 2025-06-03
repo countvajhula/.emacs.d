@@ -262,17 +262,35 @@
   ;; retain a convenient, non-hydra, escape hatch
   (global-set-key (kbd "s-D") 'evil-mc-undo-all-cursors))
 
+(use-package pubsub
+  :straight
+  (pubsub
+   :local-repo "~/.emacs.d/my-packages/pubsub"
+   :type git)
+  :config)
+
+(use-package mantra
+  :after pubsub
+  :straight
+  (mantra
+   :local-repo "~/.emacs.d/my-packages/mantra"
+   :type git)
+  :config
+  (mantra-initialize))
+
+(use-package virtual-ring
+  :straight
+  (virtual-ring
+   :local-repo "~/.emacs.d/my-packages/virtual-ring"
+   :type git)
+  :config)
+
 (use-package repeat-ring
-  :after dynaring
+  :after (mantra virtual-ring)
   :straight
   (repeat-ring
    :local-repo "~/.emacs.d/my-packages/repeat-ring"
-   :type git)
-  :config
-  (repeat-ring-initialize)
-  (global-set-key (kbd "C-c .") #'repeat-ring-repeat)
-  (global-set-key (kbd "C-c M->") #'repeat-ring-rotate-ring-forwards)
-  (global-set-key (kbd "C-c M-<") #'repeat-ring-rotate-ring-backwards))
+   :type git))
 
 (defun my-company-complete-to-selection ()
   "Insert the selected candidate but retain the completion menu."
