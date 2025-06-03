@@ -219,6 +219,8 @@
                         ("\"" evil-use-register)
                         ("." evil-repeat)
                         ("C-." evil-repeat-pop)
+                        ("g-;" evil-goto-last-change)
+                        ("g-," evil-goto-last-change-reverse)
                         ("q" evil-record-macro)
                         ("@" evil-execute-macro)
                         ("m" evil-set-marker)
@@ -238,6 +240,8 @@
                         ("C-]" evil-jump-to-tag)
                         ("C-i" evil-jump-forward)
                         ("C-o" evil-jump-backward)
+                        ("C-p" evil-paste-pop)
+                        ("C-n" evil-paste-pop-next)
                         ("\\" my-local-leader)
                         ("SPC" my-global-leader))))
 
