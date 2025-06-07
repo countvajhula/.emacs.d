@@ -64,8 +64,7 @@
 ;; default values are too small and frequently run into
 ;; "Lisp nesting exceeds max-lisp-eval-depth" on legitimate computations
 ;; See: https://www.gnu.org/software/emacs/manual/html_node/eintr/Loops-_0026-Recursion.html
-(setq max-specpdl-size         24600  ; 1600 x 15
-      max-lisp-eval-depth      24000) ; 800 x 30
+(setq max-lisp-eval-depth 12000) ; 800 x 30 / 2 (?)
 
 ;; wrap lines visually, preserving indentation (like vim's breakindent)
 (use-package adaptive-wrap
