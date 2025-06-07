@@ -632,56 +632,56 @@
 ;; more useful. Move emacs leader to s-\ instead
 (global-set-key (kbd "s-\\") 'evil-execute-in-emacs-state)
 
-(define-key
+(keymap-set
  ;; info on the current buffer
  (current-global-map)
- (kbd "C-c b")
+ "C-c b"
  'my-buffer-info)
 
-(define-key
+(keymap-set
  ;; info on the current region
  (current-global-map)
- (kbd "C-c g")
+ "C-c g"
  'count-words-region)
 
-(define-key
+(keymap-set
  ;; navigation sidebar
  (current-global-map)
- (kbd "C-c t")
+ "C-c t"
  'dired-sidebar-toggle-sidebar)
 
-(define-key
+(keymap-set
  ;; open a new empty buffer
  (current-global-map)
- (kbd "C-c n")
+ "C-c n"
  'my-new-empty-buffer)
 
-(define-key
+(keymap-set
  ;; drop into a shell (preserves path)
  (current-global-map)
- (kbd "C-c s")
+ "C-c s"
  'my-shell)
 
-(define-key
+(keymap-set
  ;; lookup in dictionary
  (current-global-map)
- (kbd "C-c d")
+ "C-c d"
  'dictionary-lookup-definition)
 
-(define-key
+(keymap-set
  ;; open an elisp shell
  (current-global-map)
- (kbd "C-c l")
+ "C-c l"
  'my-lisp-repl)
 
-(define-key
+(keymap-set
  ;; emulate caps lock -- alternative to an actual CAPS LOCK key
  (current-global-map)
- (kbd "H-<escape>")
+ "H-<escape>"
  'caps-lock-mode)
 
-(define-key
+(keymap-set
  ;; calculator mode
  (current-global-map)
- (kbd "C-+")
+ "C-+"
  'calc)
