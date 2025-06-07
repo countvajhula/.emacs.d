@@ -623,12 +623,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;; map Mac's Command key to Emacs/Lisp's Super key
-(setq mac-command-modifier 'super)
-;; make Fn key do Hyper [coz, why not]
-(setq mac-function-modifier 'hyper)
-
-; Note: "define-key (current-global-map)" is the same as global-set-key
+;; Note: "define-key (current-global-map)" is the same as global-set-key
 
 ;; default "emacs leader" is \, but rebinding that (Vim default) key
 ;; to be a local leader for different modes (like python) since that's
