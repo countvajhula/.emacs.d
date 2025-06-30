@@ -82,6 +82,30 @@ initial screen (when centered) -- same behavior as Vim."
   "Disable line numbers in current buffer."
   (display-line-numbers-mode -1))
 
+(defun my-enable-cursor ()
+  "Enable the cursor."
+  (internal-show-cursor nil t))
+
+(defun my-disable-cursor ()
+  "Disable the cursor."
+  (internal-show-cursor nil nil))
+
+(defun my-enable-blink-cursor ()
+  "Enable blinking of the cursor."
+  (blink-cursor-mode 1))
+
+(defun my-disable-blink-cursor ()
+  "Disable blinking of the cursor."
+  (blink-cursor-mode -1))
+
+(defun my-enable-show-paren-mode ()
+  "Enable show-paren-mode."
+  (show-paren-mode 1))
+
+(defun my-disable-show-paren-mode ()
+  "Disable show-paren-mode."
+  (show-paren-mode -1))
+
 ;;; `with-undo-collapse` macro, to treat a sequence of operations
 ;;; as a single entry in the undo list.
 ;;; From: https://emacs.stackexchange.com/questions/7558/collapsing-undo-history/7560#7560
