@@ -276,7 +276,7 @@
    :local-repo "~/.emacs.d/my-packages/mantra"
    :type git)
   :config
-  (mantra-initialize))
+  (mantra-connect))
 
 (use-package virtual-ring
   :straight
