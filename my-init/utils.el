@@ -127,7 +127,7 @@ the first non-whitespace character.
 
 From: https://stackoverflow.com/a/13313091"
   (= (save-excursion (back-to-indentation)
-                         (point))
+                     (point))
      (point)))
 
 (defun my-camel-case-to-snake-case ()
@@ -143,17 +143,17 @@ From: https://stackoverflow.com/a/13313091"
   (interactive)
   (save-excursion
     (let ((opoint (point)) beg end
-	  total before after)
+	      total before after)
       (forward-page)
       (beginning-of-line)
       (or (looking-at page-delimiter)
-	  (end-of-line))
+	      (end-of-line))
       (setq end (point))
       (backward-page)
       (setq beg (point))
       (setq total (count-lines beg end)
-	    before (count-lines beg opoint)
-	    after (count-lines opoint end))
+	        before (count-lines beg opoint)
+	        after (count-lines opoint end))
       (list total before after))))
 
 (defun my-buffer-info ()
@@ -161,21 +161,21 @@ From: https://stackoverflow.com/a/13313091"
   (interactive)
   (-let [(total before after) (my-count-lines-page)]
     (if (= total 0)
-	(setq bufinfo (list "-- No lines in buffer --"))
+	    (setq bufinfo (list "-- No lines in buffer --"))
       (progn (setq percentage (floor (* (/ (float before)
-					   total)
-					100)))
-	     (setq page-position (concat
-				  "-- "
-				  (number-to-string percentage)
-				  "%"
-				  " --"))
-	     (setq total-lines (concat
-				(number-to-string total)
-				" lines"))
-	     (setq bufinfo (list total-lines page-position))))
+					                       total)
+					                    100)))
+	         (setq page-position (concat
+				                  "-- "
+				                  (number-to-string percentage)
+				                  "%"
+				                  " --"))
+	         (setq total-lines (concat
+				                (number-to-string total)
+				                " lines"))
+	         (setq bufinfo (list total-lines page-position))))
     (add-to-list 'bufinfo
-		 (buffer-file-name))
+		         (buffer-file-name))
     (message "%s" (string-join bufinfo " "))))
 
 (cl-defun my-new-empty-buffer (&optional
