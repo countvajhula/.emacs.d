@@ -260,6 +260,15 @@
      ("\\" my-local-leader)
      ("SPC" my-global-leader))))
 
+(use-package symex-rigpa
+  :after (symex rigpa symex-evil)
+  :straight
+  (symex-rigpa
+   :local-repo "~/.emacs.d/my-packages/symex-rigpa"
+   :type git)
+  :config
+  (symex-rigpa-initialize))
+
 (use-package php-mode
   :defer t)
 
