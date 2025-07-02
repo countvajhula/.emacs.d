@@ -202,7 +202,9 @@
   (symex-quote-prefix-list (list "'" "#'" "`" "#`" "#"))
   (symex-unquote-prefix-list (list "," "#," ",@" "#,@"))
   :config
-  (symex-initialize)
+  (symex-mode 1)
+  (symex-modal-initialize)
+  (symex-ide-initialize)
   (global-set-key (kbd "s-y") #'symex-mode-interface) ; since y looks like inverted lambda
   (global-set-key (kbd "s-;") (kbd "s-y")) ; since y is hard to reach
   (define-key
