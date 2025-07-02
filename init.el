@@ -33,7 +33,6 @@
   ;; TODO: should be independent of symex and arguably evil too
   ;; and, eventually, non-essential modes should be removed from
   ;; the core into separate packages
-  :after (evil lithium symex buffer-ring git-timemachine)
 
   :straight
   (rigpa
@@ -43,9 +42,6 @@
   :config
   (rigpa-initialize)
   (setq rigpa-mode t)
-
-  ;; custom config
-  (setq rigpa-show-menus nil)
 
   (global-set-key (kbd "s-n") 'evil-normal-state)
   (global-unset-key (kbd "s-m"))
