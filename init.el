@@ -40,8 +40,7 @@
    :type git)
 
   :config
-  (rigpa-initialize)
-  (setq rigpa-mode t)
+  (rigpa-mode 1)
 
   (global-set-key (kbd "s-n") 'evil-normal-state)
   (global-unset-key (kbd "s-m"))
