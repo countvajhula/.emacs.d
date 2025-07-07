@@ -192,19 +192,33 @@
   (interactive)
   (hydra-leader/body))
 
+(use-package paredit)
+
+(use-package symex-core
+  :after (paredit)
+  :straight
+  (symex-core
+   :repo nil
+   :host nil
+   :local-repo "~/.emacs.d/my-packages/symex"
+   :type git
+   :files ("symex-core")))
+
 (use-package symex
-  :after (evil lithium)
+  :after (evil lithium symex-core)
   :straight
   (symex
+   :repo nil
+   :host nil
    :local-repo "~/.emacs.d/my-packages/symex"
-   :type git)
+   :type git
+   :files ("symex"))
   :custom
   (symex-quote-prefix-list (list "'" "#'" "`" "#`" "#"))
   (symex-unquote-prefix-list (list "," "#," ",@" "#,@"))
   :config
   (symex-mode 1)
   (symex-modal-initialize)
-  (symex-ide-initialize)
   (global-set-key (kbd "s-y") #'symex-mode-interface) ; since y looks like inverted lambda
   (global-set-key (kbd "s-;") (kbd "s-y")) ; since y is hard to reach
   (define-key
@@ -229,43 +243,46 @@
             #'my-enable-show-paren-mode)
 
   (lithium-define-keys symex-editing-mode
-    (("u" evil-undo)
-     ("C-r" evil-redo)
-     ("\"" evil-use-register)
-     ("g;" evil-goto-last-change)
-     ("g," evil-goto-last-change-reverse)
-     ("gg" evil-goto-first-line)
-     ("G" evil-goto-line)
-     ("q" evil-record-macro)
-     ("@" evil-execute-macro)
-     ("m" evil-set-marker)
-     ("'" evil-goto-mark-line)
-     ("/" evil-search-forward)
-     ("?" evil-search-backward)
-     ("#" evil-search-word-backward)
-     ("*" evil-search-word-forward)
-     ("n" evil-search-next)
-     ("N" evil-search-previous)
-     ("M" my-switch-to-messages-buffer)
+    (("M" my-switch-to-messages-buffer)
      ("t" mindstream-enter-anonymous-session)
-     ("C-d" evil-scroll-down)
-     ("C-u" evil-scroll-up)
      ("C-e" my-scroll-down)
      ("C-y" my-scroll-up)
-     ("C-]" evil-jump-to-tag)
-     ("C-i" evil-jump-forward)
-     ("C-o" evil-jump-backward)
-     ("C-p" evil-paste-pop)
-     ("C-n" evil-paste-pop-next)
      ("\\" my-local-leader)
      ("SPC" my-global-leader))))
+
+(use-package symex-ide
+  :after (symex)
+  :straight
+  (symex-ide
+   :repo nil
+   :host nil
+   :local-repo "~/.emacs.d/my-packages/symex"
+   :type git
+   :files ("symex-ide"))
+  :config
+  (symex-ide-initialize))
+
+(use-package symex-evil
+  :after (symex)
+  :straight
+  (symex-evil
+   :repo nil
+   :host nil
+   :local-repo "~/.emacs.d/my-packages/symex"
+   :type git
+   :files ("symex-evil"))
+  :config
+  (symex-evil-initialize))
 
 (use-package symex-rigpa
   :after (symex rigpa symex-evil)
   :straight
   (symex-rigpa
-   :local-repo "~/.emacs.d/my-packages/symex-rigpa"
-   :type git)
+   :repo nil
+   :host nil
+   :local-repo "~/.emacs.d/my-packages/symex"
+   :type git
+   :files ("symex-rigpa"))
   :config
   (symex-rigpa-initialize))
 
