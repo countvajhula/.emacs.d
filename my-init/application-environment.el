@@ -286,11 +286,6 @@
   :config
   (symex-rigpa-initialize))
 
-(with-eval-after-load 'rigpa
-  (with-eval-after-load 'symex-rigpa
-    (rigpa--create-editing-structures)
-    (rigpa--provide-editing-structures)))
-
 (use-package php-mode
   :defer t)
 
