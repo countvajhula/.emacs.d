@@ -93,6 +93,8 @@
   (put 'fun 'racket-indent-function 'defun)
   (put 'loop 'racket-indent-function 'defun)
   (put 'flow 'racket-indent-function 'defun)
+  (put 'do 'racket-indent-function 0)
+  (put 'reduction-relation 'racket-indent-function 1)
 
   ;; Rhombus config (maybe move to separate, dependent
   ;; file, eventually)
