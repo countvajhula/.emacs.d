@@ -202,23 +202,23 @@
    :host nil
    :local-repo "~/.emacs.d/my-packages/symex"
    :type git
-   :files ("symex-core")))
+   :files ("symex-core/*.el")))
 
 (use-package symex
-  :after (evil lithium symex-core)
+  :after (lithium symex-core)
   :straight
   (symex
    :repo nil
    :host nil
    :local-repo "~/.emacs.d/my-packages/symex"
    :type git
-   :files ("symex"))
+   :files ("symex/*.el" "symex/doc/*.texi" "symex/doc/figures"))
   :custom
   (symex-quote-prefix-list (list "'" "#'" "`" "#`" "#"))
   (symex-unquote-prefix-list (list "," "#," ",@" "#,@"))
+  (symex-orientation 'squirrel)
   :config
   (symex-mode 1)
-  (symex-modal-initialize)
   (global-set-key (kbd "s-y") #'symex-mode-interface) ; since y looks like inverted lambda
   (global-set-key (kbd "s-;") (kbd "s-y")) ; since y is hard to reach
   (define-key
@@ -258,21 +258,21 @@
    :host nil
    :local-repo "~/.emacs.d/my-packages/symex"
    :type git
-   :files ("symex-ide"))
+   :files ("symex-ide/*.el"))
   :config
-  (symex-ide-initialize))
+  (symex-ide-mode 1))
 
 (use-package symex-evil
-  :after (symex)
+  :after (symex evil)
   :straight
   (symex-evil
    :repo nil
    :host nil
    :local-repo "~/.emacs.d/my-packages/symex"
    :type git
-   :files ("symex-evil"))
+   :files ("symex-evil/*.el"))
   :config
-  (symex-evil-initialize))
+  (symex-evil-mode 1))
 
 (use-package symex-rigpa
   :after (symex rigpa symex-evil)
@@ -282,9 +282,9 @@
    :host nil
    :local-repo "~/.emacs.d/my-packages/symex"
    :type git
-   :files ("symex-rigpa"))
+   :files ("symex-rigpa/*.el"))
   :config
-  (symex-rigpa-initialize))
+  (symex-rigpa-mode 1))
 
 (use-package php-mode
   :defer t)
