@@ -274,9 +274,7 @@
   :straight
   (mantra
    :local-repo "~/.emacs.d/my-packages/mantra"
-   :type git)
-  :config
-  (mantra-connect))
+   :type git))
 
 (use-package virtual-ring
   :straight
