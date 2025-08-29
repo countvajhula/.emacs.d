@@ -30,6 +30,7 @@
 (load "physical-environment")
 
 (use-package rigpa
+  :after (evil buffer-ring lithium)
   ;; TODO: should be independent of symex and arguably evil too
   ;; and, eventually, non-essential modes should be removed from
   ;; the core into separate packages
