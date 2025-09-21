@@ -192,10 +192,8 @@
   (interactive)
   (hydra-leader/body))
 
-(use-package paredit)
 
 (use-package symex-core
-  :after (paredit)
   :straight
   (symex-core
    :repo nil
