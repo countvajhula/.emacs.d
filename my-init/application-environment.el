@@ -225,8 +225,6 @@
    (lambda ()
      (interactive)
      (execute-kbd-macro (kbd "("))))
-  (add-to-list 'Info-directory-list
-               (expand-file-name "~/work/symex/doc/"))
   (add-hook 'symex-editing-mode-post-entry-hook
             #'my-disable-cursor)
   (add-hook 'symex-editing-mode-post-entry-hook
