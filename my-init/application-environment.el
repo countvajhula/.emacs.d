@@ -270,18 +270,6 @@
   :config
   (symex-evil-mode 1))
 
-(use-package symex-rigpa
-  :after (symex rigpa symex-evil)
-  :straight
-  (symex-rigpa
-   :repo nil
-   :host nil
-   :local-repo "~/.emacs.d/my-packages/symex"
-   :type git
-   :files ("symex-rigpa/*.el"))
-  :config
-  (symex-rigpa-mode 1))
-
 (use-package php-mode
   :defer t)
 

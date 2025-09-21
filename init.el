@@ -140,6 +140,18 @@
                     (interactive)
                     (rigpa-enter-mode "word"))))
 
+(use-package symex-rigpa
+  :after (rigpa symex-evil)
+  :straight
+  (symex-rigpa
+   :repo nil
+   :host nil
+   :local-repo "~/.emacs.d/my-packages/symex"
+   :type git
+   :files ("symex-rigpa/*.el"))
+  :config
+  (symex-rigpa-mode 1))
+
 (setq native-comp-async-report-warnings-errors 'silent)
 
 ;; load any customizations done via EMACS UI
