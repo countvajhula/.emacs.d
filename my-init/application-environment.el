@@ -225,18 +225,6 @@
    (lambda ()
      (interactive)
      (execute-kbd-macro (kbd "("))))
-  (add-hook 'symex-editing-mode-post-entry-hook
-            #'my-disable-cursor)
-  (add-hook 'symex-editing-mode-post-entry-hook
-            #'my-disable-blink-cursor)
-  (add-hook 'symex-editing-mode-post-entry-hook
-            #'my-disable-show-paren-mode)
-  (add-hook 'symex-editing-mode-post-exit-hook
-            #'my-enable-cursor)
-  (add-hook 'symex-editing-mode-post-exit-hook
-            #'my-enable-blink-cursor)
-  (add-hook 'symex-editing-mode-post-exit-hook
-            #'my-enable-show-paren-mode)
 
   (lithium-define-keys symex-editing-mode
     (("M" my-switch-to-messages-buffer)
