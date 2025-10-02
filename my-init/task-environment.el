@@ -104,6 +104,12 @@
     (kbd "C-x C-l")
     'my-expand-lines)
 
+  (define-key
+    ;; Insert mode's "C-o" --- roundtrip to Normal mode
+    evil-insert-state-map
+    (kbd "C-;")
+    #'evil-execute-in-normal-state)
+
   ;; don't use evil bindings in Info mode
   ;; Note: doesn't work for some reason
   (evil-set-initial-state 'Info-mode 'emacs)
