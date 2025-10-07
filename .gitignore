@@ -22,6 +22,11 @@ transient
 var
 racket-mode
 company-statistics-cache.el
+tree-sitter
+history
+eln-cache
+multisession
+parinfer-rust
 
 # projects tracked elsewhere
 symex
