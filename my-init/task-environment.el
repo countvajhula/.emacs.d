@@ -155,12 +155,6 @@
 
 (use-package evil-collection
   :after evil
-
-  :straight
-  (evil-collection
-   :local-repo "~/.emacs.d/my-packages/evil-collection"
-   :type git)
-
   :config
   (evil-collection-init))
 
