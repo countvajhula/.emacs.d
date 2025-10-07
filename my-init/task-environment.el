@@ -20,7 +20,7 @@
 (use-package evil
   :straight
   (evil
-   :local-repo "~/.emacs.d/my-packages/evil"
+   :local-repo "~/.emacs.d/my-repos/evil"
    :type git)
 
   :custom
@@ -265,7 +265,7 @@
 (use-package pubsub
   :straight
   (pubsub
-   :local-repo "~/.emacs.d/my-packages/pubsub"
+   :local-repo "~/.emacs.d/my-repos/pubsub"
    :type git)
   :config)
 
@@ -273,13 +273,13 @@
   :after pubsub
   :straight
   (mantra
-   :local-repo "~/.emacs.d/my-packages/mantra"
+   :local-repo "~/.emacs.d/my-repos/mantra"
    :type git))
 
 (use-package virtual-ring
   :straight
   (virtual-ring
-   :local-repo "~/.emacs.d/my-packages/virtual-ring"
+   :local-repo "~/.emacs.d/my-repos/virtual-ring"
    :type git)
   :config)
 
@@ -287,7 +287,7 @@
   :after (mantra virtual-ring)
   :straight
   (repeat-ring
-   :local-repo "~/.emacs.d/my-packages/repeat-ring"
+   :local-repo "~/.emacs.d/my-repos/repeat-ring"
    :type git))
 
 (defun my-company-complete-to-selection ()

@@ -96,7 +96,7 @@
 (use-package mindstream
   :straight
   (mindstream
-   :local-repo "~/.emacs.d/my-packages/mindstream"
+   :local-repo "~/.emacs.d/my-repos/mindstream"
    :type git)
 
   :custom
@@ -153,7 +153,7 @@
   :after dynaring
   :straight
   (buffer-ring
-   :local-repo "~/.emacs.d/my-packages/buffer-ring"
+   :local-repo "~/.emacs.d/my-repos/buffer-ring"
    :type git))
 
 (use-package arc
@@ -169,7 +169,7 @@
 (use-package lithium
   :straight
   (lithium
-   :local-repo "~/.emacs.d/my-packages/lithium"
+   :local-repo "~/.emacs.d/my-repos/lithium"
    :type git)
   :config
   (lithium-mode))
@@ -219,7 +219,7 @@
   (symex-core
    :repo nil
    :host nil
-   :local-repo "~/.emacs.d/my-packages/symex"
+   :local-repo "~/.emacs.d/my-repos/symex"
    :type git
    :files ("symex-core/*.el")))
 
@@ -229,7 +229,7 @@
   (symex
    :repo nil
    :host nil
-   :local-repo "~/.emacs.d/my-packages/symex"
+   :local-repo "~/.emacs.d/my-repos/symex"
    :type git
    :files ("symex/*.el" "symex/doc/*.texi" "symex/doc/figures"))
   :custom
@@ -261,7 +261,7 @@
   (symex-ide
    :repo nil
    :host nil
-   :local-repo "~/.emacs.d/my-packages/symex"
+   :local-repo "~/.emacs.d/my-repos/symex"
    :type git
    :files ("symex-ide/*.el"))
   :config
@@ -273,7 +273,7 @@
   (symex-evil
    :repo nil
    :host nil
-   :local-repo "~/.emacs.d/my-packages/symex"
+   :local-repo "~/.emacs.d/my-repos/symex"
    :type git
    :files ("symex-evil/*.el"))
   :config

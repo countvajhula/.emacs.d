@@ -5,10 +5,14 @@
                                               "my-init/"))
   (setq user-packages-directory (concat user-emacs-directory
                                         "my-packages/"))
+  (setq user-repos-directory (concat user-emacs-directory
+                                     "my-repos/"))
   (add-to-list 'load-path user-customizations-directory)
   (add-to-list 'load-path user-packages-directory)
   ;; add all its subfolders too
   (let ((default-directory user-packages-directory))
+    (normal-top-level-add-subdirs-to-load-path))
+  (let ((default-directory user-repos-directory))
     (normal-top-level-add-subdirs-to-load-path)))
 
 (setup-load-path)
@@ -37,7 +41,7 @@
 
   :straight
   (rigpa
-   :local-repo "~/.emacs.d/my-packages/rigpa"
+   :local-repo "~/.emacs.d/my-repos/rigpa"
    :type git)
 
   :config
@@ -146,7 +150,7 @@
   (symex-rigpa
    :repo nil
    :host nil
-   :local-repo "~/.emacs.d/my-packages/symex"
+   :local-repo "~/.emacs.d/my-repos/symex"
    :type git
    :files ("symex-rigpa/*.el"))
   :config

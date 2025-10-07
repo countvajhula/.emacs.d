@@ -29,11 +29,7 @@ multisession
 parinfer-rust
 
 # projects tracked elsewhere
-symex
-rigpa
-arc
-dynaring
-buffer-ring
+my-repos
 
 # vim noise
 *~
