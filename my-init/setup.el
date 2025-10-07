@@ -24,6 +24,26 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
+;; --- Add the local "xelpa" recipe repository ---
+
+;; 1. Tell straight.el to "install" the recipe repository package.
+;;    The `:defer t` keyword prevents use-package from
+;;    trying (and failing) to `require` a non-existent 'xelpa' feature.
+(use-package xelpa
+  :defer t
+  :straight
+  (xelpa
+   :type nil
+   :local-repo "~/.emacs.d/xelpa"
+   :build nil))
+
+;; 2. Manually add the path to the load-path and load the recipe protocol functions.
+(add-to-list 'load-path "~/.emacs.d/xelpa")
+(require 'xelpa)
+
+;; 3. Now that the protocol is loaded, register "xelpa" as a recipe source.
+(add-to-list 'straight-recipe-repositories 'xelpa)
+
 ;; 'require' looks in the load-path, so packages need to be
 ;; downloaded from melpa prior to this.
 ;; package.el, though, is bundled with emacs

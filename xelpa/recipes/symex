@@ -1,0 +1,4 @@
+(symex
+ :host github
+ :repo "drym-org/symex.el"
+ :files ("symex/symex*.el" "symex/doc/*.texi" "symex/doc/figures"))
