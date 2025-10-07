@@ -1,0 +1,53 @@
+.tocsub {
+    background-color: burlywood;
+    font-family: 'Candara', sans-serif;
+}
+
+.tocview {
+    background-color: burlywood;
+    font-family: 'Candara', sans-serif;
+}
+
+.tocviewselflink {
+	color: #111613;
+}
+
+.tocviewtoggle {
+	color: #111613;
+}
+
+.tocviewlink {
+	color: #111613;
+}
+
+.tocset {
+    background-color: burlywood;
+}
+
+.tocsubseclink {
+	color: #111613;
+}
+
+body {
+    background-color: #d9d1c6;
+}
+
+h2 {
+    font-family: 'Candara', sans-serif;
+}
+
+h3 {
+    font-family: 'Candara', sans-serif;
+}
+
+h4 {
+    font-family: 'Candara', sans-serif;
+}
+
+h5 {
+    font-family: 'Candara', sans-serif;
+}
+
+.SSubSubSubSection {
+    font-family: 'Candara', sans-serif;
+}
