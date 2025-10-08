@@ -14,7 +14,8 @@ exists, return its contents; otherwise return nil."
 (defun straight-recipes-xelpa-list ()
   "Return a list of all available recipes in xelpa, as strings."
   ;; Assumes default-directory is the root of the xelpa repo.
-  (directory-files "recipes/"))
+  (cl-remove-if #'file-directory-p
+                (directory-files "recipes/")))
 
 (defun straight-recipes-xelpa-version ()
   "Return the current version of the xelpa retriever logic."
