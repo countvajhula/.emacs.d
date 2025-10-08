@@ -146,13 +146,6 @@
 
 (use-package symex-rigpa
   :after (rigpa symex-evil)
-  :straight
-  (symex-rigpa
-   :repo nil
-   :host nil
-   :local-repo "~/.emacs.d/my-repos/symex"
-   :type git
-   :files ("symex-rigpa/*.el"))
   :config
   (symex-rigpa-mode 1))
 

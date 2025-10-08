@@ -1,4 +1,6 @@
 (symex-evil
- :host github
- :repo "drym-org/symex.el"
- :files ("symex-evil/symex*.el"))
+ :repo nil
+ :host nil
+ :local-repo "~/.emacs.d/my-repos/symex"
+ :type git
+ :files ("symex-evil/*.el"))

@@ -214,24 +214,7 @@
         (yaml "https://github.com/ikatyang/tree-sitter-yaml")
         (swift "https://github.com/alex-pinkus/tree-sitter-swift")))
 
-(use-package symex-core
-  :straight
-  (symex-core
-   :repo nil
-   :host nil
-   :local-repo "~/.emacs.d/my-repos/symex"
-   :type git
-   :files ("symex-core/*.el")))
-
 (use-package symex
-  :after (lithium symex-core)
-  :straight
-  (symex
-   :repo nil
-   :host nil
-   :local-repo "~/.emacs.d/my-repos/symex"
-   :type git
-   :files ("symex/*.el" "symex/doc/*.texi" "symex/doc/figures"))
   :custom
   (symex-quote-prefix-list (list "'" "#'" "`" "#`" "#"))
   (symex-unquote-prefix-list (list "," "#," ",@" "#,@"))
@@ -257,25 +240,11 @@
 
 (use-package symex-ide
   :after (symex)
-  :straight
-  (symex-ide
-   :repo nil
-   :host nil
-   :local-repo "~/.emacs.d/my-repos/symex"
-   :type git
-   :files ("symex-ide/*.el"))
   :config
   (symex-ide-mode 1))
 
 (use-package symex-evil
   :after (symex evil)
-  :straight
-  (symex-evil
-   :repo nil
-   :host nil
-   :local-repo "~/.emacs.d/my-repos/symex"
-   :type git
-   :files ("symex-evil/*.el"))
   :config
   (symex-evil-mode 1))
 
