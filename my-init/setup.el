@@ -26,6 +26,31 @@
 
 ;; --- Add the local "xelpa" recipe repository ---
 
+;; 0. Generate XELPA from the local recipes.el
+(let* ((xelpa-dir (expand-file-name "xelpa" user-emacs-directory))
+       (source-recipe-file (expand-file-name "recipes.el" xelpa-dir))
+       (generated-recipes-dir (expand-file-name "recipes" xelpa-dir)))
+
+  (when (file-exists-p source-recipe-file)
+    (message "--- Generating local 'XELPA' recipe repository ---")
+    ;; Clean and create the target directory.
+    (when (file-directory-p generated-recipes-dir)
+      (delete-directory generated-recipes-dir 'recursive))
+    (make-directory generated-recipes-dir 'parents)
+
+    ;; Read the list of recipes.
+    (let ((recipes (with-temp-buffer
+                     (insert-file-contents source-recipe-file)
+                     (read (current-buffer)))))
+      (dolist (recipe recipes)
+        (let* ((recipe-id (car recipe))
+               (package-name (if (symbolp recipe-id) (symbol-name recipe-id) recipe-id))
+               (target-file (expand-file-name package-name generated-recipes-dir)))
+          ;; Write each recipe to its own file inside the generated directory.
+          (with-temp-file target-file
+            (prin1 recipe (current-buffer))))))
+    (message "--- 'XELPA' generation complete ---")))
+
 ;; 1. Tell straight.el to "install" the recipe repository package.
 ;;    The `:defer t` keyword prevents use-package from
 ;;    trying (and failing) to `require` a non-existent 'xelpa' feature.
