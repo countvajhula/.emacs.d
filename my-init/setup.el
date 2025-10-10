@@ -28,7 +28,7 @@
 
 ;; 0. Generate XELPA from the local recipes.el
 (let* ((xelpa-dir (expand-file-name "xelpa" user-emacs-directory))
-       (source-recipe-file (expand-file-name "recipes.el" xelpa-dir))
+       (source-recipe-file (expand-file-name "recipes.el" user-emacs-directory))
        (generated-recipes-dir (expand-file-name "recipes" xelpa-dir)))
 
   (when (file-exists-p source-recipe-file)

@@ -1,4 +1,4 @@
-;; recipes.el --- Implements the "xelpa" local recipe repository protocol.
+;; xelpa.el --- Implements the "xelpa" local recipe repository protocol.
 ;; -*- lexical-binding: t -*-
 
 (defun straight-recipes-xelpa-retrieve (package)
