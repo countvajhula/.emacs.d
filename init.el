@@ -39,11 +39,6 @@
   ;; and, eventually, non-essential modes should be removed from
   ;; the core into separate packages
 
-  :straight
-  (rigpa
-   :local-repo "~/.emacs.d/my-repos/rigpa"
-   :type git)
-
   :config
   (rigpa-mode 1)
 
