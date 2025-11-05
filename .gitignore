@@ -31,8 +31,9 @@ parinfer-rust
 # projects tracked elsewhere
 my-repos
 
-# generated XELPA
-xelpa/recipes/
+# Elacarte working paths
+elacarte/tmp
+elacarte/xelpa
 
 # vim noise
 *~
