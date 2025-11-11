@@ -45,7 +45,7 @@ used by Straight doesn't yet exist."
  (expand-file-name "elacarte/recipes.eld"
                    user-emacs-directory))
 
-;; --- Add the local "xelpa" recipe repository ---
+;; --- Add the local Elacarte recipe repository ---
 (require 'elacarte)
 (elacarte-build-recipe-repository)
 (elacarte-register-recipe-repository)
